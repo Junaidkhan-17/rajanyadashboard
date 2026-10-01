@@ -1,0 +1,573 @@
+/* =========================================================
+   VIRTUAL TRY-ON STATISTICS
+   Premium Responsive Statistics Cards
+   ========================================================= */
+
+.try-stats-on {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(
+    5,
+    minmax(0, 1fr)
+  );
+
+  gap: 1rem;
+}
+
+/* =========================================================
+   STAT CARD
+   ========================================================= */
+
+.try-stats-on__card {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    1.15rem
+    1.25rem;
+
+  background: #ffffff;
+
+  border:
+    1px
+    solid
+    #f1f5f9;
+
+  border-radius: 1rem;
+
+  box-shadow:
+    0 2px 8px
+      rgba(
+        15,
+        23,
+        42,
+        0.055
+      );
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .try-stats-on__card:hover {
+    transform: translateY(-2px);
+
+    border-color: #e2e8f0;
+
+    box-shadow:
+      0 8px 20px
+        rgba(
+          15,
+          23,
+          42,
+          0.08
+        );
+  }
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.try-stats-on__content {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.95rem;
+}
+
+/* =========================================================
+   ICON WRAPPER
+   ========================================================= */
+
+.try-stats-on__icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+
+  min-width: 3rem;
+  min-height: 3rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  flex: 0 0 auto;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.try-stats-on__icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   ICON COLORS
+   ========================================================= */
+
+.try-stats-on__icon--purple {
+  background: #f3e8ff;
+}
+
+.try-stats-on__icon-color--purple {
+  color: #9333ea;
+}
+
+.try-stats-on__icon--orange {
+  background: #ffedd5;
+}
+
+.try-stats-on__icon-color--orange {
+  color: #f97316;
+}
+
+.try-stats-on__icon--green {
+  background: #dcfce7;
+}
+
+.try-stats-on__icon-color--green {
+  color: #22c55e;
+}
+
+.try-stats-on__icon--red {
+  background: #fee2e2;
+}
+
+.try-stats-on__icon-color--red {
+  color: #ef4444;
+}
+
+.try-stats-on__icon--blue {
+  background: #dbeafe;
+}
+
+.try-stats-on__icon-color--blue {
+  color: #3b82f6;
+}
+
+/* =========================================================
+   STAT DETAILS
+   ========================================================= */
+
+.try-stats-on__details {
+  min-width: 0;
+
+  flex: 1 1 auto;
+}
+
+.try-stats-on__title {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.75rem;
+
+  font-weight: 400;
+
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+.try-stats-on__value {
+  margin:
+    0.15rem
+    0
+    0;
+
+  color: #1e293b;
+
+  font-size: clamp(
+    1.45rem,
+    2vw,
+    1.75rem
+  );
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.02em;
+
+  overflow-wrap: anywhere;
+}
+
+.try-stats-on__sub {
+  margin:
+    0.3rem
+    0
+    0;
+
+  color: #22c55e;
+
+  font-size: 0.6875rem;
+
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   LARGE DESKTOP — 1440px+
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .try-stats-on {
+    gap: 1rem;
+  }
+
+  .try-stats-on__card {
+    padding:
+      1.2rem
+      1.3rem;
+  }
+
+  .try-stats-on__content {
+    gap: 1rem;
+  }
+}
+
+/* =========================================================
+   DESKTOP — 1200px to 1439px
+   ========================================================= */
+
+@media (max-width: 1439px) {
+  .try-stats-on {
+    gap: 0.9rem;
+  }
+
+  .try-stats-on__card {
+    padding:
+      1rem;
+  }
+
+  .try-stats-on__content {
+    gap: 0.8rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 2.85rem;
+    height: 2.85rem;
+
+    min-width: 2.85rem;
+    min-height: 2.85rem;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.7rem;
+  }
+
+  .try-stats-on__sub {
+    font-size: 0.65rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP — 992px to 1199px
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .try-stats-on {
+    grid-template-columns: repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+    gap: 0.9rem;
+  }
+
+  .try-stats-on__card {
+    min-height: 105px;
+
+    padding:
+      1rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 2.9rem;
+    height: 2.9rem;
+
+    min-width: 2.9rem;
+    min-height: 2.9rem;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.72rem;
+  }
+
+  .try-stats-on__value {
+    font-size: 1.55rem;
+  }
+
+  .try-stats-on__sub {
+    font-size: 0.66rem;
+
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   TABLET — 768px to 991px
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .try-stats-on {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+    gap: 0.85rem;
+  }
+
+  .try-stats-on__card {
+    min-height: 102px;
+
+    padding:
+      1rem
+      1.05rem;
+
+    border-radius: 0.9rem;
+  }
+
+  .try-stats-on__content {
+    gap: 0.85rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.75rem;
+  }
+
+  .try-stats-on__value {
+    font-size: 1.55rem;
+  }
+
+  .try-stats-on__sub {
+    font-size: 0.68rem;
+  }
+}
+
+/* =========================================================
+   MOBILE — 576px to 767px
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .try-stats-on {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+    gap: 0.75rem;
+  }
+
+  .try-stats-on__card {
+    min-height: 100px;
+
+    padding:
+      0.9rem;
+
+    border-radius: 0.85rem;
+  }
+
+  .try-stats-on__content {
+    align-items: center;
+
+    gap: 0.7rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 2.75rem;
+    height: 2.75rem;
+
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+
+  .try-stats-on__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.69rem;
+
+    line-height: 1.3;
+  }
+
+  .try-stats-on__value {
+    margin-top: 0.18rem;
+
+    font-size: 1.35rem;
+
+    line-height: 1.15;
+  }
+
+  .try-stats-on__sub {
+    margin-top: 0.25rem;
+
+    font-size: 0.62rem;
+
+    line-height: 1.3;
+
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE — 375px to 575px
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .try-stats-on {
+    grid-template-columns: 1fr;
+
+    gap: 0.7rem;
+  }
+
+  .try-stats-on__card {
+    min-height: 88px;
+
+    padding:
+      0.85rem
+      0.9rem;
+
+    border-radius: 0.8rem;
+  }
+
+  .try-stats-on__content {
+    gap: 0.8rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 2.8rem;
+    height: 2.8rem;
+
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.72rem;
+
+    line-height: 1.35;
+  }
+
+  .try-stats-on__value {
+    font-size: 1.4rem;
+  }
+
+  .try-stats-on__sub {
+    font-size: 0.64rem;
+
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES — 320px to 374px
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .try-stats-on {
+    gap: 0.6rem;
+  }
+
+  .try-stats-on__card {
+    min-height: 84px;
+
+    padding:
+      0.75rem
+      0.8rem;
+  }
+
+  .try-stats-on__content {
+    gap: 0.7rem;
+  }
+
+  .try-stats-on__icon-wrapper {
+    width: 2.6rem;
+    height: 2.6rem;
+
+    min-width: 2.6rem;
+    min-height: 2.6rem;
+  }
+
+  .try-stats-on__icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .try-stats-on__title {
+    font-size: 0.68rem;
+  }
+
+  .try-stats-on__value {
+    font-size: 1.3rem;
+  }
+
+  .try-stats-on__sub {
+    font-size: 0.6rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .try-stats-on__card {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .try-stats-on__card:active {
+    transform: scale(0.99);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .try-stats-on__card,
+  .try-stats-on__icon-wrapper {
+    transition: none;
+  }
+}

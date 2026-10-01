@@ -1,0 +1,428 @@
+/* =========================================================
+   PRICING INFORMATION
+   Component-specific responsive styles
+   ========================================================= */
+
+.pricing-information-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.pricing-information-header {
+  width: 100%;
+  min-width: 0;
+}
+
+.pricing-information-title-wrapper {
+  min-width: 0;
+}
+
+.pricing-information-step {
+  flex: 0 0 32px;
+}
+
+.pricing-information-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.pricing-add-button {
+  min-height: 44px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pricing-add-button svg {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   PRICING ROW
+   ========================================================= */
+
+.pricing-rows {
+  width: 100%;
+  min-width: 0;
+}
+
+.pricing-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.pricing-field {
+  width: 100%;
+  min-width: 0;
+}
+
+.pricing-label {
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.pricing-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  line-height: 1.2;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.pricing-input:hover {
+  border-color: #cbd5e1;
+}
+
+.pricing-input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+.pricing-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Remove number input arrows where appropriate */
+.pricing-input::-webkit-inner-spin-button,
+.pricing-input::-webkit-outer-spin-button {
+  margin: 0;
+}
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.pricing-delete-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.pricing-delete-button {
+  flex: 0 0 48px;
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pricing-delete-button:hover {
+  border-color: #fecaca;
+}
+
+.pricing-delete-button:active {
+  transform: scale(0.96);
+}
+
+.pricing-delete-button:focus-visible {
+  outline: 2px solid #ef4444;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   LAPTOP / DESKTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .pricing-information-card {
+    padding: 1.25rem;
+  }
+
+  .pricing-row {
+    gap: 0.875rem;
+  }
+
+  .pricing-input {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .pricing-information-card {
+    padding: 1.125rem;
+  }
+
+  .pricing-information-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .pricing-row {
+    gap: 0.75rem;
+  }
+
+  .pricing-input {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .pricing-delete-button {
+    min-width: 46px;
+    min-height: 46px;
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .pricing-information-card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .pricing-information-header {
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pricing-information-title-wrapper {
+    gap: 0.625rem;
+  }
+
+  .pricing-information-step {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+    border-radius: 0.5rem;
+    font-size: 13px;
+  }
+
+  .pricing-information-title {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .pricing-add-button {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.7rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 13px;
+  }
+
+  .pricing-row {
+    gap: 0.875rem;
+    padding: 0.875rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+  }
+
+  .pricing-label {
+    margin-bottom: 0.45rem;
+    font-size: 10px;
+    letter-spacing: 0.075em;
+  }
+
+  .pricing-input {
+    height: 46px;
+    padding: 0 0.875rem;
+    border-radius: 0.75rem;
+    font-size: 14px;
+  }
+
+  .pricing-delete-wrapper {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 0.125rem;
+  }
+
+  .pricing-delete-button {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    min-height: 44px;
+    border-radius: 0.75rem;
+  }
+
+  .pricing-delete-button::after {
+    content: "Remove Duration";
+    margin-left: 0.5rem;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .pricing-information-card {
+    padding: 0.875rem;
+    border-radius: 0.875rem;
+  }
+
+  .pricing-information-header {
+    margin-bottom: 1rem;
+  }
+
+  .pricing-information-title {
+    font-size: 0.95rem;
+  }
+
+  .pricing-row {
+    padding: 0.75rem;
+    gap: 0.75rem;
+    border-radius: 0.875rem;
+  }
+
+  .pricing-input {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .pricing-delete-button {
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 389px) {
+  .pricing-information-card {
+    padding: 0.75rem;
+  }
+
+  .pricing-information-title-wrapper {
+    gap: 0.5rem;
+  }
+
+  .pricing-information-step {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+    font-size: 12px;
+  }
+
+  .pricing-information-title {
+    font-size: 0.9rem;
+  }
+
+  .pricing-add-button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .pricing-row {
+    padding: 0.625rem;
+  }
+
+  .pricing-label {
+    font-size: 9px;
+  }
+
+  .pricing-input {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* =========================================================
+   320px SAFETY
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .pricing-information-card {
+    padding: 0.625rem;
+  }
+
+  .pricing-information-header {
+    gap: 0.75rem;
+  }
+
+  .pricing-information-title-wrapper {
+    align-items: center;
+  }
+
+  .pricing-information-title {
+    font-size: 0.875rem;
+  }
+
+  .pricing-add-button {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .pricing-row {
+    padding: 0.625rem;
+    border-radius: 0.75rem;
+  }
+
+  .pricing-input {
+    height: 42px;
+    font-size: 13px;
+  }
+
+  .pricing-delete-button {
+    height: 42px;
+    min-height: 42px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .pricing-add-button {
+    transition:
+      transform 0.15s ease,
+      background-color 0.2s ease;
+  }
+
+  .pricing-add-button:active {
+    transform: scale(0.98);
+  }
+
+  .pricing-input {
+    font-size: 16px;
+  }
+
+  .pricing-delete-button:hover {
+    background-color: transparent;
+  }
+
+  .pricing-delete-button:active {
+    background-color: #fef2f2;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-input,
+  .pricing-add-button,
+  .pricing-delete-button {
+    transition: none;
+  }
+}

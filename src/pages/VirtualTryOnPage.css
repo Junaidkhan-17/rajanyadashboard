@@ -1,0 +1,508 @@
+/* =========================================================
+   VIRTUAL TRY-ON MANAGEMENT PAGE
+   Premium Responsive Page Layout
+   ========================================================= */
+
+.virtual-try-on-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+
+  padding: 0;
+
+  overflow: visible;
+}
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.virtual-try-on-page__header {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.virtual-try-on-page__header-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+}
+
+.virtual-try-on-page__heading-wrapper {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.virtual-try-on-page__title {
+  margin: 0;
+
+  color: #1e293b;
+
+  font-size: clamp(
+    1.85rem,
+    2.3vw,
+    2.35rem
+  );
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.025em;
+
+  overflow-wrap: anywhere;
+}
+
+.virtual-try-on-page__subtitle {
+  max-width: 780px;
+
+  margin: 0.4rem 0 0;
+
+  color: #64748b;
+
+  font-size: clamp(
+    0.9rem,
+    1.15vw,
+    1rem
+  );
+
+  font-weight: 400;
+
+  line-height: 1.55;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.virtual-try-on-page__back-button {
+  flex: 0 0 auto;
+
+  min-height: 44px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.55rem;
+
+  padding:
+    0.7rem
+    1.25rem;
+
+  border:
+    1px
+    solid
+    #cbd5e1;
+
+  border-radius: 0.8rem;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-size: 0.9rem;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 1px 2px
+      rgba(
+        15,
+        23,
+        42,
+        0.02
+      );
+
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.virtual-try-on-page__back-button svg {
+  flex: 0 0 auto;
+
+  transition:
+    transform 0.22s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .virtual-try-on-page__back-button:hover {
+    background: #f8fafc;
+
+    border-color: #94a3b8;
+
+    color: #020617;
+
+    box-shadow:
+      0 4px 12px
+        rgba(
+          15,
+          23,
+          42,
+          0.06
+        );
+
+    transform: translateY(-1px);
+  }
+
+  .virtual-try-on-page__back-button:hover svg {
+    transform: translateX(-2px);
+  }
+}
+
+.virtual-try-on-page__back-button:focus-visible {
+  outline: none;
+
+  border-color: #64748b;
+
+  box-shadow:
+    0 0 0 3px
+      rgba(
+        15,
+        23,
+        42,
+        0.1
+      );
+}
+
+/* =========================================================
+   STATISTICS SECTION
+   ========================================================= */
+
+.virtual-try-on-page__stats {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/*
+  Keep child components constrained to the parent width.
+  This prevents a child grid/flex layout from accidentally
+  pushing the overall page beyond the viewport.
+*/
+
+.virtual-try-on-page__stats > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   REQUESTS SECTION
+   ========================================================= */
+
+.virtual-try-on-page__requests {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.virtual-try-on-page__requests > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   LARGE DESKTOP — 1440px+
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .virtual-try-on-page {
+    gap: 1.6rem;
+  }
+
+  .virtual-try-on-page__header-content {
+    gap: 2rem;
+  }
+
+  .virtual-try-on-page__back-button {
+    padding:
+      0.72rem
+      1.3rem;
+  }
+}
+
+/* =========================================================
+   DESKTOP — 1200px to 1439px
+   ========================================================= */
+
+@media (max-width: 1439px) {
+  .virtual-try-on-page {
+    gap: 1.4rem;
+  }
+
+  .virtual-try-on-page__header-content {
+    gap: 1.5rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP — 992px to 1199px
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .virtual-try-on-page {
+    gap: 1.35rem;
+  }
+
+  .virtual-try-on-page__title {
+    font-size: clamp(
+      1.7rem,
+      2.7vw,
+      2rem
+    );
+  }
+
+  .virtual-try-on-page__subtitle {
+    max-width: 680px;
+  }
+
+  .virtual-try-on-page__back-button {
+    padding:
+      0.68rem
+      1.1rem;
+
+    font-size: 0.875rem;
+  }
+}
+
+/* =========================================================
+   TABLET — 768px to 991px
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .virtual-try-on-page {
+    gap: 1.25rem;
+  }
+
+  .virtual-try-on-page__header-content {
+    align-items: flex-start;
+
+    gap: 1.25rem;
+  }
+
+  .virtual-try-on-page__title {
+    font-size: clamp(
+      1.6rem,
+      3.2vw,
+      1.9rem
+    );
+
+    line-height: 1.18;
+  }
+
+  .virtual-try-on-page__subtitle {
+    margin-top: 0.35rem;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+  }
+
+  .virtual-try-on-page__back-button {
+    min-height: 44px;
+
+    padding:
+      0.65rem
+      1rem;
+
+    border-radius: 0.75rem;
+  }
+}
+
+/* =========================================================
+   MOBILE — 576px to 767px
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .virtual-try-on-page {
+    gap: 1rem;
+  }
+
+  .virtual-try-on-page__header-content {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0.9rem;
+  }
+
+  .virtual-try-on-page__heading-wrapper {
+    width: 100%;
+  }
+
+  .virtual-try-on-page__title {
+    font-size: clamp(
+      1.55rem,
+      6vw,
+      1.8rem
+    );
+
+    line-height: 1.18;
+
+    letter-spacing: -0.02em;
+  }
+
+  .virtual-try-on-page__subtitle {
+    max-width: 100%;
+
+    margin-top: 0.4rem;
+
+    font-size: 0.875rem;
+
+    line-height: 1.5;
+  }
+
+  .virtual-try-on-page__back-button {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding:
+      0.7rem
+      1rem;
+
+    border-radius: 0.75rem;
+
+    font-size: 0.875rem;
+  }
+
+  .virtual-try-on-page__stats,
+  .virtual-try-on-page__requests {
+    width: 100%;
+
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE — 375px to 575px
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .virtual-try-on-page {
+    gap: 0.9rem;
+  }
+
+  .virtual-try-on-page__header-content {
+    gap: 0.8rem;
+  }
+
+  .virtual-try-on-page__title {
+    font-size: clamp(
+      1.4rem,
+      7vw,
+      1.65rem
+    );
+
+    line-height: 1.2;
+  }
+
+  .virtual-try-on-page__subtitle {
+    margin-top: 0.35rem;
+
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+  }
+
+  .virtual-try-on-page__back-button {
+    min-height: 44px;
+
+    gap: 0.5rem;
+
+    padding:
+      0.65rem
+      0.85rem;
+
+    font-size: 0.82rem;
+  }
+
+  .virtual-try-on-page__back-button svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES — 320px to 374px
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .virtual-try-on-page {
+    gap: 0.8rem;
+  }
+
+  .virtual-try-on-page__title {
+    font-size: 1.35rem;
+
+    line-height: 1.2;
+  }
+
+  .virtual-try-on-page__subtitle {
+    font-size: 0.78rem;
+
+    line-height: 1.5;
+  }
+
+  .virtual-try-on-page__back-button {
+    min-height: 44px;
+
+    padding:
+      0.65rem
+      0.75rem;
+
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .virtual-try-on-page__back-button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .virtual-try-on-page__back-button:active {
+    transform: scale(0.985);
+
+    background: #f8fafc;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .virtual-try-on-page__back-button,
+  .virtual-try-on-page__back-button svg {
+    transition: none;
+  }
+}

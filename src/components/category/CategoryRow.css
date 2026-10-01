@@ -1,0 +1,940 @@
+/* =========================================================
+   CATEGORY ROW
+   Premium Responsive Category Table Row
+   ========================================================= */
+
+.category-row {
+  background: #ffffff;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* =========================================================
+   DESKTOP HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .category-row:hover {
+    background: #f8fafc;
+  }
+}
+
+/* =========================================================
+   TABLE CELLS
+   ========================================================= */
+
+.category-row__cell {
+  padding: 1.15rem 1rem;
+
+  vertical-align: middle;
+
+  color: #334155;
+
+  min-width: 0;
+}
+
+.category-row__cell-inner {
+  min-width: 0;
+}
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.category-row__checkbox-cell {
+  width: 52px;
+
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+
+  text-align: center;
+}
+
+.category-row__checkbox-wrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.category-row__checkbox {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  accent-color: #0f172a;
+}
+
+/* =========================================================
+   SERIAL
+   ========================================================= */
+
+.category-row__serial-cell {
+  width: 60px;
+
+  text-align: center;
+}
+
+.category-row__serial {
+  color: #64748b;
+
+  font-size: 0.875rem;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.category-row__image-cell {
+  width: 88px;
+
+  text-align: center;
+}
+
+.category-row__image-wrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.category-row__image {
+  width: 48px;
+  height: 48px;
+
+  display: block;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  background: #f8fafc;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.category-row__image-placeholder {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.25rem;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 50%;
+
+  background: #f8fafc;
+
+  color: #94a3b8;
+
+  font-size: 0.58rem;
+
+  line-height: 1.15;
+
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .category-row:hover .category-row__image {
+    transform: scale(1.04);
+
+    box-shadow:
+      0 5px 15px
+        rgba(15, 23, 42, 0.08);
+  }
+}
+
+/* =========================================================
+   CATEGORY
+   ========================================================= */
+
+.category-row__category-cell {
+  min-width: 180px;
+
+  max-width: 280px;
+}
+
+.category-row__category-content {
+  overflow: hidden;
+}
+
+.category-row__category-name {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #1e293b;
+
+  font-size: 0.875rem;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.category-row__parent {
+  margin: 0.3rem 0 0;
+
+  overflow: hidden;
+
+  color: #94a3b8;
+
+  font-size: 0.75rem;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.category-row__products-cell {
+  width: 90px;
+
+  text-align: center;
+}
+
+.category-row__products-count {
+  color: #334155;
+
+  font-size: 0.875rem;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   BOOLEAN STATUS
+   ========================================================= */
+
+.category-row__boolean-status {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  min-width: 58px;
+}
+
+.category-row__boolean-text {
+  color: #475569;
+
+  font-size: 0.75rem;
+
+  font-weight: 400;
+
+  white-space: nowrap;
+}
+
+.category-row__featured-icon,
+.category-row__boolean-icon {
+  flex: 0 0 auto;
+
+  transition:
+    transform 0.25s ease,
+    color 0.2s ease;
+}
+
+.category-row__featured-icon--active {
+  color: #facc15;
+}
+
+.category-row__featured-icon--inactive {
+  color: #cbd5e1;
+}
+
+.category-row__boolean-icon--active {
+  color: #22c55e;
+}
+
+.category-row__boolean-icon--inactive {
+  color: #cbd5e1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .category-row:hover
+    .category-row__featured-icon,
+  .category-row:hover
+    .category-row__boolean-icon {
+    transform: scale(1.06);
+  }
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.category-row__status-cell {
+  width: 110px;
+
+  text-align: center;
+}
+
+.category-row__status-badge {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 26px;
+
+  padding:
+    0.3rem
+    0.7rem;
+
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.category-row__status-badge--active {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.category-row__status-badge--inactive {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+.category-row__status-badge--pending {
+  background: #fef3c7;
+
+  color: #b45309;
+}
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.category-row__date-cell {
+  width: 125px;
+
+  text-align: center;
+}
+
+.category-row__date {
+  color: #64748b;
+
+  font-size: 0.75rem;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.category-row__actions-cell {
+  width: 145px;
+}
+
+.category-row__actions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.5rem;
+}
+
+.category-row__action-btn {
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+  min-height: 36px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.category-row__action-icon {
+  flex: 0 0 auto;
+}
+
+.category-row__action-icon--view {
+  color: #2563eb;
+}
+
+.category-row__action-icon--edit {
+  color: #475569;
+}
+
+.category-row__action-icon--delete {
+  color: #ef4444;
+}
+
+/* =========================================================
+   ACTION HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .category-row__action-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+      0 4px 10px
+        rgba(15, 23, 42, 0.06);
+  }
+
+  .category-row__action-btn--view:hover {
+    background: #eff6ff;
+
+    border-color: #bfdbfe;
+  }
+
+  .category-row__action-btn--edit:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+  }
+
+  .category-row__action-btn--delete:hover {
+    background: #fef2f2;
+
+    border-color: #fecaca;
+  }
+}
+
+.category-row__action-btn:focus-visible {
+  box-shadow:
+    0 0 0 3px
+      rgba(15, 23, 42, 0.08);
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .category-row__cell {
+    padding:
+      1.2rem
+      1rem;
+  }
+
+  .category-row__category-cell {
+    min-width: 210px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .category-row__cell {
+    padding:
+      1rem
+      0.75rem;
+  }
+
+  .category-row__checkbox-cell {
+    padding-left: 0.75rem;
+  }
+
+  .category-row__category-cell {
+    min-width: 160px;
+  }
+
+  .category-row__category-name {
+    font-size: 0.8125rem;
+  }
+
+  .category-row__parent {
+    font-size: 0.7rem;
+  }
+
+  .category-row__boolean-status {
+    gap: 0.35rem;
+  }
+
+  .category-row__boolean-text {
+    font-size: 0.7rem;
+  }
+
+  .category-row__action-btn {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+    min-height: 34px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .category-row__cell {
+    padding:
+      0.9rem
+      0.65rem;
+  }
+
+  .category-row__category-cell {
+    min-width: 145px;
+  }
+
+  .category-row__image,
+  .category-row__image-placeholder {
+    width: 44px;
+    height: 44px;
+  }
+
+  .category-row__boolean-text {
+    display: none;
+  }
+
+  .category-row__boolean-status {
+    min-width: 32px;
+  }
+
+  .category-row__status-badge {
+    padding:
+      0.28rem
+      0.55rem;
+
+    font-size: 0.63rem;
+  }
+}
+
+/* =========================================================
+   IMPORTANT:
+   MOBILE MUST REMAIN A REAL TABLE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  /*
+   * DO NOT convert <tr> to grid/flex.
+   *
+   * CategoryTable is a real HTML table and the row must
+   * remain a table-row. The parent table wrapper should
+   * provide contained horizontal scrolling.
+   */
+
+  .category-row {
+    display: table-row;
+
+    margin: 0;
+
+    padding: 0;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    background: #ffffff;
+  }
+
+  .category-row__cell {
+    display: table-cell;
+
+    width: auto;
+
+    min-width: 0;
+
+    max-width: none;
+
+    padding:
+      0.85rem
+      0.7rem;
+
+    vertical-align: middle;
+
+    border: 0;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    text-align: left;
+  }
+
+  .category-row__checkbox-cell {
+    width: 48px;
+
+    min-width: 48px;
+
+    padding:
+      0.85rem
+      0.55rem;
+
+    text-align: center;
+  }
+
+  .category-row__serial-cell {
+    width: 48px;
+
+    min-width: 48px;
+
+    text-align: center;
+  }
+
+  .category-row__image-cell {
+    width: 76px;
+
+    min-width: 76px;
+
+    text-align: center;
+  }
+
+  .category-row__category-cell {
+    min-width: 180px;
+
+    width: 180px;
+
+    max-width: 220px;
+  }
+
+  .category-row__products-cell {
+    width: 85px;
+
+    min-width: 85px;
+
+    text-align: center;
+  }
+
+  .category-row__featured-cell,
+  .category-row__homepage-cell,
+  .category-row__navigation-cell {
+    width: 90px;
+
+    min-width: 90px;
+
+    text-align: center;
+  }
+
+  .category-row__status-cell {
+    width: 100px;
+
+    min-width: 100px;
+
+    text-align: center;
+  }
+
+  .category-row__date-cell {
+    width: 120px;
+
+    min-width: 120px;
+
+    text-align: center;
+  }
+
+  .category-row__actions-cell {
+    width: 140px;
+
+    min-width: 140px;
+
+    text-align: center;
+  }
+
+  .category-row__image,
+  .category-row__image-placeholder {
+    width: 46px;
+    height: 46px;
+  }
+
+  .category-row__category-name {
+    max-width: 200px;
+
+    font-size: 0.82rem;
+  }
+
+  .category-row__parent {
+    max-width: 200px;
+
+    font-size: 0.68rem;
+  }
+
+  .category-row__boolean-text {
+    display: inline;
+
+    font-size: 0.68rem;
+  }
+
+  .category-row__boolean-status {
+    min-width: auto;
+
+    gap: 0.3rem;
+  }
+
+  .category-row__featured-icon,
+  .category-row__boolean-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .category-row__action-btn {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .category-row__cell {
+    padding:
+      0.75rem
+      0.6rem;
+  }
+
+  .category-row__checkbox-cell {
+    width: 44px;
+
+    min-width: 44px;
+
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
+  }
+
+  .category-row__serial-cell {
+    width: 44px;
+
+    min-width: 44px;
+  }
+
+  .category-row__image-cell {
+    width: 70px;
+
+    min-width: 70px;
+  }
+
+  .category-row__category-cell {
+    min-width: 170px;
+
+    width: 170px;
+  }
+
+  .category-row__products-cell {
+    width: 78px;
+
+    min-width: 78px;
+  }
+
+  .category-row__featured-cell,
+  .category-row__homepage-cell,
+  .category-row__navigation-cell {
+    width: 84px;
+
+    min-width: 84px;
+  }
+
+  .category-row__status-cell {
+    width: 95px;
+
+    min-width: 95px;
+  }
+
+  .category-row__date-cell {
+    width: 112px;
+
+    min-width: 112px;
+  }
+
+  .category-row__actions-cell {
+    width: 132px;
+
+    min-width: 132px;
+  }
+
+  .category-row__image,
+  .category-row__image-placeholder {
+    width: 42px;
+    height: 42px;
+  }
+
+  .category-row__category-name {
+    max-width: 180px;
+
+    font-size: 0.8rem;
+  }
+
+  .category-row__parent {
+    max-width: 180px;
+
+    font-size: 0.65rem;
+  }
+
+  .category-row__boolean-text {
+    font-size: 0.64rem;
+  }
+
+  .category-row__status-badge {
+    min-height: 25px;
+
+    padding:
+      0.3rem
+      0.55rem;
+
+    font-size: 0.61rem;
+  }
+
+  .category-row__date {
+    font-size: 0.65rem;
+  }
+
+  .category-row__action-btn {
+    width: 35px;
+    height: 35px;
+
+    min-width: 35px;
+    min-height: 35px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .category-row__cell {
+    padding:
+      0.7rem
+      0.5rem;
+  }
+
+  .category-row__category-cell {
+    min-width: 155px;
+
+    width: 155px;
+  }
+
+  .category-row__image-cell {
+    width: 64px;
+
+    min-width: 64px;
+  }
+
+  .category-row__image,
+  .category-row__image-placeholder {
+    width: 40px;
+    height: 40px;
+  }
+
+  .category-row__category-name {
+    max-width: 165px;
+
+    font-size: 0.77rem;
+  }
+
+  .category-row__parent {
+    max-width: 165px;
+
+    font-size: 0.62rem;
+  }
+
+  .category-row__boolean-text {
+    font-size: 0.6rem;
+  }
+
+  .category-row__status-badge {
+    font-size: 0.58rem;
+  }
+
+  .category-row__action-btn {
+    width: 33px;
+    height: 33px;
+
+    min-width: 33px;
+    min-height: 33px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .category-row__action-btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .category-row__action-btn:active {
+    transform: scale(0.96);
+  }
+
+  .category-row__checkbox {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .category-row,
+  .category-row__image,
+  .category-row__featured-icon,
+  .category-row__boolean-icon,
+  .category-row__action-btn {
+    transition: none;
+  }
+}

@@ -1,0 +1,470 @@
+/* =========================================================
+   CATEGORY PAGINATION
+   Premium Responsive Pagination
+   ========================================================= */
+
+.category-pagination {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding:
+    1rem
+    1.25rem;
+
+  background: #ffffff;
+
+  border:
+    1px
+    solid
+    #e2e8f0;
+
+  border-radius: 1rem;
+
+  box-shadow:
+    0 2px 8px
+      rgba(
+        15,
+        23,
+        42,
+        0.035
+      );
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   PAGE INFORMATION
+   ========================================================= */
+
+.category-pagination__info {
+  flex: 0 0 auto;
+
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 0.875rem;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+.category-pagination__current,
+.category-pagination__total {
+  color: #0f172a;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.category-pagination__controls {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+.category-pagination__numbers {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+.category-pagination__numbers::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.category-pagination__button {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+  min-height: 40px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border:
+    1px
+    solid
+    #e2e8f0;
+
+  border-radius: 0.75rem;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 0.875rem;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+/* =========================================================
+   NUMBER HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .category-pagination__number:hover:not(
+      .category-pagination__number--active
+    ) {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    color: #0f172a;
+
+    transform: translateY(-1px);
+  }
+
+  .category-pagination__arrow:hover:not(
+      :disabled
+    ) {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    color: #0f172a;
+
+    transform: translateY(-1px);
+  }
+}
+
+/* =========================================================
+   ACTIVE PAGE
+   ========================================================= */
+
+.category-pagination__number--active {
+  background: #000000;
+
+  border-color: #000000;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 10px
+      rgba(
+        0,
+        0,
+        0,
+        0.12
+      );
+}
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+.category-pagination__button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.category-pagination__button:focus-visible {
+  box-shadow:
+    0 0 0 3px
+      rgba(
+        15,
+        23,
+        42,
+        0.08
+      );
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .category-pagination {
+    padding:
+      1rem
+      1.35rem;
+  }
+
+  .category-pagination__controls {
+    gap: 0.55rem;
+  }
+
+  .category-pagination__numbers {
+    gap: 0.55rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .category-pagination {
+    padding:
+      0.95rem
+      1rem;
+  }
+
+  .category-pagination__controls {
+    gap: 0.4rem;
+  }
+
+  .category-pagination__numbers {
+    gap: 0.4rem;
+  }
+
+  .category-pagination__button {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .category-pagination {
+    padding:
+      0.9rem;
+
+    border-radius: 0.9rem;
+  }
+
+  .category-pagination__info {
+    font-size: 0.8125rem;
+  }
+
+  .category-pagination__button {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+
+    border-radius: 0.7rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .category-pagination {
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.75rem;
+
+    padding:
+      0.85rem;
+
+    border-radius: 0.85rem;
+  }
+
+  .category-pagination__info {
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 0.8rem;
+  }
+
+  .category-pagination__controls {
+    width: 100%;
+
+    justify-content: center;
+
+    gap: 0.45rem;
+
+    min-width: 0;
+  }
+
+  .category-pagination__numbers {
+    max-width: calc(
+      100vw - 120px
+    );
+
+    flex: 0 1 auto;
+
+    gap: 0.4rem;
+
+    padding:
+      0.1rem
+      0.05rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-pagination__numbers::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-pagination__button {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+    min-height: 40px;
+
+    border-radius: 0.7rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .category-pagination {
+    padding:
+      0.8rem;
+
+    gap: 0.7rem;
+  }
+
+  .category-pagination__info {
+    font-size: 0.75rem;
+  }
+
+  .category-pagination__controls {
+    gap: 0.35rem;
+  }
+
+  .category-pagination__numbers {
+    max-width: calc(
+      100vw - 110px
+    );
+
+    gap: 0.3rem;
+  }
+
+  .category-pagination__button {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+
+    border-radius: 0.65rem;
+
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .category-pagination {
+    padding:
+      0.7rem;
+  }
+
+  .category-pagination__info {
+    font-size: 0.7rem;
+  }
+
+  .category-pagination__controls {
+    gap: 0.3rem;
+  }
+
+  .category-pagination__numbers {
+    max-width: calc(
+      100vw - 100px
+    );
+
+    gap: 0.25rem;
+  }
+
+  .category-pagination__button {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+    min-height: 36px;
+
+    border-radius: 0.6rem;
+
+    font-size: 0.75rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .category-pagination__button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .category-pagination__button:active:not(
+      :disabled
+    ) {
+    transform: scale(0.95);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .category-pagination__button {
+    transition: none;
+  }
+}

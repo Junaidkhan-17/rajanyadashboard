@@ -1,0 +1,683 @@
+/* ============================================================
+   Revenue Chart
+   Component-specific responsive styles
+   ============================================================ */
+
+.revenue-chart-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+
+.revenue-chart-header {
+  width: 100%;
+  min-width: 0;
+}
+
+.revenue-chart-title-wrapper {
+  min-width: 0;
+}
+
+.revenue-chart-title {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.revenue-chart-subtitle-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 3px;
+}
+
+.revenue-chart-subtitle {
+  margin: 0;
+}
+
+.revenue-chart-period-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 2px;
+  border-radius: 999px;
+  background: #f5f3ff;
+  color: #7c3aed;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Controls
+   ============================================================ */
+
+.revenue-chart-controls {
+  width: auto;
+  min-width: 0;
+}
+
+.revenue-chart-periods {
+  min-height: 42px;
+}
+
+.revenue-chart-period-button {
+  min-height: 28px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.revenue-chart-period-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.16);
+}
+
+.revenue-chart-date-wrapper {
+  min-width: 0;
+  width: 150px;
+}
+
+.revenue-chart-date-input {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.revenue-chart-date-input::placeholder {
+  color: #94a3b8;
+}
+
+.revenue-chart-date-input:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+}
+
+/* ============================================================
+   DatePicker Popup - Prevent Calendar Clipping
+   ============================================================ */
+
+.revenue-chart-card .react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+.revenue-chart-card .react-datepicker {
+  z-index: 9999;
+}
+
+/* ============================================================
+   Summary
+   ============================================================ */
+
+.revenue-chart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.revenue-chart-summary-label {
+  min-width: 0;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.revenue-chart-summary-value {
+  flex-shrink: 0;
+  color: #15143a;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   Chart
+   ============================================================ */
+
+.revenue-chart-content {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.revenue-chart-responsive {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.revenue-chart-responsive
+  .recharts-responsive-container {
+  min-width: 0 !important;
+}
+
+/* ============================================================
+   Tooltip
+   ============================================================ */
+
+.revenue-chart-tooltip {
+  min-width: 90px;
+  padding: 9px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: #15143a;
+  color: #ffffff;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.18);
+}
+
+.revenue-chart-tooltip-label {
+  margin: 0 0 3px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.revenue-chart-tooltip-value {
+  margin: 0;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   Loading
+   ============================================================ */
+
+.revenue-chart-loading {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 10px 4px 0;
+}
+
+.revenue-chart-loading-line {
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 25%,
+    #e2e8f0 50%,
+    #f1f5f9 75%
+  );
+  background-size: 200% 100%;
+  animation: revenueChartShimmer 1.5s infinite;
+}
+
+.revenue-chart-loading-line-large {
+  width: 80px;
+  height: 12px;
+  margin-bottom: 18px;
+}
+
+.revenue-chart-loading-chart {
+  position: relative;
+  flex: 1;
+  min-height: 150px;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 24%,
+      #f1f5f9 25%,
+      transparent 26%,
+      transparent 49%,
+      #f1f5f9 50%,
+      transparent 51%,
+      transparent 74%,
+      #f1f5f9 75%,
+      transparent 76%
+    );
+}
+
+.revenue-chart-loading-wave {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: 20%;
+  height: 40%;
+  border-top: 3px solid #ddd6fe;
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+  opacity: 0.8;
+}
+
+.revenue-chart-loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 10px;
+}
+
+.revenue-chart-loading-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  animation: revenueChartPulse 1.2s infinite ease-in-out;
+}
+
+.revenue-chart-loading-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.revenue-chart-loading-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes revenueChartShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes revenueChartPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+
+.revenue-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  padding: 20px;
+  text-align: center;
+}
+
+.revenue-chart-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+  border: 1px solid #ede9fe;
+  border-radius: 15px;
+  background: #f5f3ff;
+  color: #7c3aed;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.revenue-chart-empty-title {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.revenue-chart-empty-text {
+  max-width: 320px;
+  margin: 5px 0 0;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Error State
+   ============================================================ */
+
+.revenue-chart-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  padding: 20px;
+  text-align: center;
+}
+
+.revenue-chart-error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 9px;
+  border-radius: 50%;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.revenue-chart-error-title {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.revenue-chart-error-message {
+  max-width: 360px;
+  margin: 5px 0 12px;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.revenue-chart-retry-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #15143a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.revenue-chart-retry-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(21, 20, 58, 0.18);
+}
+
+.revenue-chart-retry-button:active {
+  transform: translateY(0);
+}
+
+.revenue-chart-retry-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.18),
+    0 8px 18px rgba(21, 20, 58, 0.14);
+}
+
+/* ============================================================
+   DatePicker
+   ============================================================ */
+
+.revenue-chart-card .react-datepicker-wrapper {
+  width: 100%;
+}
+
+.revenue-chart-card .react-datepicker__input-container {
+  width: 100%;
+}
+
+.revenue-chart-card .react-datepicker {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 40px rgba(15, 23, 42, 0.12);
+  font-family: inherit;
+}
+
+.revenue-chart-card .react-datepicker__header {
+  border-bottom: 1px solid #e2e8f0;
+  background: #fafafa;
+}
+
+.revenue-chart-card
+  .react-datepicker__day--selected {
+  border-radius: 8px;
+  background: #15143a;
+}
+
+.revenue-chart-card
+  .react-datepicker__day:hover {
+  border-radius: 8px;
+}
+
+/* ============================================================
+   Tablet
+   ============================================================ */
+
+@media (max-width: 1199px) {
+  .revenue-chart-card {
+    min-height: 410px;
+    height: 410px;
+  }
+
+  .revenue-chart-controls {
+    width: 100%;
+  }
+
+  .revenue-chart-periods {
+    flex: 1;
+  }
+
+  .revenue-chart-date-wrapper {
+    width: 170px;
+    flex-shrink: 0;
+  }
+}
+
+/* ============================================================
+   Small Tablet
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .revenue-chart-card {
+    min-height: 440px;
+    height: 440px;
+    padding: 14px !important;
+    border-radius: 22px;
+  }
+
+  .revenue-chart-header {
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .revenue-chart-title {
+    font-size: 17px;
+  }
+
+  .revenue-chart-controls {
+    gap: 8px !important;
+  }
+
+  .revenue-chart-periods {
+    width: 100%;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .revenue-chart-period-button {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 5px !important;
+    font-size: 11px !important;
+  }
+
+  .revenue-chart-date-wrapper {
+    width: 100%;
+  }
+
+  .revenue-chart-date-input {
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .revenue-chart-summary {
+    margin-bottom: 5px;
+    padding: 8px 10px;
+  }
+
+  .revenue-chart-summary-label {
+    font-size: 10px;
+  }
+
+  .revenue-chart-summary-value {
+    font-size: 13px;
+  }
+
+  .revenue-chart-content {
+    min-height: 230px;
+  }
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 575px) {
+  .revenue-chart-card {
+    min-height: 450px;
+    height: 450px;
+    border-radius: 20px;
+  }
+
+  .revenue-chart-subtitle-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .revenue-chart-period-label {
+    font-size: 9px;
+  }
+
+  .revenue-chart-summary {
+    gap: 8px;
+  }
+
+  .revenue-chart-summary-label {
+    max-width: 58%;
+  }
+
+  .revenue-chart-responsive {
+    min-height: 225px;
+  }
+}
+
+/* ============================================================
+   Small Mobile
+   ============================================================ */
+
+@media (max-width: 390px) {
+  .revenue-chart-card {
+    min-height: 445px;
+    height: 445px;
+    padding: 12px !important;
+    border-radius: 18px;
+  }
+
+  .revenue-chart-title {
+    font-size: 16px;
+  }
+
+  .revenue-chart-subtitle {
+    font-size: 11px !important;
+  }
+
+  .revenue-chart-periods {
+    padding: 3px;
+  }
+
+  .revenue-chart-period-button {
+    min-height: 32px;
+    padding: 7px 3px !important;
+    font-size: 10px !important;
+  }
+
+  .revenue-chart-summary {
+    padding: 7px 9px;
+  }
+
+  .revenue-chart-summary-value {
+    font-size: 12px;
+  }
+
+  .revenue-chart-responsive {
+    min-height: 215px;
+  }
+}
+
+/* ============================================================
+   Very Small Devices
+   ============================================================ */
+
+@media (max-width: 340px) {
+  .revenue-chart-card {
+    min-height: 440px;
+    height: 440px;
+  }
+
+  .revenue-chart-period-button {
+    font-size: 9px !important;
+  }
+
+  .revenue-chart-summary-label {
+    font-size: 9px;
+  }
+
+  .revenue-chart-summary-value {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .revenue-chart-loading-line,
+  .revenue-chart-loading-dots span {
+    animation: none;
+  }
+
+  .revenue-chart-retry-button,
+  .revenue-chart-date-input {
+    transition: none;
+  }
+}

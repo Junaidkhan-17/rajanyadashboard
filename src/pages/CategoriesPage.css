@@ -1,0 +1,564 @@
+/* =========================================================
+   CATEGORIES PAGE
+   Premium Responsive Page-Level Layout
+   ========================================================= */
+
+.categories-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.25rem;
+
+  padding-bottom: 1rem;
+
+  overflow: visible;
+}
+
+.categories-page *,
+.categories-page *::before,
+.categories-page *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.categories-page__header {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+}
+
+.categories-page__header-content {
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+.categories-page__breadcrumb {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  margin-bottom: 0.5rem;
+
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.categories-page__breadcrumb-link {
+  color: #94a3b8;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease;
+}
+
+.categories-page__breadcrumb-link:hover {
+  color: #000000;
+}
+
+.categories-page__breadcrumb-separator {
+  flex: 0 0 auto;
+
+  color: #94a3b8;
+}
+
+.categories-page__breadcrumb-current {
+  min-width: 0;
+
+  color: #1e293b;
+
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.categories-page__title {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: clamp(
+    1.65rem,
+    2.35vw,
+    2rem
+  );
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+
+  overflow-wrap: anywhere;
+}
+
+.categories-page__subtitle {
+  max-width: 800px;
+
+  margin: 0.4rem 0 0;
+
+  color: #64748b;
+
+  font-size: clamp(
+    0.8125rem,
+    1vw,
+    0.9375rem
+  );
+
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   ADD CATEGORY BUTTON
+   ========================================================= */
+
+.categories-page__add-button {
+  flex: 0 0 auto;
+
+  min-height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.55rem;
+
+  padding:
+    0.7rem
+    1.25rem;
+
+  border-radius: 0.8rem;
+
+  background: #000000;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.categories-page__add-button:hover {
+  background: #0f172a;
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px rgba(
+      15,
+      23,
+      42,
+      0.12
+    );
+}
+
+.categories-page__add-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   PAGE SECTIONS
+   ========================================================= */
+
+.categories-page__stats,
+.categories-page__filters,
+.categories-page__table,
+.categories-page__pagination {
+  width: 100%;
+  min-width: 0;
+}
+
+/*
+   Prevent child components from forcing the page wider
+   because of long content or fixed internal elements.
+*/
+
+.categories-page__stats > *,
+.categories-page__filters > *,
+.categories-page__table > *,
+.categories-page__pagination > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   TABLE SAFETY
+   ========================================================= */
+
+.categories-page__table {
+  overflow: visible;
+}
+
+.categories-page__table table {
+  max-width: 100%;
+}
+
+/*
+   The actual CategoryTable component will determine
+   whether its desktop table becomes an internal scroll
+   container or mobile cards.
+*/
+
+.categories-page__table img {
+  max-width: 100%;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   1440px+
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .categories-page {
+    gap: 1.35rem;
+  }
+
+  .categories-page__header {
+    gap: 2rem;
+  }
+}
+
+/* =========================================================
+   DESKTOP
+   1200px - 1439px
+   ========================================================= */
+
+@media (max-width: 1439px) {
+  .categories-page {
+    gap: 1.2rem;
+  }
+
+  .categories-page__header {
+    gap: 1.35rem;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   992px - 1199px
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .categories-page {
+    gap: 1.1rem;
+  }
+
+  .categories-page__header {
+    gap: 1.1rem;
+  }
+
+  .categories-page__title {
+    font-size: clamp(
+      1.55rem,
+      2.6vw,
+      1.85rem
+    );
+  }
+
+  .categories-page__subtitle {
+    max-width: 680px;
+  }
+
+  .categories-page__add-button {
+    min-height: 46px;
+
+    padding:
+      0.65rem
+      1.05rem;
+  }
+}
+
+/* =========================================================
+   TABLET
+   768px - 991px
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .categories-page {
+    gap: 1rem;
+  }
+
+  .categories-page__header {
+    gap: 1rem;
+  }
+
+  .categories-page__breadcrumb {
+    font-size: 0.8125rem;
+  }
+
+  .categories-page__title {
+    font-size: 1.75rem;
+  }
+
+  .categories-page__subtitle {
+    font-size: 0.875rem;
+
+    line-height: 1.55;
+  }
+
+  .categories-page__add-button {
+    min-height: 46px;
+
+    padding:
+      0.65rem
+      1rem;
+
+    border-radius: 0.75rem;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET / LARGE MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .categories-page {
+    gap: 0.95rem;
+
+    padding-bottom: 0.75rem;
+  }
+
+  .categories-page__header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0.9rem;
+  }
+
+  .categories-page__header-content {
+    width: 100%;
+  }
+
+  .categories-page__breadcrumb {
+    gap: 0.4rem;
+
+    margin-bottom: 0.55rem;
+
+    font-size: 0.78rem;
+  }
+
+  .categories-page__title {
+    font-size: clamp(
+      1.45rem,
+      5vw,
+      1.7rem
+    );
+
+    line-height: 1.25;
+  }
+
+  .categories-page__subtitle {
+    max-width: none;
+
+    margin-top: 0.45rem;
+
+    font-size: 0.8125rem;
+
+    line-height: 1.55;
+  }
+
+  .categories-page__add-button {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding:
+      0.7rem
+      1rem;
+
+    border-radius: 0.75rem;
+
+    font-size: 0.875rem;
+  }
+
+  .categories-page__stats,
+  .categories-page__filters,
+  .categories-page__table,
+  .categories-page__pagination {
+    width: 100%;
+
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .categories-page {
+    gap: 0.85rem;
+  }
+
+  .categories-page__header {
+    gap: 0.8rem;
+  }
+
+  .categories-page__breadcrumb {
+    gap: 0.35rem;
+
+    font-size: 0.75rem;
+  }
+
+  .categories-page__title {
+    font-size: clamp(
+      1.35rem,
+      6vw,
+      1.55rem
+    );
+
+    letter-spacing: -0.015em;
+  }
+
+  .categories-page__subtitle {
+    font-size: 0.78rem;
+
+    line-height: 1.55;
+  }
+
+  .categories-page__add-button {
+    min-height: 46px;
+
+    border-radius: 0.7rem;
+
+    font-size: 0.8125rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .categories-page {
+    gap: 0.75rem;
+  }
+
+  .categories-page__header {
+    gap: 0.7rem;
+  }
+
+  .categories-page__breadcrumb {
+    gap: 0.3rem;
+
+    font-size: 0.7rem;
+
+    line-height: 1.45;
+  }
+
+  .categories-page__title {
+    font-size: 1.28rem;
+
+    line-height: 1.25;
+  }
+
+  .categories-page__subtitle {
+    font-size: 0.72rem;
+
+    line-height: 1.5;
+  }
+
+  .categories-page__add-button {
+    min-height: 44px;
+
+    gap: 0.45rem;
+
+    padding:
+      0.6rem
+      0.75rem;
+
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 340px) {
+  .categories-page__title {
+    font-size: 1.2rem;
+  }
+
+  .categories-page__subtitle {
+    font-size: 0.69rem;
+  }
+
+  .categories-page__add-button {
+    min-height: 44px;
+
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .categories-page__add-button {
+    min-height: 46px;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .categories-page__breadcrumb-link {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .categories-page__add-button:active {
+    transform: scale(0.99);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .categories-page__add-button,
+  .categories-page__breadcrumb-link {
+    transition: none;
+  }
+}

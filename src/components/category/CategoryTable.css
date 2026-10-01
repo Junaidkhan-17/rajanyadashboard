@@ -1,0 +1,798 @@
+/* =========================================================
+   CATEGORY TABLE
+   Premium Responsive Admin Data Table
+   ========================================================= */
+
+.category-table-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 1rem;
+
+  box-shadow:
+    0 2px 8px
+      rgba(15, 23, 42, 0.035);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   HORIZONTAL SCROLL
+   ========================================================= */
+
+.category-table-horizontal {
+  width: 100%;
+  max-width: 100%;
+
+  min-width: 0;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #cbd5e1
+    transparent;
+}
+
+/* =========================================================
+   VERTICAL SCROLL
+   ========================================================= */
+
+.category-table-vertical {
+  width: 100%;
+
+  max-height: 550px;
+
+  overflow-y: auto;
+
+  overflow-x: visible;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #cbd5e1
+    transparent;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBARS
+   ========================================================= */
+
+.category-table-horizontal::-webkit-scrollbar {
+  height: 7px;
+}
+
+.category-table-horizontal::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.category-table-horizontal::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+.category-table-horizontal::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.category-table-vertical::-webkit-scrollbar {
+  width: 7px;
+}
+
+.category-table-vertical::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.category-table-vertical::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+.category-table-vertical::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.category-table {
+  width: 100%;
+
+  min-width: 1250px;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  table-layout: auto;
+
+  background: #ffffff;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.category-table__head {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+
+  background: #f8fafc;
+}
+
+.category-table__header-row {
+  height: 58px;
+
+  background: #f8fafc;
+}
+
+/* =========================================================
+   HEADER CELLS
+   ========================================================= */
+
+.category-table__header-row th {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 21;
+
+  padding:
+    0.95rem
+    1rem;
+
+  background: #f8fafc;
+
+  border-bottom:
+    1px
+    solid
+    #e2e8f0;
+
+  color: #64748b;
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   HEADER ALIGNMENT
+   ========================================================= */
+
+.category-table__checkbox-header {
+  width: 52px;
+
+  min-width: 52px;
+
+  padding-left: 1rem !important;
+  padding-right: 0.5rem !important;
+
+  text-align: center;
+}
+
+.category-table__serial-header {
+  width: 60px;
+
+  min-width: 60px;
+
+  text-align: center;
+}
+
+.category-table__image-header {
+  width: 88px;
+
+  min-width: 88px;
+
+  text-align: center;
+}
+
+.category-table__category-header {
+  min-width: 180px;
+
+  text-align: left;
+}
+
+.category-table__products-header {
+  width: 90px;
+
+  min-width: 90px;
+
+  text-align: center;
+}
+
+.category-table__featured-header {
+  width: 105px;
+
+  min-width: 105px;
+
+  text-align: center;
+}
+
+.category-table__homepage-header {
+  width: 105px;
+
+  min-width: 105px;
+
+  text-align: center;
+}
+
+.category-table__navigation-header {
+  width: 110px;
+
+  min-width: 110px;
+
+  text-align: center;
+}
+
+.category-table__status-header {
+  width: 105px;
+
+  min-width: 105px;
+
+  text-align: center;
+}
+
+.category-table__date-header {
+  width: 125px;
+
+  min-width: 125px;
+
+  text-align: center;
+}
+
+.category-table__actions-header {
+  width: 145px;
+
+  min-width: 145px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   HEADER CHECKBOX
+   ========================================================= */
+
+.category-table__checkbox {
+  width: 16px;
+  height: 16px;
+
+  display: inline-block;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  accent-color: #0f172a;
+
+  vertical-align: middle;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.category-table__body {
+  background: #ffffff;
+}
+
+/* =========================================================
+   LOADING / EMPTY STATE
+   ========================================================= */
+
+.category-table__state-row {
+  background: #ffffff;
+}
+
+.category-table__state-cell {
+  height: 300px;
+
+  padding:
+    2rem
+    1rem;
+
+  color: #94a3b8;
+
+  font-size: 0.875rem;
+
+  text-align: center;
+
+  vertical-align: middle;
+}
+
+.category-table__loading {
+  min-height: 160px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 0.75rem;
+}
+
+.category-table__loading-spinner {
+  width: 24px;
+  height: 24px;
+
+  display: block;
+
+  border:
+    2px
+    solid
+    #e2e8f0;
+
+  border-top-color: #64748b;
+
+  border-radius: 50%;
+
+  animation:
+    category-table-spin
+    0.8s
+    linear
+    infinite;
+}
+
+.category-table__empty {
+  min-height: 160px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes category-table-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .category-table-card {
+    border-radius: 1rem;
+  }
+
+  .category-table__header-row {
+    height: 60px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      1rem
+      1.05rem;
+
+    font-size: 0.69rem;
+  }
+
+  .category-table {
+    min-width: 1280px;
+  }
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  .category-table {
+    min-width: 1230px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      0.9rem
+      0.75rem;
+
+    font-size: 0.65rem;
+  }
+
+  .category-table__category-header {
+    min-width: 160px;
+  }
+
+  .category-table__checkbox-header {
+    width: 48px;
+
+    min-width: 48px;
+  }
+
+  .category-table__serial-header {
+    width: 54px;
+
+    min-width: 54px;
+  }
+
+  .category-table__image-header {
+    width: 78px;
+
+    min-width: 78px;
+  }
+
+  .category-table__products-header {
+    width: 82px;
+
+    min-width: 82px;
+  }
+
+  .category-table__featured-header,
+  .category-table__homepage-header {
+    width: 98px;
+
+    min-width: 98px;
+  }
+
+  .category-table__navigation-header {
+    width: 100px;
+
+    min-width: 100px;
+  }
+
+  .category-table__status-header {
+    width: 98px;
+
+    min-width: 98px;
+  }
+
+  .category-table__date-header {
+    width: 115px;
+
+    min-width: 115px;
+  }
+
+  .category-table__actions-header {
+    width: 135px;
+
+    min-width: 135px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .category-table-card {
+    border-radius: 0.9rem;
+  }
+
+  .category-table-vertical {
+    max-height: 520px;
+  }
+
+  .category-table {
+    min-width: 1160px;
+  }
+
+  .category-table__header-row {
+    height: 54px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      0.8rem
+      0.65rem;
+
+    font-size: 0.62rem;
+  }
+
+  .category-table__category-header {
+    min-width: 145px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  /*
+   * Keep this as a REAL TABLE.
+   *
+   * CategoryRow remains display: table-row.
+   * The user can horizontally scroll inside this
+   * contained table area without causing page overflow.
+   */
+
+  .category-table-card {
+    width: 100%;
+
+    max-width: 100%;
+
+    border-radius: 0.85rem;
+  }
+
+  .category-table-horizontal {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    overscroll-behavior-x: contain;
+  }
+
+  .category-table-vertical {
+    max-height: 500px;
+
+    overflow-y: auto;
+  }
+
+  .category-table {
+    width: max-content;
+
+    min-width: 1120px;
+
+    table-layout: auto;
+  }
+
+  .category-table__header-row {
+    height: 52px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      0.75rem
+      0.65rem;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 0.075em;
+  }
+
+  .category-table__checkbox-header {
+    width: 44px;
+
+    min-width: 44px;
+
+    padding-left: 0.55rem !important;
+    padding-right: 0.4rem !important;
+  }
+
+  .category-table__serial-header {
+    width: 46px;
+
+    min-width: 46px;
+  }
+
+  .category-table__image-header {
+    width: 72px;
+
+    min-width: 72px;
+  }
+
+  .category-table__category-header {
+    width: 180px;
+
+    min-width: 180px;
+  }
+
+  .category-table__products-header {
+    width: 80px;
+
+    min-width: 80px;
+  }
+
+  .category-table__featured-header,
+  .category-table__homepage-header {
+    width: 88px;
+
+    min-width: 88px;
+  }
+
+  .category-table__navigation-header {
+    width: 94px;
+
+    min-width: 94px;
+  }
+
+  .category-table__status-header {
+    width: 96px;
+
+    min-width: 96px;
+  }
+
+  .category-table__date-header {
+    width: 112px;
+
+    min-width: 112px;
+  }
+
+  .category-table__actions-header {
+    width: 132px;
+
+    min-width: 132px;
+  }
+
+  .category-table__checkbox {
+    width: 17px;
+    height: 17px;
+  }
+
+  .category-table__state-cell {
+    height: 260px;
+
+    min-width: 1120px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .category-table-card {
+    border-radius: 0.8rem;
+  }
+
+  .category-table-vertical {
+    max-height: 480px;
+  }
+
+  .category-table {
+    min-width: 1060px;
+  }
+
+  .category-table__header-row {
+    height: 50px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      0.7rem
+      0.55rem;
+
+    font-size: 0.58rem;
+  }
+
+  .category-table__checkbox-header {
+    width: 42px;
+
+    min-width: 42px;
+  }
+
+  .category-table__serial-header {
+    width: 42px;
+
+    min-width: 42px;
+  }
+
+  .category-table__image-header {
+    width: 68px;
+
+    min-width: 68px;
+  }
+
+  .category-table__category-header {
+    width: 165px;
+
+    min-width: 165px;
+  }
+
+  .category-table__products-header {
+    width: 76px;
+
+    min-width: 76px;
+  }
+
+  .category-table__featured-header,
+  .category-table__homepage-header {
+    width: 82px;
+
+    min-width: 82px;
+  }
+
+  .category-table__navigation-header {
+    width: 88px;
+
+    min-width: 88px;
+  }
+
+  .category-table__status-header {
+    width: 92px;
+
+    min-width: 92px;
+  }
+
+  .category-table__date-header {
+    width: 108px;
+
+    min-width: 108px;
+  }
+
+  .category-table__actions-header {
+    width: 128px;
+
+    min-width: 128px;
+  }
+
+  .category-table__state-cell {
+    min-width: 1060px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .category-table {
+    min-width: 1010px;
+  }
+
+  .category-table__header-row th {
+    padding:
+      0.65rem
+      0.5rem;
+
+    font-size: 0.55rem;
+  }
+
+  .category-table__category-header {
+    width: 155px;
+
+    min-width: 155px;
+  }
+
+  .category-table__state-cell {
+    min-width: 1010px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .category-table-horizontal {
+    scrollbar-width: auto;
+  }
+
+  .category-table__checkbox {
+    width: 18px;
+    height: 18px;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .category-table__loading-spinner {
+    animation: none;
+  }
+}
