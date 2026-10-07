@@ -1,0 +1,405 @@
+/* =========================================================
+   PAYMENT STATUS TIMELINE
+   ========================================================= */
+
+.payment-status-timeline-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.payment-status-timeline-header {
+  width: 100%;
+}
+
+.payment-status-timeline-title {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.payment-status-timeline-body {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   TIMELINE STEP
+   ========================================================= */
+
+.payment-status-timeline-step {
+  width: 100%;
+  min-width: 0;
+}
+
+.payment-status-timeline-icon-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.payment-status-timeline-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-status-timeline-icon-completed {
+  background: #dcfce7;
+}
+
+.payment-status-timeline-icon-completed
+  .payment-status-timeline-icon-svg {
+  color: #16a34a;
+}
+
+.payment-status-timeline-icon-pending {
+  background: #fef3c7;
+}
+
+.payment-status-timeline-icon-pending
+  .payment-status-timeline-icon-svg {
+  color: #ca8a04;
+}
+
+.payment-status-timeline-icon-failed {
+  background: #fee2e2;
+}
+
+.payment-status-timeline-icon-failed
+  .payment-status-timeline-icon-svg {
+  color: #dc2626;
+}
+
+.payment-status-timeline-icon-inactive {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+/* =========================================================
+   CONNECTING LINE
+   ========================================================= */
+
+.payment-status-timeline-line {
+  left: 17px;
+  top: 36px;
+  width: 2px;
+  height: calc(100% - 28px);
+  z-index: 1;
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.payment-status-timeline-content {
+  padding-top: 1px;
+}
+
+.payment-status-timeline-step-title {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.payment-status-timeline-step-description {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.payment-status-timeline-date {
+  line-height: 1.5;
+  min-width: 76px;
+}
+
+.payment-status-timeline-date p {
+  margin: 0;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   1440px+
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .payment-status-timeline-header {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .payment-status-timeline-body {
+    padding: 24px;
+  }
+
+  .payment-status-timeline-step {
+    gap: 16px;
+  }
+
+  .payment-status-timeline-step-title {
+    font-size: 0.98rem;
+  }
+}
+
+/* =========================================================
+   DESKTOP / LAPTOP
+   992px - 1439px
+   ========================================================= */
+
+@media (max-width: 1199.98px) {
+  .payment-status-timeline-content {
+    gap: 16px;
+  }
+
+  .payment-status-timeline-date {
+    min-width: 72px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   768px - 991px
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .payment-status-timeline-header {
+    padding: 20px;
+  }
+
+  .payment-status-timeline-body {
+    padding: 20px;
+  }
+
+  .payment-status-timeline-content {
+    gap: 16px;
+  }
+
+  .payment-status-timeline-step {
+    padding-bottom: 28px;
+  }
+
+  .payment-status-timeline-step-title {
+    font-size: 0.94rem;
+  }
+
+  .payment-status-timeline-step-description {
+    font-size: 0.84rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .payment-status-timeline-header {
+    padding: 18px 20px;
+  }
+
+  .payment-status-timeline-title {
+    font-size: 1rem;
+  }
+
+  .payment-status-timeline-body {
+    padding: 20px;
+  }
+
+  .payment-status-timeline-step {
+    gap: 12px;
+    padding-bottom: 26px;
+  }
+
+  .payment-status-timeline-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .payment-status-timeline-icon-svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .payment-status-timeline-line {
+    left: 16px;
+    top: 34px;
+    height: calc(100% - 26px);
+  }
+
+  .payment-status-timeline-content {
+    gap: 12px;
+  }
+
+  .payment-status-timeline-step-title {
+    font-size: 0.92rem;
+  }
+
+  .payment-status-timeline-step-description {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .payment-status-timeline-date {
+    min-width: 68px;
+    font-size: 0.7rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .payment-status-timeline-card {
+    border-radius: 16px;
+  }
+
+  .payment-status-timeline-header {
+    padding: 17px 18px;
+  }
+
+  .payment-status-timeline-body {
+    padding: 18px;
+  }
+
+  .payment-status-timeline-step {
+    gap: 11px;
+    padding-bottom: 24px;
+  }
+
+  .payment-status-timeline-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .payment-status-timeline-icon-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .payment-status-timeline-line {
+    left: 15px;
+    top: 32px;
+    height: calc(100% - 24px);
+  }
+
+  .payment-status-timeline-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .payment-status-timeline-description {
+    width: 100%;
+  }
+
+  .payment-status-timeline-date {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+  }
+
+  .payment-status-timeline-date p + p::before {
+    content: "•";
+    margin-right: 6px;
+  }
+
+  .payment-status-timeline-step-title {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .payment-status-timeline-step-description {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374.98px) {
+  .payment-status-timeline-header {
+    padding: 16px;
+  }
+
+  .payment-status-timeline-body {
+    padding: 16px;
+  }
+
+  .payment-status-timeline-title {
+    font-size: 0.95rem;
+  }
+
+  .payment-status-timeline-step {
+    gap: 9px;
+    padding-bottom: 22px;
+  }
+
+  .payment-status-timeline-icon {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .payment-status-timeline-icon-svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .payment-status-timeline-line {
+    left: 14px;
+    top: 30px;
+    height: calc(100% - 22px);
+  }
+
+  .payment-status-timeline-step-title {
+    font-size: 0.86rem;
+  }
+
+  .payment-status-timeline-step-description {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .payment-status-timeline-date {
+    font-size: 0.67rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .payment-status-timeline-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-status-timeline-card,
+  .payment-status-timeline-step,
+  .payment-status-timeline-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+}

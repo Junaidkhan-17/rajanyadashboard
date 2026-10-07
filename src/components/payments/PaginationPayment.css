@@ -1,0 +1,275 @@
+/* =========================================================
+   PAGINATION PAYMENT
+   Desktop-first styling
+   Existing visual design preserved
+   ========================================================= */
+
+.pagination-payment {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+.pagination-payment-info {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pagination-payment-controls {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pagination-payment-pages {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-payment-button {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.pagination-payment-arrow {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.pagination-payment-arrow:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.pagination-payment-button-number {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.pagination-payment-button-number:hover {
+  background: #f1f5f9;
+}
+
+.pagination-payment-button-active {
+  border: 1px solid #000000;
+  background: #000000;
+  color: #ffffff;
+}
+
+.pagination-payment-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.pagination-payment-button:focus-visible {
+  outline: 2px solid #0f172a;
+  outline-offset: 2px;
+}
+
+.pagination-payment-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   LAPTOP / TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .pagination-payment {
+    padding: 18px 20px;
+    gap: 16px;
+  }
+
+  .pagination-payment-controls {
+    gap: 6px;
+  }
+
+  .pagination-payment-pages {
+    gap: 6px;
+  }
+
+  .pagination-payment-button {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    min-height: 46px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .pagination-payment {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .pagination-payment-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pagination-payment-controls {
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .pagination-payment-pages {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .pagination-payment-button {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+  .pagination-payment {
+    padding: 15px 12px;
+    gap: 12px;
+  }
+
+  .pagination-payment-info {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .pagination-payment-controls {
+    gap: 5px;
+  }
+
+  .pagination-payment-pages {
+    gap: 5px;
+  }
+
+  .pagination-payment-button {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES — 320px to 374px
+   ========================================================= */
+
+@media (max-width: 374px) {
+  .pagination-payment {
+    padding: 14px 10px;
+  }
+
+  .pagination-payment-controls {
+    gap: 4px;
+  }
+
+  .pagination-payment-pages {
+    gap: 4px;
+  }
+
+  .pagination-payment-button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .pagination-payment-button:hover {
+    background: inherit;
+  }
+
+  .pagination-payment-arrow:hover:not(:disabled),
+  .pagination-payment-button-number:hover {
+    background: #ffffff;
+  }
+
+  .pagination-payment-button-active:hover {
+    background: #000000;
+  }
+
+  .pagination-payment-button:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination-payment-button {
+    transition: none;
+  }
+
+  .pagination-payment-button:active:not(:disabled) {
+    transform: none;
+  }
+}

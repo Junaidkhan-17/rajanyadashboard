@@ -1,0 +1,303 @@
+/* =========================================================
+   INVOICE INFORMATION
+   Component-specific responsive styling
+   ========================================================= */
+
+.invoice-info-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.invoice-info-header {
+  width: 100%;
+  min-width: 0;
+}
+
+.invoice-info-header-icon {
+  flex-shrink: 0;
+}
+
+.invoice-info-title {
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.invoice-info-body {
+  width: 100%;
+  min-width: 0;
+}
+
+.invoice-info-details {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   INFORMATION ROWS
+   ========================================================= */
+
+.invoice-info-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.invoice-info-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 45%;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.invoice-info-value {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 55%;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.invoice-info-amount {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   DOWNLOAD BUTTON
+   ========================================================= */
+
+.invoice-info-action {
+  width: 100%;
+}
+
+.invoice-info-download {
+  min-width: 160px;
+  min-height: 44px;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+/* =========================================================
+   TABLET / LAPTOP
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .invoice-info-label {
+    max-width: 43%;
+  }
+
+  .invoice-info-value {
+    max-width: 57%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .invoice-info-header {
+    padding: 18px 20px;
+  }
+
+  .invoice-info-header-icon {
+    width: 21px;
+    height: 21px;
+  }
+
+  .invoice-info-title {
+    font-size: 1.25rem;
+  }
+
+  .invoice-info-body {
+    padding: 20px;
+    min-height: 0;
+  }
+
+  .invoice-info-details {
+    gap: 18px;
+  }
+
+  .invoice-info-row {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .invoice-info-label {
+    max-width: 43%;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .invoice-info-value {
+    max-width: 57%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .invoice-info-action {
+    margin-top: 26px;
+  }
+
+  .invoice-info-download {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .invoice-info-card {
+    border-radius: 16px;
+  }
+
+  .invoice-info-header {
+    padding: 16px 18px;
+    gap: 10px;
+  }
+
+  .invoice-info-header-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .invoice-info-title {
+    font-size: 1.05rem;
+  }
+
+  .invoice-info-body {
+    padding: 18px;
+  }
+
+  .invoice-info-details {
+    gap: 16px;
+  }
+
+  .invoice-info-row {
+    gap: 10px;
+  }
+
+  .invoice-info-label {
+    max-width: 44%;
+    font-size: 0.76rem;
+  }
+
+  .invoice-info-value {
+    max-width: 56%;
+    font-size: 0.82rem;
+  }
+
+  .invoice-info-amount {
+    font-size: 0.9rem;
+  }
+
+  .invoice-info-action {
+    margin-top: 22px;
+  }
+
+  .invoice-info-download {
+    min-height: 46px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 0.875rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374.98px) {
+  .invoice-info-header {
+    padding: 15px 16px;
+  }
+
+  .invoice-info-header-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .invoice-info-title {
+    font-size: 0.95rem;
+  }
+
+  .invoice-info-body {
+    padding: 16px;
+  }
+
+  .invoice-info-details {
+    gap: 14px;
+  }
+
+  .invoice-info-row {
+    gap: 8px;
+  }
+
+  .invoice-info-label {
+    max-width: 43%;
+    font-size: 0.7rem;
+  }
+
+  .invoice-info-value {
+    max-width: 57%;
+    font-size: 0.74rem;
+  }
+
+  .invoice-info-amount {
+    font-size: 0.8rem;
+  }
+
+  .invoice-info-action {
+    margin-top: 20px;
+  }
+
+  .invoice-info-download {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .invoice-info-download {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .invoice-info-download:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .invoice-info-card,
+  .invoice-info-download {
+    transition: none !important;
+  }
+}

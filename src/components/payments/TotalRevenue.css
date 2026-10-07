@@ -1,0 +1,35 @@
+.total-revenue {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .total-revenue {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .total-revenue {
+    width: 100%;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 575px) {
+  .total-revenue {
+    width: 100%;
+  }
+}
+
+/* Very Small Devices */
+@media (max-width: 374px) {
+  .total-revenue {
+    width: 100%;
+    max-width: 100%;
+  }
+}

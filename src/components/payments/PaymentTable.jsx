@@ -1,7 +1,9 @@
 import { useMemo, useState, useEffect } from "react";
 import { Eye, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
 import PaginationPayment from "./PaginationPayment";
+import "./PaymentTable.css";
 
 const PaymentTable = ({
   payments = [],
@@ -22,26 +24,32 @@ const PaymentTable = ({
     // item.date jaisa "16 Aug 2025" hai usse Date object mein convert karta hai
     const parseItemDate = (str) => {
       const d = new Date(str);
+
       return isNaN(d.getTime()) ? null : d;
     };
 
     // filter se aayi "16 Aug 2025" / "16/08/2025" jaisi string ko bhi Date mein convert karta hai
     const parseFilterDate = (str) => {
       if (!str || !str.trim()) return null;
+
       const trimmed = str.trim();
 
       let m = trimmed.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+
       if (m) {
         const [, d, mo, y] = m;
+
         return new Date(Number(y), Number(mo) - 1, Number(d));
       }
 
       const fallback = new Date(trimmed);
+
       return isNaN(fallback.getTime()) ? null : fallback;
     };
 
     const isSameDay = (a, b) =>
-      a && b &&
+      a &&
+      b &&
       a.getFullYear() === b.getFullYear() &&
       a.getMonth() === b.getMonth() &&
       a.getDate() === b.getDate();
@@ -49,15 +57,20 @@ const PaymentTable = ({
     const filterDate = parseFilterDate(dateRange);
 
     return payments.filter((item) => {
+      const searchValue = search.toLowerCase();
+
       const searchMatch =
-        item.customer?.toLowerCase().includes(search.toLowerCase()) ||
-        item.transactionId?.toLowerCase().includes(search.toLowerCase());
+        item.customer?.toLowerCase().includes(searchValue) ||
+        item.transactionId?.toLowerCase().includes(searchValue);
 
-      const statusMatch = status === "All Status" || item.status === status;
+      const statusMatch =
+        status === "All Status" || item.status === status;
 
-      const methodMatch = method === "All Methods" || item.method === method;
+      const methodMatch =
+        method === "All Methods" || item.method === method;
 
-      const dateMatch = !filterDate || isSameDay(parseItemDate(item.date), filterDate);
+      const dateMatch =
+        !filterDate || isSameDay(parseItemDate(item.date), filterDate);
 
       return searchMatch && statusMatch && methodMatch && dateMatch;
     });
@@ -80,15 +93,21 @@ const PaymentTable = ({
     const ids = currentRows.map((item) => item._id);
 
     if (ids.every((id) => selectedRows.includes(id))) {
-      setSelectedRows((prev) => prev.filter((id) => !ids.includes(id)));
+      setSelectedRows((prev) =>
+        prev.filter((id) => !ids.includes(id)),
+      );
     } else {
-      setSelectedRows((prev) => [...new Set([...prev, ...ids])]);
+      setSelectedRows((prev) => [
+        ...new Set([...prev, ...ids]),
+      ]);
     }
   };
 
   const toggleRow = (id) => {
     if (selectedRows.includes(id)) {
-      setSelectedRows(selectedRows.filter((item) => item !== id));
+      setSelectedRows(
+        selectedRows.filter((item) => item !== id),
+      );
     } else {
       setSelectedRows([...selectedRows, id]);
     }
@@ -111,10 +130,15 @@ const PaymentTable = ({
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-      <div className="overflow-x-auto custom-scroll">
-        <div className="h-[550px] overflow-y-auto">
-          <table className="min-w-[1400px] w-full border-separate border-spacing-0">
+    <div className="payment-table-wrapper bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* 
+        The horizontal scrolling is intentionally contained INSIDE
+        the payment table. This prevents the complete dashboard/page
+        from becoming horizontally scrollable on mobile.
+      */}
+      <div className="payment-table-scroll custom-scroll">
+        <div className="payment-table-height">
+          <table className="payment-table min-w-[1400px] w-full border-separate border-spacing-0">
             <thead className="sticky top-0 z-20 bg-white shadow-sm">
               <tr className="text-left">
                 <th className="px-6 py-4 border-b bg-white">
@@ -122,9 +146,12 @@ const PaymentTable = ({
                     type="checkbox"
                     checked={
                       currentRows.length > 0 &&
-                      currentRows.every((row) => selectedRows.includes(row._id))
+                      currentRows.every((row) =>
+                        selectedRows.includes(row._id),
+                      )
                     }
                     onChange={toggleAll}
+                    aria-label="Select all payments on this page"
                     className="w-4 h-4 accent-black cursor-pointer"
                   />
                 </th>
@@ -174,19 +201,20 @@ const PaymentTable = ({
                       type="checkbox"
                       checked={selectedRows.includes(item._id)}
                       onChange={() => toggleRow(item._id)}
+                      aria-label={`Select payment ${item.transactionId}`}
                       className="w-4 h-4 accent-black cursor-pointer"
                     />
                   </td>
 
                   <td className="px-6 py-5">
-                    <span className="font-semibold text-slate-800">
+                    <span className="font-semibold text-slate-800 whitespace-nowrap">
                       {item.transactionId}
                     </span>
                   </td>
 
                   <td className="px-6 py-5">
                     <div>
-                      <p className="font-semibold text-slate-800">
+                      <p className="font-semibold text-slate-800 whitespace-nowrap">
                         {item.customer}
                       </p>
 
@@ -196,23 +224,25 @@ const PaymentTable = ({
                     </div>
                   </td>
 
-                  <td className="px-6 py-5 text-slate-700">{item.service}</td>
+                  <td className="px-6 py-5 text-slate-700 whitespace-nowrap">
+                    {item.service}
+                  </td>
 
                   <td className="px-6 py-5">
-                    <span className="font-bold text-emerald-600 text-[15px]">
+                    <span className="font-bold text-emerald-600 text-[15px] whitespace-nowrap">
                       ₹{item.amount}
                     </span>
                   </td>
 
                   <td className="px-6 py-5">
-                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">
                       {item.method}
                     </span>
                   </td>
 
                   <td className="px-6 py-5">
                     <span
-                      className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold ${badgeColor(
+                      className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap ${badgeColor(
                         item.status,
                       )}`}
                     >
@@ -227,22 +257,34 @@ const PaymentTable = ({
                   <td className="px-6 py-5">
                     <div className="flex items-center justify-center gap-3">
                       <button
-                        onClick={() => navigate(`/payments/view/${item._id}`)}
-                        className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-200"
+                        type="button"
+                        onClick={() =>
+                          navigate(`/payments/view/${item._id}`)
+                        }
+                        aria-label={`View payment ${item.transactionId}`}
+                        className="payment-action-button w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-200"
                       >
                         <Eye size={18} />
                       </button>
 
                       <button
+                        type="button"
                         onClick={() => {
                           const invoice = `
 Transaction ID : ${item.transactionId}
+
 Customer : ${item.customer}
+
 Email : ${item.email}
+
 Service : ${item.service}
+
 Amount : ₹${item.amount}
+
 Method : ${item.method}
+
 Status : ${item.status}
+
 Payment Date : ${item.date}
 `;
 
@@ -250,16 +292,21 @@ Payment Date : ${item.date}
                             type: "text/plain",
                           });
 
-                          const url = URL.createObjectURL(blob);
+                          const url =
+                            URL.createObjectURL(blob);
 
-                          const a = document.createElement("a");
+                          const a =
+                            document.createElement("a");
+
                           a.href = url;
                           a.download = `${item.transactionId}.txt`;
+
                           a.click();
 
                           URL.revokeObjectURL(url);
                         }}
-                        className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-200"
+                        aria-label={`Download invoice for ${item.transactionId}`}
+                        className="payment-action-button w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-200"
                       >
                         <Download size={18} />
                       </button>
@@ -270,13 +317,18 @@ Payment Date : ${item.date}
 
               {currentRows.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="py-24 text-center text-slate-400">
+                  <td
+                    colSpan={9}
+                    className="py-24 text-center text-slate-400"
+                  >
                     <div className="flex flex-col items-center gap-3">
                       <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl">
                         💳
                       </div>
 
-                      <p className="text-lg font-semibold">No Payments Found</p>
+                      <p className="text-lg font-semibold">
+                        No Payments Found
+                      </p>
 
                       <p className="text-sm">
                         Try changing filters or search keyword.
@@ -289,6 +341,7 @@ Payment Date : ${item.date}
           </table>
         </div>
       </div>
+
       <PaginationPayment
         currentPage={currentPage}
         totalPages={totalPages}

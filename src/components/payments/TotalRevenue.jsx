@@ -1,9 +1,11 @@
-
+import "./TotalRevenue.css";
 
 const TotalRevenue = () => {
   return (
-    <div>TotalRevenue</div>
-  )
-}
+    <div className="total-revenue">
+      TotalRevenue
+    </div>
+  );
+};
 
-export default TotalRevenue
+export default TotalRevenue;

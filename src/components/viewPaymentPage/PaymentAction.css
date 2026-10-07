@@ -1,0 +1,165 @@
+/* =========================================================
+   PAYMENT ACTION
+   Component-specific responsive styling
+   ========================================================= */
+
+.payment-action-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.payment-action-container {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.payment-action-button {
+  min-height: 44px;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.payment-action-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.payment-action-back {
+  min-width: 170px;
+}
+
+/* =========================================================
+   DOWNLOAD BUTTON
+   ========================================================= */
+
+.payment-action-download {
+  min-width: 180px;
+}
+
+/* =========================================================
+   TABLET / LAPTOP
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .payment-action-back {
+    min-width: 165px;
+  }
+
+  .payment-action-download {
+    min-width: 175px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .payment-action-card {
+    padding: 20px;
+  }
+
+  .payment-action-container {
+    gap: 12px;
+  }
+
+  .payment-action-button {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  .payment-action-back,
+  .payment-action-download {
+    min-width: 0;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .payment-action-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .payment-action-container {
+    gap: 10px;
+  }
+
+  .payment-action-button {
+    min-height: 46px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 0.875rem;
+  }
+
+  .payment-action-icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374.98px) {
+  .payment-action-card {
+    padding: 16px;
+  }
+
+  .payment-action-container {
+    gap: 8px;
+  }
+
+  .payment-action-button {
+    min-height: 44px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 0.8rem;
+  }
+
+  .payment-action-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .payment-action-button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .payment-action-button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-action-button {
+    transition: none !important;
+  }
+}

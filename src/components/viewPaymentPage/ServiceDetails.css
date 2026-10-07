@@ -1,0 +1,422 @@
+/* =========================================================
+   SERVICE DETAILS
+   Component-specific responsive styling
+   ========================================================= */
+
+.service-details-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.service-details-header {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.service-details-header-icon {
+  flex-shrink: 0;
+}
+
+.service-details-title {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.service-details-body {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.service-details-content {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   PRODUCT IMAGE
+   ========================================================= */
+
+.service-details-image-wrapper {
+  width: 112px;
+  min-width: 112px;
+  flex-shrink: 0;
+}
+
+.service-details-product-image,
+.service-details-image-placeholder {
+  width: 112px;
+  height: 160px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.service-details-product-image {
+  display: block;
+  object-fit: cover;
+}
+
+.service-details-image-placeholder {
+  overflow: hidden;
+}
+
+/* =========================================================
+   INFORMATION ROWS
+   ========================================================= */
+
+.service-details-info-list {
+  width: 100%;
+  min-width: 0;
+}
+
+.service-details-row {
+  width: 100%;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.service-details-label {
+  flex: 0 0 auto;
+  max-width: 42%;
+  line-height: 1.45;
+}
+
+.service-details-value {
+  min-width: 0;
+  max-width: 58%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   PRICE
+   ========================================================= */
+
+.service-details-price-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.service-details-price-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.service-details-price {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  line-height: 1.1;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   1440px+
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .service-details-body {
+    gap: 20px;
+  }
+
+  .service-details-image-wrapper {
+    width: 112px;
+    min-width: 112px;
+  }
+
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    width: 112px;
+    height: 160px;
+  }
+}
+
+/* =========================================================
+   DESKTOP / LAPTOP
+   992px - 1439px
+   ========================================================= */
+
+@media (max-width: 1199.98px) {
+  .service-details-body {
+    gap: 18px;
+  }
+
+  .service-details-label {
+    max-width: 40%;
+  }
+
+  .service-details-value {
+    max-width: 60%;
+  }
+}
+
+/* =========================================================
+   TABLET
+   768px - 991px
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .service-details-body {
+    gap: 18px;
+  }
+
+  .service-details-image-wrapper {
+    width: 104px;
+    min-width: 104px;
+  }
+
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    width: 104px;
+    height: 148px;
+  }
+
+  .service-details-label {
+    max-width: 40%;
+    font-size: 0.85rem;
+  }
+
+  .service-details-value {
+    max-width: 60%;
+    font-size: 0.9rem;
+  }
+
+  .service-details-price {
+    font-size: 2rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .service-details-card {
+    width: 100%;
+  }
+
+  .service-details-header {
+    padding: 18px 20px;
+  }
+
+  .service-details-title {
+    font-size: 1rem;
+  }
+
+  .service-details-body {
+    padding: 20px;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .service-details-image-wrapper {
+    width: 92px;
+    min-width: 92px;
+  }
+
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    width: 92px;
+    height: 132px;
+    border-radius: 12px;
+  }
+
+  .service-details-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .service-details-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .service-details-label {
+    max-width: 42%;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .service-details-value {
+    max-width: 58%;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .service-details-price-row {
+    padding-top: 20px;
+  }
+
+  .service-details-price-label {
+    font-size: 0.8125rem;
+  }
+
+  .service-details-price {
+    font-size: 1.65rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .service-details-card {
+    border-radius: 16px;
+  }
+
+  .service-details-header {
+    padding: 16px 18px;
+  }
+
+  .service-details-header-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .service-details-title {
+    font-size: 0.95rem;
+  }
+
+  .service-details-body {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .service-details-image-wrapper {
+    width: 78px;
+    min-width: 78px;
+  }
+
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    width: 78px;
+    height: 112px;
+    border-radius: 10px;
+  }
+
+  .service-details-row {
+    gap: 8px;
+  }
+
+  .service-details-label {
+    max-width: 44%;
+    font-size: 0.76rem;
+  }
+
+  .service-details-value {
+    max-width: 56%;
+    font-size: 0.8rem;
+  }
+
+  .service-details-price-row {
+    padding-top: 18px;
+    gap: 8px;
+  }
+
+  .service-details-price-label {
+    font-size: 0.76rem;
+  }
+
+  .service-details-price {
+    font-size: 1.45rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374.98px) {
+  .service-details-header {
+    padding: 15px 16px;
+  }
+
+  .service-details-body {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .service-details-image-wrapper {
+    width: 64px;
+    min-width: 64px;
+  }
+
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    width: 64px;
+    height: 92px;
+    border-radius: 9px;
+  }
+
+  .service-details-row {
+    gap: 7px;
+  }
+
+  .service-details-label {
+    max-width: 45%;
+    font-size: 0.68rem;
+  }
+
+  .service-details-value {
+    max-width: 55%;
+    font-size: 0.72rem;
+  }
+
+  .service-details-price-row {
+    padding-top: 16px;
+    gap: 8px;
+  }
+
+  .service-details-price-label {
+    font-size: 0.68rem;
+  }
+
+  .service-details-price {
+    font-size: 1.25rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .service-details-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .service-details-card,
+  .service-details-product-image,
+  .service-details-image-placeholder {
+    transition: none !important;
+    animation: none !important;
+  }
+}

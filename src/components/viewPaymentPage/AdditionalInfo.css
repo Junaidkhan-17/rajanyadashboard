@@ -1,0 +1,263 @@
+/* =========================================================
+   ADDITIONAL INFORMATION
+   Component-specific responsive styling
+   ========================================================= */
+
+.additional-info-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.additional-info-title {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.additional-info-title-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   INFORMATION LIST
+   ========================================================= */
+
+.additional-info-list {
+  width: 100%;
+  min-width: 0;
+}
+
+.additional-info-row {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.additional-info-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 45%;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.additional-info-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.additional-info-value {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 55%;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   REFUND BADGE
+   ========================================================= */
+
+.additional-info-refund-badge {
+  flex: 0 0 auto;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET / LAPTOP
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+  .additional-info-card {
+    width: 100%;
+  }
+
+  .additional-info-label {
+    max-width: 43%;
+  }
+
+  .additional-info-value {
+    max-width: 57%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   576px - 767px
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .additional-info-card {
+    padding: 20px;
+  }
+
+  .additional-info-title {
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  .additional-info-list {
+    gap: 16px;
+  }
+
+  .additional-info-row {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .additional-info-label {
+    max-width: 43%;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .additional-info-value {
+    max-width: 57%;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .additional-info-refund-badge {
+    min-height: 30px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   375px - 575px
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+  .additional-info-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .additional-info-title {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+  }
+
+  .additional-info-title-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .additional-info-list {
+    gap: 14px;
+  }
+
+  .additional-info-row {
+    gap: 10px;
+  }
+
+  .additional-info-label {
+    max-width: 44%;
+    font-size: 0.76rem;
+  }
+
+  .additional-info-value {
+    max-width: 56%;
+    font-size: 0.8rem;
+  }
+
+  .additional-info-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .additional-info-refund-badge {
+    min-height: 28px;
+    padding: 4px 9px;
+    font-size: 0.7rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   320px - 374px
+   ========================================================= */
+
+@media (max-width: 374.98px) {
+  .additional-info-card {
+    padding: 16px;
+  }
+
+  .additional-info-title {
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  .additional-info-list {
+    gap: 12px;
+  }
+
+  .additional-info-row {
+    gap: 8px;
+  }
+
+  .additional-info-label {
+    max-width: 43%;
+    font-size: 0.7rem;
+  }
+
+  .additional-info-value {
+    max-width: 57%;
+    font-size: 0.74rem;
+  }
+
+  .additional-info-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .additional-info-refund-badge {
+    min-height: 26px;
+    padding: 4px 8px;
+    font-size: 0.66rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .additional-info-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .additional-info-card {
+    transition: none !important;
+  }
+}

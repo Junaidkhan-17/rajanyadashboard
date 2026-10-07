@@ -1,62 +1,78 @@
-import { CheckCircle2, Clock3, CircleX } from "lucide-react";
+import {
+  CheckCircle2,
+  Clock3,
+  CircleX,
+} from "lucide-react";
+
+import "./PaymentStatusTimeline.css";
 
 const PaymentStatusTimeline = ({ payment }) => {
   if (!payment) return null;
 
-  const status = payment.status;
+  const status = payment.status || "Pending";
+  const normalizedStatus = String(status).toLowerCase();
+
+  const isPaid = normalizedStatus === "paid";
+  const isFailed = normalizedStatus === "failed";
 
   const steps = [
     {
       title: "Payment Initiated",
       description: "Payment request created",
-      date: payment.createdDate || "15 Aug 2025",
-      time: payment.createdTime || "10:28 AM",
+      date: payment.createdDate || "--",
+      time: payment.createdTime || "--",
       state: "completed",
     },
     {
-      title:
-        status === "Paid"
-          ? "Payment Successful"
-          : status === "Failed"
-            ? "Payment Failed"
-            : "Payment Pending",
+      title: isPaid
+        ? "Payment Successful"
+        : isFailed
+          ? "Payment Failed"
+          : normalizedStatus === "processing"
+            ? "Payment Processing"
+            : normalizedStatus === "cancelled"
+              ? "Payment Cancelled"
+              : normalizedStatus === "refunded"
+                ? "Payment Refunded"
+                : "Payment Pending",
 
-      description:
-        status === "Paid"
-          ? "Amount paid successfully"
-          : status === "Failed"
-            ? "Payment could not be processed"
-            : "Waiting for payment confirmation",
+      description: isPaid
+        ? "Amount paid successfully"
+        : isFailed
+          ? "Payment could not be processed"
+          : normalizedStatus === "processing"
+            ? "Payment is being processed"
+            : normalizedStatus === "cancelled"
+              ? "Payment was cancelled"
+              : normalizedStatus === "refunded"
+                ? "Payment was refunded"
+                : "Waiting for payment confirmation",
 
-      date: payment.paymentDate || "15 Aug 2025",
-      time: payment.paymentTime || "10:34 AM",
+      date: payment.paymentDate || "--",
+      time: payment.paymentTime || "--",
 
-      state:
-        status === "Paid"
-          ? "completed"
-          : status === "Failed"
-            ? "failed"
-            : "pending",
+      state: isPaid
+        ? "completed"
+        : isFailed
+          ? "failed"
+          : "pending",
     },
     {
       title: "Invoice Generated",
 
-      description:
-        status === "Paid"
-          ? "Invoice generated successfully"
-          : "Invoice not generated",
+      description: isPaid
+        ? "Invoice generated successfully"
+        : "Invoice not generated",
 
-      date:
-        status === "Paid"
-          ? payment.invoiceDate || "15 Aug 2025"
-          : "--",
+      date: isPaid
+        ? payment.invoiceDate || "--"
+        : "--",
 
-      time:
-        status === "Paid"
-          ? payment.invoiceTime || "10:35 AM"
-          : "--",
+      time: isPaid
+        ? payment.invoiceTime || "--"
+        : "--",
 
-      state: status === "Paid" ? "completed" : "inactive",
+      state: isPaid ? "completed" : "inactive",
     },
   ];
 
@@ -64,77 +80,83 @@ const PaymentStatusTimeline = ({ payment }) => {
     switch (state) {
       case "completed":
         return (
-          <div className="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center ">
+          <div className="payment-status-timeline-icon payment-status-timeline-icon-completed">
             <CheckCircle2
               size={18}
-              className="text-green-600"
+              className="payment-status-timeline-icon-svg"
             />
           </div>
         );
 
       case "pending":
         return (
-          <div className="w-9 h-9 rounded-full bg-yellow-100 flex items-center justify-center">
+          <div className="payment-status-timeline-icon payment-status-timeline-icon-pending">
             <Clock3
               size={18}
-              className="text-yellow-600"
+              className="payment-status-timeline-icon-svg"
             />
           </div>
         );
 
       case "failed":
         return (
-          <div className="w-9 h-9 rounded-full bg-red-100 flex items-center justify-center">
+          <div className="payment-status-timeline-icon payment-status-timeline-icon-failed">
             <CircleX
               size={18}
-              className="text-red-600"
+              className="payment-status-timeline-icon-svg"
             />
           </div>
         );
 
       default:
         return (
-          <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-300" />
+          <div
+            className="payment-status-timeline-icon payment-status-timeline-icon-inactive"
+            aria-hidden="true"
+          />
         );
     }
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
+    <div className="payment-status-timeline-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
       {/* Header */}
-
-      <div className="px-6 py-5 border-b">
-        <h3 className="text-lg font-bold text-slate-800">
+      <div className="payment-status-timeline-header px-6 py-5 border-b">
+        <h3 className="payment-status-timeline-title text-lg font-bold text-slate-800">
           Payment Status Timeline
         </h3>
       </div>
 
       {/* Timeline */}
-
-      <div className="p-6">
+      <div className="payment-status-timeline-body p-6">
         {steps.map((step, index) => (
           <div
-            key={index}
-            className="flex gap-4 relative pb-8 last:pb-0"
+            key={`${step.title}-${index}`}
+            className="payment-status-timeline-step flex gap-4 relative pb-8 last:pb-0"
           >
             {index !== steps.length - 1 && (
-              <div className="absolute left-[18px] top-10 w-[2px] h-full bg-slate-200" />
+              <div
+                className="payment-status-timeline-line absolute bg-slate-200"
+                aria-hidden="true"
+              />
             )}
 
-            {getIcon(step.state)}
+            <div className="payment-status-timeline-icon-wrapper shrink-0">
+              {getIcon(step.state)}
+            </div>
 
-            <div className="flex-1 flex justify-between">
-              <div>
-                <h4 className="font-semibold text-slate-800">
+            <div className="payment-status-timeline-content flex-1 min-w-0 flex justify-between gap-5">
+              <div className="payment-status-timeline-description min-w-0">
+                <h4 className="payment-status-timeline-step-title font-semibold text-slate-800 break-words">
                   {step.title}
                 </h4>
 
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="payment-status-timeline-step-description text-sm text-slate-500 mt-1 break-words">
                   {step.description}
                 </p>
               </div>
 
-              <div className="text-right text-xs text-slate-400">
+              <div className="payment-status-timeline-date text-right text-xs text-slate-400 shrink-0">
                 <p>{step.date}</p>
                 <p>{step.time}</p>
               </div>

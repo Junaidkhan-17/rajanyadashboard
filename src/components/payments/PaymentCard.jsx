@@ -1,9 +1,11 @@
-
+import "./PaymentCard.css";
 
 const PaymentCard = () => {
   return (
-    <div>PaymentCard</div>
-  )
-}
+    <div className="payment-card">
+      PaymentCard
+    </div>
+  );
+};
 
-export default PaymentCard
+export default PaymentCard;

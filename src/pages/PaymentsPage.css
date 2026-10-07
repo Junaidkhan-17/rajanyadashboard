@@ -1,0 +1,298 @@
+/* =========================================================
+   PAYMENTS PAGE
+   Responsive refinements only
+   Existing layout/design is preserved
+========================================================= */
+
+.payments-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.payments-page-header {
+  width: 100%;
+  min-width: 0;
+}
+
+.payments-page-title {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.payments-page-description {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   EXPORT BUTTON
+========================================================= */
+
+.payments-export-button {
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.payments-export-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   STATISTICS GRID
+========================================================= */
+
+.payments-stats-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.payments-stat-card {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.payments-stat-icon {
+  flex-shrink: 0;
+}
+
+.payments-stat-label {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.payments-stat-value {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.payments-stat-change {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   FILTER SECTION
+========================================================= */
+
+.payments-filter-section {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   PAYMENT TABLE SECTION
+========================================================= */
+
+.payments-table-section {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
+
+.payments-status-wrapper {
+  width: 100%;
+  min-width: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.payments-error-card {
+  width: 100%;
+  max-width: 448px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   TABLET
+   768px and below
+========================================================= */
+
+@media (max-width: 991.98px) {
+  .payments-page {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .payments-stat-card {
+    min-height: 0;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   767px and below
+========================================================= */
+
+@media (max-width: 767.98px) {
+  .payments-page {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .payments-page-header {
+    width: 100%;
+  }
+
+  .payments-page-title {
+    font-size: clamp(1.5rem, 7vw, 1.875rem);
+    line-height: 1.15;
+  }
+
+  .payments-page-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .payments-export-button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .payments-stat-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .payments-stat-value {
+    font-size: clamp(1.3rem, 7vw, 1.5rem);
+    line-height: 1.2;
+  }
+
+  .payments-stat-change {
+    font-size: 0.6875rem;
+    line-height: 1.5;
+  }
+
+  .payments-filter-section,
+  .payments-table-section {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   575px and below
+========================================================= */
+
+@media (max-width: 575.98px) {
+  .payments-page {
+    width: 100%;
+  }
+
+  .payments-page-title {
+    font-size: clamp(1.45rem, 8vw, 1.7rem);
+  }
+
+  .payments-page-description {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .payments-export-button {
+    min-height: 44px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .payments-stat-card {
+    padding: 16px;
+  }
+
+  .payments-stat-label {
+    font-size: 0.625rem;
+    line-height: 1rem;
+  }
+
+  .payments-stat-value {
+    font-size: clamp(1.3rem, 8vw, 1.5rem);
+  }
+
+  .payments-stat-change {
+    min-height: 20px;
+    font-size: 0.625rem;
+    line-height: 1.4;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   374px and below
+========================================================= */
+
+@media (max-width: 374px) {
+  .payments-page-title {
+    font-size: 1.45rem;
+  }
+
+  .payments-page-description {
+    font-size: 0.78rem;
+  }
+
+  .payments-export-button {
+    font-size: 0.8125rem;
+  }
+
+  .payments-stat-card {
+    padding: 14px;
+  }
+
+  .payments-stat-value {
+    font-size: 1.3rem;
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .payments-export-button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .payments-stat-card {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   Accessibility / performance
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .payments-stat-card,
+  .payments-export-button {
+    transition: none !important;
+  }
+}

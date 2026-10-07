@@ -1,0 +1,197 @@
+/* =========================================================
+   PAYMENT FILTERS
+   Component-specific responsive styles
+   Existing design preserved
+   ========================================================= */
+
+.payment-filters {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.payment-filter-field,
+.payment-date-filter {
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------
+   INPUTS / SELECTS
+   --------------------------------------------------------- */
+
+.payment-filter-input {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.payment-filter-input:focus {
+  outline: none;
+}
+
+/* ---------------------------------------------------------
+   CALENDAR
+   --------------------------------------------------------- */
+
+.payment-calendar-popup {
+  max-width: calc(100vw - 32px);
+  box-sizing: border-box;
+}
+
+.payment-calendar {
+  width: 100%;
+}
+
+.payment-calendar-nav {
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.payment-calendar-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------
+   CALENDAR TOGGLE
+   --------------------------------------------------------- */
+
+.payment-calendar-toggle {
+  min-width: 32px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------
+   APPLY BUTTON
+   --------------------------------------------------------- */
+
+.payment-apply-button {
+  min-height: 44px;
+}
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 991.98px) {
+  .payment-filters {
+    padding: 1.125rem;
+  }
+
+  .payment-calendar-popup {
+    max-width: min(18rem, calc(100vw - 32px));
+  }
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 767.98px) {
+  .payment-filters {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .payment-filter-input {
+    height: 44px;
+  }
+
+  .payment-apply-button {
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .payment-calendar-popup {
+    width: min(18rem, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px);
+  }
+
+  .payment-calendar-day {
+    min-width: 34px;
+    min-height: 34px;
+  }
+}
+
+/* ---------------------------------------------------------
+   SMALL MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 575.98px) {
+  .payment-filters {
+    padding: 0.875rem;
+  }
+
+  .payment-calendar-popup {
+    width: min(17.5rem, calc(100vw - 28px)) !important;
+    max-width: calc(100vw - 28px);
+    padding: 0.875rem !important;
+  }
+
+  .payment-calendar-day {
+    min-width: 33px;
+    min-height: 33px;
+  }
+}
+
+/* ---------------------------------------------------------
+   VERY SMALL DEVICES
+   --------------------------------------------------------- */
+
+@media (max-width: 374.98px) {
+  .payment-filters {
+    padding: 0.75rem;
+  }
+
+  .payment-calendar-popup {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px);
+  }
+
+  .payment-calendar-day {
+    min-width: 31px;
+    min-height: 31px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   TOUCH DEVICES
+   --------------------------------------------------------- */
+
+@media (hover: none) and (pointer: coarse) {
+  .payment-calendar-toggle {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .payment-calendar-nav {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .payment-calendar-day {
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-filters * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

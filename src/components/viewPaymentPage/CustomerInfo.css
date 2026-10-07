@@ -1,0 +1,250 @@
+/* =========================================================
+   CUSTOMER INFORMATION
+   Responsive styles only
+   Existing visual design preserved
+========================================================= */
+
+.customer-info-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.customer-info-title {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================================
+   CUSTOMER PROFILE
+========================================================= */
+
+.customer-info-profile {
+  width: 100%;
+  min-width: 0;
+}
+
+.customer-info-avatar {
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  min-height: 72px;
+  flex-shrink: 0;
+}
+
+.customer-info-avatar-placeholder {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* =========================================================
+   CUSTOMER IDENTITY
+========================================================= */
+
+.customer-info-identity {
+  flex: 1 1 auto;
+  max-width: 100%;
+}
+
+.customer-info-name {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.customer-info-phone {
+  margin-top: 3px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.customer-info-verified-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   DETAIL ROWS
+========================================================= */
+
+.customer-info-details {
+  width: 100%;
+  min-width: 0;
+}
+
+.customer-info-detail-row {
+  width: 100%;
+  min-width: 0;
+}
+
+.customer-info-detail-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.customer-info-detail-text {
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991.98px) {
+  .customer-info-card {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767.98px) {
+  .customer-info-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .customer-info-title {
+    margin-bottom: 18px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .customer-info-profile {
+    gap: 14px;
+  }
+
+  .customer-info-avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+  }
+
+  .customer-info-name {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .customer-info-phone {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .customer-info-details {
+    margin-top: 20px;
+  }
+
+  .customer-info-detail-row {
+    gap: 10px;
+  }
+
+  .customer-info-detail-text {
+    font-size: 0.875rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 575.98px) {
+  .customer-info-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .customer-info-profile {
+    gap: 12px;
+  }
+
+  .customer-info-avatar {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    min-height: 58px;
+  }
+
+  .customer-info-name {
+    font-size: 0.95rem;
+  }
+
+  .customer-info-phone {
+    font-size: 0.78rem;
+  }
+
+  .customer-info-details {
+    margin-top: 18px;
+  }
+
+  .customer-info-details {
+    row-gap: 14px;
+  }
+
+  .customer-info-detail-text {
+    font-size: 0.8125rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 374px) {
+  .customer-info-card {
+    padding: 16px;
+  }
+
+  .customer-info-title {
+    font-size: 0.95rem;
+  }
+
+  .customer-info-profile {
+    gap: 10px;
+  }
+
+  .customer-info-avatar {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
+  }
+
+  .customer-info-name {
+    font-size: 0.9rem;
+  }
+
+  .customer-info-detail-row {
+    gap: 8px;
+  }
+
+  .customer-info-detail-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .customer-info-detail-text {
+    font-size: 0.78rem;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .customer-info-card {
+    transition: none !important;
+  }
+}
