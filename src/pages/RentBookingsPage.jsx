@@ -95,6 +95,12 @@ const formattedBookings = Array.isArray(bookingData)
       phone:
         booking.user?.mobileNumber || "-",
 
+      streetAddress:
+  booking.address?.streetAddress ||
+  booking.address?.street ||
+  booking.address?.fullAddress ||
+  "-",
+
       product:
         booking.product?.productName || "-",
 

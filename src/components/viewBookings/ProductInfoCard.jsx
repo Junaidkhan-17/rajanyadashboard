@@ -1,82 +1,98 @@
+
 import { ShoppingBag } from "lucide-react";
+import "./ProductInfoCard.css";
 
 const ProductInfoCard = ({ booking }) => {
   if (!booking || !booking.product) return null;
+
   const { product } = booking;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
+    <div className="product-info-card">
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 py-5">
-        <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
-          <ShoppingBag size={16} className="text-violet-600" />
+      <div className="product-info-card__header">
+        <div className="product-info-card__icon">
+          <ShoppingBag size={17} strokeWidth={2} />
         </div>
 
-        <h2 className="text-lg font-bold text-slate-800">
+        <h2 className="product-info-card__title">
           Product Information
         </h2>
       </div>
 
       {/* Body */}
-      <div className="p-6 flex flex-col sm:flex-row gap-5">
-        {/* Image */}
-        {product.image ? (
-  <img
-    src={product.image}
-    alt={product.name}
-    className="w-24 h-32 rounded-xl object-cover border mx-auto sm:mx-0 shrink-0"
-  />
-) : (
-  <div className="w-24 h-32 rounded-xl border bg-slate-100 flex items-center justify-center text-slate-400 text-xs mx-auto sm:mx-0 shrink-0">
-    No Image
-  </div>
-)}
+      <div className="product-info-card__body">
+        {/* Product Image */}
+        <div className="product-info-card__image-wrapper">
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.name || "Product"}
+              className="product-info-card__image"
+              loading="lazy"
+            />
+          ) : (
+            <div className="product-info-card__image-placeholder">
+              No Image Available
+            </div>
+          )}
+        </div>
 
-        {/* Details */}
-        <div className="flex-1 min-w-0 overflow-x-auto">
-          <div className="space-y-3 min-w-[240px]">
-            <div className="flex justify-between gap-3">
-              <span className="text-slate-500 font-semibold shrink-0">
-                Product Name :
+        {/* Product Details */}
+        <div className="product-info-card__details">
+          <div className="product-info-card__list">
+            {/* Product Name */}
+            <div className="product-info-card__row">
+              <span className="product-info-card__label">
+                Product Name
               </span>
-              <span className="font-medium text-right break-words">
-                {product.name}
+
+              <span className="product-info-card__value">
+                {product.name || "-"}
               </span>
             </div>
 
-            <div className="flex justify-between gap-3">
-              <span className="text-slate-500 font-semibold shrink-0">
-                Category :
+            {/* Category */}
+            <div className="product-info-card__row">
+              <span className="product-info-card__label">
+                Category
               </span>
-              <span className="font-medium text-right break-words">
-                {product.category}
+
+              <span className="product-info-card__value">
+                {product.category || "-"}
               </span>
             </div>
 
-            <div className="flex justify-between gap-3">
-              <span className="text-slate-500 font-semibold shrink-0">
-                Collection :
+            {/* Collection */}
+            <div className="product-info-card__row">
+              <span className="product-info-card__label">
+                Collection
               </span>
-              <span className="font-medium text-right break-words">
-                {product.collection}
+
+              <span className="product-info-card__value">
+                {product.collection || "-"}
               </span>
             </div>
 
-            <div className="flex justify-between gap-3">
-              <span className="text-slate-500 font-semibold shrink-0">
-                Selected Size :
+            {/* Selected Size */}
+            <div className="product-info-card__row">
+              <span className="product-info-card__label">
+                Selected Size
               </span>
-              <span className="font-medium text-right break-words">
-                {product.size}
+
+              <span className="product-info-card__value">
+                {product.size || "-"}
               </span>
             </div>
 
-            <div className="flex justify-between gap-3">
-              <span className="text-slate-500 font-semibold shrink-0">
-                SKU :
+            {/* SKU */}
+            <div className="product-info-card__row">
+              <span className="product-info-card__label">
+                SKU
               </span>
-              <span className="font-medium text-right break-words">
-                {product.sku}
+
+              <span className="product-info-card__value">
+                {product.sku || "-"}
               </span>
             </div>
           </div>

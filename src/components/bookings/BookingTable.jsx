@@ -15,22 +15,27 @@ const statusStyles = {
   return_requested: "bg-orange-50 text-orange-600",
 };
 
+// Generate customer initials safely.
+const initials = (name = "") => {
+  return (
+    name
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((part) => part[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "?"
+  );
+};
 
-
-const initials = (name) =>
-  name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
+// Format rental dates.
 const formatDate = (date) => {
   if (!date) return "-";
 
   const parsedDate = new Date(date);
 
-  if (isNaN(parsedDate.getTime())) {
+  if (Number.isNaN(parsedDate.getTime())) {
     return "-";
   }
 
@@ -41,12 +46,29 @@ const formatDate = (date) => {
   });
 };
 
+// Format booking status for display.
 const formatStatus = (status) => {
   if (!status) return "-";
 
   return status
     .replace(/_/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+// Resolve the street address from the formatted booking
+// or the original API booking object.
+const getStreetAddress = (item) => {
+  const address =
+    item?.streetAddress ??
+    item?.rawBooking?.address?.streetAddress ??
+    item?.rawBooking?.address?.street ??
+    item?.rawBooking?.address?.fullAddress;
+
+  if (typeof address === "string" && address.trim()) {
+    return address.trim();
+  }
+
+  return "-";
 };
 
 const BookingTable = ({
@@ -66,125 +88,219 @@ const BookingTable = ({
             ({bookings.length})
           </span>
         </h3>
+
         <div className="flex items-center gap-2 text-sm">
           <span className="text-slate-400">Sort By:</span>
+
           <select
-  value={sortBy}
-  onChange={(e) => setSortBy(e.target.value)}
-  className="h-8 px-2 rounded-lg border border-slate-200 text-slate-600 text-sm focus:outline-none"
->
-  <option value="latest">Latest First</option>
-  <option value="oldest">Oldest First</option>
-</select>
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+            className="h-8 px-2 rounded-lg border border-slate-200 text-slate-600 text-sm focus:outline-none"
+            aria-label="Sort bookings"
+          >
+            <option value="latest">Latest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
         </div>
       </div>
 
-      {/* Table */}
+      {/* Bookings Table */}
       <div className="max-h-[580px] overflow-y-auto overflow-x-auto">
-        <table className="w-full table-fixed text-sm min-w-[1100px]">
+        <table className="w-full table-fixed text-sm min-w-[1450px]">
           <thead className="sticky top-0 z-10 bg-white">
             <tr className="text-left text-xs text-slate-400 border-b border-slate-100">
-              <th className="px-5 py-3 font-medium bg-white">SR NO.</th>
-              <th className="px-5 py-3 font-medium bg-white">BOOKING ID</th>
-              <th className="px-5 py-3 font-medium bg-white">CUSTOMER</th>
-              <th className="px-5 py-3 font-medium bg-white w-[220px]">PRODUCT</th>
-              <th className="px-5 py-3 font-medium bg-white w-[140px]">
+              <th className="px-5 py-3 font-medium bg-white w-[80px]">
+                SR NO.
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[150px]">
+                BOOKING ID
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[200px]">
+                CUSTOMER
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[220px]">
+                PRODUCT
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[150px]">
                 RENTAL DURATION
               </th>
-              <th className="px-5 py-3 font-medium bg-white">RENT DATE</th>
-              <th className="px-5 py-3 font-medium bg-white">RETURN DATE</th>
-              <th className="px-5 py-3 font-medium bg-white">AMOUNT</th>
-              <th className="px-5 py-3 font-medium bg-white">STATUS</th>
-              <th className="px-5 py-3 font-medium bg-white text-right">
+
+              <th className="px-5 py-3 font-medium bg-white w-[130px]">
+                RENT DATE
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[130px]">
+                RETURN DATE
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[120px]">
+                AMOUNT
+              </th>
+
+              {/* Street Address Column */}
+              <th className="px-5 py-3 font-medium bg-white w-[280px]">
+                STREET ADDRESS
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white w-[150px]">
+                STATUS
+              </th>
+
+              <th className="px-5 py-3 font-medium bg-white text-right w-[100px]">
                 ACTION
               </th>
             </tr>
           </thead>
 
           <tbody>
-            {bookings.map((item, idx) => (
-              <tr
-                key={item._id}
-                className="border-b border-slate-50 last:border-0 hover:bg-slate-50/60"
-              >
-                <td className="px-5 py-4 text-slate-500">{idx + 1}</td>
-                <td className="px-5 py-4 font-medium text-slate-800">
-                  {item.bookingId}
-                </td>
+            {bookings.map((item, idx) => {
+              const streetAddress = getStreetAddress(item);
 
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-slate-800 text-white text-xs flex items-center justify-center font-medium">
-                      {initials(item.customer)}
+              return (
+                <tr
+                  key={item._id || item.bookingId || idx}
+                  className="border-b border-slate-50 last:border-0 hover:bg-slate-50/60"
+                >
+                  {/* Serial Number */}
+                  <td className="px-5 py-4 text-slate-500">
+                    {idx + 1}
+                  </td>
+
+                  {/* Booking ID */}
+                  <td className="px-5 py-4 font-medium text-slate-800 break-words">
+                    {item.bookingId || "-"}
+                  </td>
+
+                  {/* Customer Information */}
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 shrink-0 rounded-full bg-slate-800 text-white text-xs flex items-center justify-center font-medium">
+                        {initials(item.customer)}
+                      </div>
+
+                      <div className="min-w-0">
+                        <p className="font-medium text-slate-800 break-words">
+                          {item.customer || "-"}
+                        </p>
+
+                        <p className="text-xs text-slate-400 break-words">
+                          {item.phone || "-"}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-slate-800">
-                        {item.customer}
-                      </p>
-                      <p className="text-xs text-slate-400">{item.phone}</p>
+                  </td>
+
+                  {/* Product */}
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.product || "Rental product"}
+                          className="w-8 h-8 shrink-0 rounded-lg object-cover"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 shrink-0 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-xs">
+                          —
+                        </div>
+                      )}
+
+                      <span className="text-slate-700 break-words">
+                        {item.product || "-"}
+                      </span>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    {item.image ? (
-  <img
-    src={item.image}
-    alt={item.product}
-    className="w-8 h-8 rounded-lg object-cover"
-  />
-) : (
-  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-xs">
-    —
-  </div>
-)}
-                    <span className="text-slate-700">{item.product}</span>
-                  </div>
-                </td>
+                  {/* Rental Duration */}
+                  <td className="px-5 py-4">
+                    <span className="inline-block px-2 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-medium whitespace-nowrap">
+                      {item.duration || "-"}
+                    </span>
+                  </td>
 
-                <td className="px-5 py-4 w-[140px]">
-  <span className="px-2 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-medium">
-    {item.duration}
-  </span>
-</td>
+                  {/* Rental Start Date */}
+                  <td className="px-5 py-4 text-slate-500 whitespace-nowrap">
+                    {formatDate(item.rentDate)}
+                  </td>
 
-                <td className="px-5 py-4 text-slate-500 whitespace-nowrap">{formatDate(item.rentDate)}</td>
-                <td className="px-5 py-4 text-slate-500">{formatDate(item.returnDate)}</td>
-                <td className="px-5 py-4 font-medium text-slate-800">
-                  ₹{item.amount.toLocaleString("en-IN")}
-                </td>
+                  {/* Return Date */}
+                  <td className="px-5 py-4 text-slate-500 whitespace-nowrap">
+                    {formatDate(item.returnDate)}
+                  </td>
 
-                <td className="px-5 py-4">
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${statusStyles[item.status] || "bg-slate-100 text-slate-600"}`}
-                  >
-                    {formatStatus(item.status)}
-                  </span>
-                </td>
+                  {/* Amount */}
+                  <td className="px-5 py-4 font-medium text-slate-800 whitespace-nowrap">
+                    ₹
+                    {Number(item.amount || 0).toLocaleString("en-IN")}
+                  </td>
 
-                <td className="px-5 py-4">
-                  <div className="flex items-center justify-end gap-2">
-                    <button
-                      onClick={() => navigate(`/rent-bookings/${item._id}`)}
-                      className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400"
+                  {/* Street Address */}
+                  <td className="px-5 py-4 text-slate-600 align-top">
+                    <span
+                      className="block whitespace-normal break-words leading-5"
+                      title={
+                        streetAddress !== "-" ? streetAddress : undefined
+                      }
                     >
-                      <Eye size={16} />
-                    </button>
-                    <button
-                      onClick={() => navigate(`/rent-bookings/edit/${item._id}`)}
-                      className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400"
-                    >
-                      <Pencil size={16} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                      {streetAddress}
+                    </span>
+                  </td>
 
+                  {/* Booking Status */}
+                  <td className="px-5 py-4">
+                    <span
+                      className={`inline-block px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                        statusStyles[item.status] ||
+                        "bg-slate-100 text-slate-600"
+                      }`}
+                    >
+                      {formatStatus(item.status)}
+                    </span>
+                  </td>
+
+                  {/* Actions */}
+                  <td className="px-5 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          navigate(`/rent-bookings/${item._id}`)
+                        }
+                        title="View booking"
+                        aria-label={`View booking ${item.bookingId || ""}`}
+                        className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400"
+                      >
+                        <Eye size={16} />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          navigate(`/rent-bookings/edit/${item._id}`)
+                        }
+                        title="Edit booking"
+                        aria-label={`Edit booking ${item.bookingId || ""}`}
+                        className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400"
+                      >
+                        <Pencil size={16} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+
+            {/* Empty State */}
             {bookings.length === 0 && (
               <tr>
-                <td colSpan={10} className="text-center py-10 text-slate-400">
+                <td
+                  colSpan={11}
+                  className="text-center py-10 text-slate-400"
+                >
                   No bookings found.
                 </td>
               </tr>

@@ -1,3 +1,4 @@
+
 import {
   CalendarDays,
   Clock3,
@@ -5,41 +6,43 @@ import {
   Bookmark,
 } from "lucide-react";
 
+import "./BookingStats.css";
+
 const BookingStats = ({ booking }) => {
   if (!booking) return null;
 
   const cards = [
     {
+      id: "booking-id",
       icon: CalendarDays,
-      iconBg: "bg-violet-100",
-      iconColor: "text-violet-600",
+      iconBg: "violet",
       title: "Booking ID",
       value: booking.bookingId || "-",
       subtitle: "Booking Date & Time",
       subValue: booking.bookingDate || "-",
     },
     {
+      id: "rental-duration",
       icon: Clock3,
-      iconBg: "bg-blue-100",
-      iconColor: "text-blue-600",
+      iconBg: "blue",
       title: "Rental Duration",
       value: booking.rentalDuration || "-",
       subtitle: "Rent Start Date",
       subValue: booking.rentStartDate || "-",
     },
     {
+      id: "return-date",
       icon: CalendarClock,
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600",
+      iconBg: "green",
       title: "Return Date",
       value: booking.returnDate || "-",
       subtitle: "Booking Type",
       subValue: booking.bookingType || "-",
     },
     {
+      id: "last-updated",
       icon: Bookmark,
-      iconBg: "bg-orange-100",
-      iconColor: "text-orange-500",
+      iconBg: "orange",
       title: "Last Updated",
       value: booking.updatedAt || "-",
       subtitle: "Booked By",
@@ -48,43 +51,48 @@ const BookingStats = ({ booking }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
-      {cards.map((card, index) => {
+    <div className="booking-stats">
+      {cards.map((card) => {
         const Icon = card.icon;
 
         return (
-          <div
-            key={index}
-            className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5"
+          <article
+            key={card.id}
+            className="booking-stats__card"
           >
-            <div className="flex items-start gap-4">
+            {/* Card Content */}
+            <div className="booking-stats__content">
+              {/* Icon */}
               <div
-                className={`w-12 h-12 rounded-xl ${card.iconBg} flex items-center justify-center`}
+                className={`booking-stats__icon booking-stats__icon--${card.iconBg}`}
+                aria-hidden="true"
               >
-                <Icon className={card.iconColor} size={22} />
+                <Icon size={22} strokeWidth={2} />
               </div>
 
-              <div className="flex-1">
-                <p className="text-xs text-slate-400 font-medium">
+              {/* Information */}
+              <div className="booking-stats__details">
+                <p className="booking-stats__label">
                   {card.title}
                 </p>
 
-                <h3 className="mt-1 text-lg font-bold text-slate-800">
+                <h3 className="booking-stats__value">
                   {card.value}
                 </h3>
 
-                <div className="mt-4">
-                  <p className="text-xs text-slate-400">
+                {/* Secondary Information */}
+                <div className="booking-stats__secondary">
+                  <p className="booking-stats__subtitle">
                     {card.subtitle}
                   </p>
 
-                  <p className="text-sm font-semibold text-slate-700 mt-1">
+                  <p className="booking-stats__subvalue">
                     {card.subValue}
                   </p>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         );
       })}
     </div>

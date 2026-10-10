@@ -1,0 +1,368 @@
+
+/* =========================================
+   RENTAL INFORMATION CARD
+   Premium Rajanya Admin Dashboard
+========================================= */
+
+.rental-info-card {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 3px 6px rgba(15, 23, 42, 0.06),
+    0 10px 20px rgba(15, 23, 42, 0.04);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.rental-info-card:hover {
+  border-color: #ddd6fe;
+  box-shadow:
+    0 5px 12px rgba(15, 23, 42, 0.07),
+    0 14px 28px rgba(15, 23, 42, 0.05);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.rental-info-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rental-info-card__icon {
+  display: flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #7c3aed;
+  background: #ede9fe;
+  border-radius: 11px;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rental-info-card:hover .rental-info-card__icon {
+  background: #ddd6fe;
+  transform: translateY(-1px);
+}
+
+.rental-info-card__title {
+  min-width: 0;
+  margin: 0;
+  color: #1e293b;
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   BODY
+========================================= */
+
+.rental-info-card__body {
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+}
+
+.rental-info-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   INFORMATION ROWS
+========================================= */
+
+.rental-info-card__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: start;
+  column-gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+
+.rental-info-card__label {
+  min-width: 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.rental-info-card__value {
+  min-width: 0;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: right;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================
+   DATE AND LONG TEXT VALUES
+========================================= */
+
+.rental-info-card__row--date
+  .rental-info-card__value,
+.rental-info-card__row--instructions
+  .rental-info-card__value {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   OUTFIT AVAILABILITY
+========================================= */
+
+.rental-info-card__row--availability {
+  align-items: center;
+}
+
+.rental-info-card__availability {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 7px;
+  max-width: 100%;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.rental-info-card__availability-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.rental-info-card__availability--available {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.rental-info-card__availability--unavailable {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+/* =========================================
+   LAPTOP AND TABLET
+========================================= */
+
+@media (max-width: 1199px) {
+  .rental-info-card {
+    border-radius: 18px;
+  }
+
+  .rental-info-card__header {
+    padding: 18px 20px;
+  }
+
+  .rental-info-card__body {
+    padding: 22px 20px;
+  }
+
+  .rental-info-card__list {
+    gap: 18px;
+  }
+
+  .rental-info-card__row {
+    column-gap: 12px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .rental-info-card {
+    border-radius: 16px;
+  }
+
+  .rental-info-card__header {
+    gap: 10px;
+    padding: 16px 18px;
+  }
+
+  .rental-info-card__icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .rental-info-card__title {
+    font-size: 18px;
+  }
+
+  .rental-info-card__body {
+    padding: 20px 18px;
+  }
+
+  .rental-info-card__list {
+    gap: 18px;
+  }
+
+  .rental-info-card__row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .rental-info-card__label,
+  .rental-info-card__value {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .rental-info-card__availability {
+    gap: 6px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 575px) {
+  .rental-info-card {
+    border-radius: 14px;
+  }
+
+  .rental-info-card__header {
+    padding: 15px 16px;
+  }
+
+  .rental-info-card__title {
+    font-size: 17px;
+  }
+
+  .rental-info-card__body {
+    padding: 18px 16px;
+  }
+
+  .rental-info-card__list {
+    gap: 17px;
+  }
+
+  .rental-info-card__row {
+    column-gap: 10px;
+  }
+
+  .rental-info-card__label,
+  .rental-info-card__value {
+    font-size: 12px;
+  }
+
+  .rental-info-card__availability {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 374px) {
+  .rental-info-card__header {
+    gap: 9px;
+    padding: 14px 12px;
+  }
+
+  .rental-info-card__icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .rental-info-card__title {
+    font-size: 16px;
+  }
+
+  .rental-info-card__body {
+    padding: 16px 12px;
+  }
+
+  .rental-info-card__list {
+    gap: 16px;
+  }
+
+  .rental-info-card__row {
+    column-gap: 8px;
+  }
+
+  .rental-info-card__label,
+  .rental-info-card__value {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .rental-info-card__availability {
+    gap: 5px;
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (hover: none) {
+  .rental-info-card:hover {
+    border-color: #e2e8f0;
+    box-shadow:
+      0 3px 6px rgba(15, 23, 42, 0.06),
+      0 10px 20px rgba(15, 23, 42, 0.04);
+  }
+
+  .rental-info-card:hover .rental-info-card__icon {
+    background: #ede9fe;
+    transform: none;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .rental-info-card,
+  .rental-info-card__icon {
+    transition: none;
+  }
+
+  .rental-info-card:hover .rental-info-card__icon {
+    transform: none;
+  }
+}

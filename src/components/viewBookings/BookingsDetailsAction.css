@@ -1,0 +1,383 @@
+
+/* =========================================
+   BOOKING DETAILS ACTION BAR
+========================================= */
+
+.booking-details-action {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e8eaf0;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045);
+  box-sizing: border-box;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.booking-details-action__navigation {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+/* =========================================
+   ACTION BUTTON GROUP
+========================================= */
+
+.booking-details-action__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* =========================================
+   BASE BUTTON
+========================================= */
+
+.booking-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 11px 17px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.booking-action-btn svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.booking-action-btn--back {
+  color: #334155;
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.booking-action-btn--back:hover:not(:disabled) {
+  color: #0f172a;
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   EDIT BUTTON
+========================================= */
+
+.booking-action-btn--edit {
+  color: #e11d48;
+  background: #ffffff;
+  border-color: #fda4af;
+}
+
+.booking-action-btn--edit:hover:not(:disabled) {
+  color: #be123c;
+  background: #fff1f2;
+  border-color: #fb7185;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.08);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   SUCCESS BUTTONS
+========================================= */
+
+.booking-action-btn--success {
+  color: #ffffff;
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.booking-action-btn--success:hover:not(:disabled) {
+  background: #15803d;
+  border-color: #15803d;
+  box-shadow: 0 5px 14px rgba(22, 163, 74, 0.18);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   DANGER BUTTONS
+========================================= */
+
+.booking-action-btn--danger {
+  color: #ffffff;
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.booking-action-btn--danger:hover:not(:disabled) {
+  background: #b91c1c;
+  border-color: #b91c1c;
+  box-shadow: 0 5px 14px rgba(220, 38, 38, 0.16);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   FOCUS ACCESSIBILITY
+========================================= */
+
+.booking-action-btn:focus-visible {
+  outline: 3px solid rgba(244, 63, 94, 0.25);
+  outline-offset: 3px;
+  z-index: 1;
+}
+
+/* =========================================
+   DISABLED STATE
+========================================= */
+
+.booking-action-btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================
+   LOADING SPINNER
+========================================= */
+
+.booking-action-btn__spinner {
+  animation: booking-action-spin 900ms linear infinite;
+}
+
+@keyframes booking-action-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP — 1440px+
+========================================= */
+
+@media (min-width: 1440px) {
+  .booking-details-action {
+    padding: 22px 24px;
+    gap: 24px;
+  }
+
+  .booking-details-action__buttons {
+    gap: 12px;
+  }
+
+  .booking-action-btn {
+    min-height: 46px;
+    padding: 12px 19px;
+    font-size: 13.5px;
+  }
+}
+
+/* =========================================
+   LAPTOP / COMPACT DESKTOP
+========================================= */
+
+@media (max-width: 1199px) {
+  .booking-details-action {
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .booking-details-action__buttons {
+    gap: 9px;
+  }
+
+  .booking-action-btn {
+    padding: 10px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* =========================================
+   TABLET — 768px TO 991px
+========================================= */
+
+@media (max-width: 991px) {
+  .booking-details-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .booking-details-action__navigation {
+    width: 100%;
+  }
+
+  .booking-details-action__buttons {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .booking-action-btn {
+    min-height: 44px;
+  }
+}
+
+/* =========================================
+   MOBILE — 576px TO 767px
+========================================= */
+
+@media (max-width: 767px) {
+  .booking-details-action {
+    gap: 14px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .booking-details-action__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .booking-action-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 10px 11px;
+    gap: 7px;
+    border-radius: 10px;
+    font-size: 12.5px;
+  }
+
+  .booking-action-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .booking-action-btn--back {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE — 375px TO 575px
+========================================= */
+
+@media (max-width: 575px) {
+  .booking-details-action {
+    padding: 13px;
+    gap: 13px;
+    border-radius: 14px;
+  }
+
+  .booking-details-action__buttons {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .booking-action-btn {
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+
+  .booking-action-btn--back {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE — 320px TO 374px
+========================================= */
+
+@media (max-width: 374px) {
+  .booking-details-action {
+    padding: 11px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+
+  .booking-details-action__buttons {
+    gap: 8px;
+  }
+
+  .booking-action-btn {
+    min-height: 44px;
+    padding: 10px;
+    gap: 7px;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+
+  .booking-action-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICE FEEDBACK
+========================================= */
+
+@media (hover: none) {
+  .booking-action-btn:hover:not(:disabled) {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .booking-action-btn:active:not(:disabled) {
+    filter: brightness(0.95);
+    transform: scale(0.985);
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-action-btn,
+  .booking-action-btn__spinner {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

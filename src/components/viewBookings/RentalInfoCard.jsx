@@ -1,89 +1,100 @@
+
 import { CalendarDays } from "lucide-react";
+import "./RentalInfoCard.css";
 
 const RentalInfoCard = ({ booking }) => {
   const rental = booking?.rental || {};
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
+    <div className="rental-info-card">
       {/* Header */}
-
-      <div className="flex items-center gap-3 px-6 py-5 ">
-        <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
-          <CalendarDays size={16} className="text-violet-600" />
+      <div className="rental-info-card__header">
+        <div className="rental-info-card__icon">
+          <CalendarDays size={18} strokeWidth={2} />
         </div>
 
-        <h2 className="text-lg font-bold text-slate-800">
+        <h2 className="rental-info-card__title">
           Rental Information
         </h2>
       </div>
 
       {/* Body */}
+      <div className="rental-info-card__body">
+        <div className="rental-info-card__list">
 
-      <div className="p-6 overflow-x-auto">
-        <div className="space-y-4 min-w-[240px]">
-
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Rental Duration :
+          {/* Rental Duration */}
+          <div className="rental-info-card__row">
+            <span className="rental-info-card__label">
+              Rental Duration
             </span>
 
-            <span className="font-semibold text-right break-words min-w-0">
+            <span className="rental-info-card__value">
               {rental.duration || "-"}
             </span>
           </div>
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Requested Rent Date :
+          {/* Requested Rent Date */}
+          <div className="rental-info-card__row rental-info-card__row--date">
+            <span className="rental-info-card__label">
+              Requested Rent Date
             </span>
 
-            <span className="font-semibold text-right break-words min-w-0">
+            <span className="rental-info-card__value">
               {rental.requestDate || "-"}
             </span>
           </div>
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Requested Return Date :
+          {/* Requested Return Date */}
+          <div className="rental-info-card__row rental-info-card__row--date">
+            <span className="rental-info-card__label">
+              Requested Return Date
             </span>
 
-            <span className="font-semibold text-right break-words min-w-0">
+            <span className="rental-info-card__value">
               {rental.returnDate || "-"}
             </span>
           </div>
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Advance Notice :
+          {/* Advance Notice */}
+          <div className="rental-info-card__row">
+            <span className="rental-info-card__label">
+              Advance Notice
             </span>
 
-            <span className="font-semibold text-right break-words min-w-0">
+            <span className="rental-info-card__value">
               {rental.advanceNotice || "-"}
             </span>
           </div>
 
-          <div className="flex justify-between items-center gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Outfit Availability :
+          {/* Outfit Availability */}
+          <div className="rental-info-card__row rental-info-card__row--availability">
+            <span className="rental-info-card__label">
+              Outfit Availability
             </span>
 
             <span
-              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${
+              className={`rental-info-card__availability ${
                 rental.available
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-600"
+                  ? "rental-info-card__availability--available"
+                  : "rental-info-card__availability--unavailable"
               }`}
             >
+              <span
+                className="rental-info-card__availability-dot"
+                aria-hidden="true"
+              />
+
               {rental.available ? "Available" : "Not Reserved"}
             </span>
           </div>
 
-          <div className="flex justify-between gap-5">
-            <span className="text-slate-500 font-semibold whitespace-nowrap shrink-0">
-              Special Instructions :
+          {/* Special Instructions */}
+          <div className="rental-info-card__row rental-info-card__row--instructions">
+            <span className="rental-info-card__label">
+              Special Instructions
             </span>
 
-            <span className="font-semibold text-right break-words min-w-0">
+            <span className="rental-info-card__value">
               {rental.instructions || "-"}
             </span>
           </div>

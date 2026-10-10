@@ -1,0 +1,420 @@
+
+/* =========================================
+   STATS CARDS SECTION
+========================================= */
+
+.stats-cards-section {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   RESPONSIVE GRID
+   Mobile: 1 column
+   Tablet: 2 columns
+   Desktop: 4 columns
+========================================= */
+
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   STAT CARD
+========================================= */
+
+.stats-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgb(15 23 42 / 7%);
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    border-color 300ms ease;
+  isolation: isolate;
+}
+
+.stats-card-decoration {
+  position: absolute;
+  z-index: -1;
+  top: -32px;
+  right: -32px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #f8fafc;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+.stats-card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   ICON
+========================================= */
+
+.stats-card-icon {
+  display: flex;
+  flex: 0 0 56px;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  transition: transform 300ms ease;
+}
+
+.stats-card-icon svg {
+  flex-shrink: 0;
+}
+
+/* =========================================
+   TEXT CONTENT
+========================================= */
+
+.stats-card-information {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.stats-card-title {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.stats-card-value {
+  margin: 6px 0 0;
+  color: #0f172a;
+  font-size: clamp(25px, 2vw, 32px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-card-label {
+  margin: 6px 0 0;
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   LOADING SKELETON
+========================================= */
+
+.stats-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stats-skeleton-value {
+  width: min(100%, 120px);
+  height: 32px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  animation: stats-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.stats-skeleton-label {
+  width: min(100%, 88px);
+  height: 15px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  animation: stats-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes stats-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* =========================================
+   ERROR STATE
+========================================= */
+
+.stats-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 16px;
+  background: #fef2f2;
+}
+
+.stats-error-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.stats-error-title {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.stats-error-message {
+  margin: 4px 0 0;
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.stats-retry-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 88px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fff;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.stats-retry-button:focus-visible {
+  outline: 3px solid rgb(220 38 38 / 25%);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   TABLET: TWO COLUMNS
+========================================= */
+
+@media (min-width: 576px) {
+  .stats-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .stats-card {
+    padding: 18px;
+  }
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 992px) {
+  .stats-cards-grid {
+    gap: 18px;
+  }
+
+  .stats-card {
+    padding: 20px;
+  }
+
+  .stats-card-content {
+    gap: 18px;
+  }
+
+  .stats-card-icon {
+    flex-basis: 60px;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP: FOUR COLUMNS
+========================================= */
+
+@media (min-width: 1280px) {
+  .stats-cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .stats-card {
+    padding: 18px;
+  }
+
+  .stats-card-content {
+    gap: 14px;
+  }
+
+  .stats-card-icon {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 17px;
+  }
+
+  .stats-card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .stats-card-title {
+    font-size: 13px;
+  }
+
+  .stats-card-value {
+    font-size: clamp(23px, 1.7vw, 30px);
+  }
+
+  .stats-card-label {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 375px) {
+  .stats-cards-grid {
+    gap: 12px;
+  }
+
+  .stats-card {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .stats-card-content {
+    gap: 13px;
+  }
+
+  .stats-card-icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+  }
+
+  .stats-card-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .stats-card-title {
+    font-size: 13px;
+  }
+
+  .stats-card-value {
+    font-size: 25px;
+    letter-spacing: -0.4px;
+  }
+
+  .stats-card-label {
+    font-size: 12px;
+  }
+
+  .stats-error {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stats-retry-button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   HOVER EFFECTS
+========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .stats-card:hover {
+    transform: translateY(-3px);
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 20px rgb(15 23 42 / 9%);
+  }
+
+  .stats-card:hover .stats-card-decoration {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+
+  .stats-card:hover .stats-card-icon {
+    transform: scale(1.05);
+  }
+
+  .stats-retry-button:hover {
+    border-color: #fca5a5;
+    background: #fef2f2;
+  }
+}
+
+/* =========================================
+   TOUCH FEEDBACK
+========================================= */
+
+@media (hover: none) {
+  .stats-card:active {
+    transform: scale(0.995);
+  }
+
+  .stats-retry-button:active {
+    transform: scale(0.98);
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .stats-card,
+  .stats-card-decoration,
+  .stats-card-icon,
+  .stats-retry-button,
+  .stats-skeleton-value,
+  .stats-skeleton-label {
+    animation: none;
+    transition: none;
+  }
+}

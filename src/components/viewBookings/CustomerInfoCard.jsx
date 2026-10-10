@@ -1,92 +1,118 @@
 import { User } from "lucide-react";
+import "./CustomerInfoCard.css";
 
 const CustomerInfoCard = ({ booking }) => {
   if (!booking) return null;
 
-  const { customer } = booking;
+  const customer = booking.customer || {};
+  const address = booking.address || {};
+  const rawAddress = booking.rawBooking?.address || {};
+
+  // Resolve street address from available booking data.
+  const streetAddress =
+    address.streetAddress ||
+    address.street ||
+    address.fullAddress ||
+    rawAddress.streetAddress ||
+    rawAddress.street ||
+    rawAddress.fullAddress ||
+    customer.streetAddress ||
+    customer.address?.streetAddress ||
+    customer.address?.street ||
+    "-";
+
+  const customerName =
+    customer.name || customer.fullName || "-";
+
+  const mobileNumber =
+    customer.phone || customer.mobileNumber || "-";
+
+  const emailAddress =
+    customer.email || customer.emailAddress || "-";
+
+  const city =
+    customer.city || address.city || rawAddress.city || "-";
+
+  const state =
+    customer.state || address.state || rawAddress.state || "-";
+
+  const pinCode =
+    customer.pin ||
+    customer.pinCode ||
+    customer.pincode ||
+    address.pinCode ||
+    address.pincode ||
+    rawAddress.pinCode ||
+    rawAddress.pincode ||
+    "-";
+
+  const InfoRow = ({ label, value, className = "" }) => (
+    <div className={`customer-info-card__row ${className}`}>
+      <span className="customer-info-card__label">
+        {label}
+      </span>
+
+      <span className="customer-info-card__value">
+        {value || "-"}
+      </span>
+    </div>
+  );
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md">
+    <section className="customer-info-card">
       {/* Header */}
-
-      <div className="px-6 py-5 border-b border-slate-100 flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
-          <User size={16} className="text-violet-600" />
+      <div className="customer-info-card__header">
+        <div className="customer-info-card__icon">
+          <User size={18} aria-hidden="true" />
         </div>
 
-        <h2 className="font-bold text-lg text-slate-800">
+        <h2 className="customer-info-card__title">
           Customer Information
         </h2>
       </div>
 
-      {/* Body */}
+      {/* Customer Details */}
+      <div className="customer-info-card__body">
+        <div className="customer-info-card__list">
+          <InfoRow
+            label="Customer Name :"
+            value={customerName}
+          />
 
-      <div className="p-6 overflow-x-auto">
-        <div className="space-y-4 min-w-[240px]">
+          <InfoRow
+            label="Mobile Number :"
+            value={mobileNumber}
+          />
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Customer Name :
-            </span>
+          <InfoRow
+            label="Email Address :"
+            value={emailAddress}
+            className="customer-info-card__row--email"
+          />
 
-            <span className="font-medium text-slate-800 text-right break-words min-w-0">
-              {customer.name}
-            </span>
-          </div>
+          <InfoRow
+            label="Street Address :"
+            value={streetAddress}
+            className="customer-info-card__row--address"
+          />
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Mobile Number :
-            </span>
+          <InfoRow
+            label="City :"
+            value={city}
+          />
 
-            <span className="font-medium text-right break-words min-w-0">
-              {customer.phone}
-            </span>
-          </div>
+          <InfoRow
+            label="State :"
+            value={state}
+          />
 
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Email Address :
-            </span>
-
-            <span className="font-medium break-all text-right min-w-0">
-              {customer.email}
-            </span>
-          </div>
-
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              City :
-            </span>
-
-            <span className="font-medium text-right break-words min-w-0">
-              {customer.city}
-            </span>
-          </div>
-
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              State :
-            </span>
-
-            <span className="font-medium text-right break-words min-w-0">
-              {customer.state}
-            </span>
-          </div>
-
-          <div className="flex justify-between gap-3">
-            <span className="text-slate-500 font-semibold shrink-0">
-              Pin Code :
-            </span>
-
-            <span className="font-medium text-right break-words min-w-0">
-              {customer.pin}
-            </span>
-          </div>
-
+          <InfoRow
+            label="Pin Code :"
+            value={pinCode}
+          />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

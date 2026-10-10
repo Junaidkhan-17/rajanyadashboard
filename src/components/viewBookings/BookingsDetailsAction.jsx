@@ -1,9 +1,11 @@
+
 import {
   ArrowLeft,
   Pencil,
   CheckCircle2,
   XCircle,
   RotateCcw,
+  LoaderCircle,
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,8 @@ import toast from "react-hot-toast";
 import CancelBooking from "../delete/CancelBooking";
 import { updateBooking } from "../../services/bookingService";
 
+import "./BookingsDetailsAction.css";
+
 const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
   const navigate = useNavigate();
 
@@ -21,38 +25,59 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
 
   if (!booking) return null;
 
-  const status = booking.bookingStatus;
+  const bookingId = booking._id || booking.bookingId;
+  const status = String(booking.bookingStatus || "").toLowerCase();
+
+  // ========================================
+  // Shared Booking Update Handler
+  // ========================================
+
+  const updateBookingStatus = async ({
+    nextStatus,
+    successMessage,
+    errorMessage,
+    payload = {},
+  }) => {
+    if (!bookingId || updating) return;
+
+    setUpdating(true);
+
+    try {
+      const response = await updateBooking(bookingId, {
+        bookingStatus: nextStatus,
+        ...payload,
+      });
+
+      console.log(`BOOKING ${nextStatus.toUpperCase()}:`, response);
+
+      toast.success(successMessage);
+
+      if (onBookingUpdated) {
+        await onBookingUpdated();
+      }
+
+      return true;
+    } catch (error) {
+      console.error(`Failed to update booking to ${nextStatus}:`, error);
+
+      toast.error(error.response?.data?.message || errorMessage);
+
+      return false;
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   // ========================================
   // Confirm Booking
   // ========================================
 
   const handleConfirmBooking = async () => {
-    try {
-      setUpdating(true);
-
-      const response = await updateBooking(booking._id, {
-        bookingStatus: "confirmed",
-      });
-
-      console.log("BOOKING CONFIRMED:", response);
-
-      toast.success("Booking confirmed successfully.");
-
-      if (onBookingUpdated) {
-        await onBookingUpdated();
-      }
-
-      setUpdating(false);
-    } catch (error) {
-      console.error("Failed to confirm booking:", error);
-
-      toast.error(
-        error.response?.data?.message || "Failed to confirm booking.",
-      );
-
-      setUpdating(false);
-    }
+    await updateBookingStatus({
+      nextStatus: "confirmed",
+      successMessage: "Booking confirmed successfully.",
+      errorMessage: "Failed to confirm booking.",
+    });
   };
 
   // ========================================
@@ -60,233 +85,254 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
   // ========================================
 
   const handleCancelBooking = async (data) => {
-    try {
-      setUpdating(true);
-
-      const response = await updateBooking(booking._id, {
-        bookingStatus: "cancelled",
-
-        cancellationReason: data.reason || "",
-
+    const success = await updateBookingStatus({
+      nextStatus: "cancelled",
+      successMessage: "Booking cancelled successfully.",
+      errorMessage: "Failed to cancel booking.",
+      payload: {
+        cancellationReason: data?.reason || "",
         admin: {
-          notes: data.remark || "",
+          ...(booking.admin || {}),
+          notes: data?.remark || "",
         },
-      });
-
-      console.log("BOOKING CANCELLED:", response);
-
-      toast.success("Booking cancelled successfully.");
-
-      setShowCancelModal(false);
-
-      if (onBookingUpdated) {
-        await onBookingUpdated();
-      }
-
-      setUpdating(false);
-    } catch (error) {
-      console.error("Failed to cancel booking:", error);
-
-      toast.error(error.response?.data?.message || "Failed to cancel booking.");
-
-      setUpdating(false);
-    }
-  };
-
-  const handleOrderReturn = async () => {
-    try {
-      setUpdating(true);
-
-      const response = await updateBooking(booking._id, {
-        bookingStatus: "return_requested",
-      });
-
-      console.log("RETURN REQUESTED:", response);
-
-      toast.success("Return request created successfully.");
-
-      if (onBookingUpdated) {
-        await onBookingUpdated();
-      }
-    } catch (error) {
-      console.error("Failed to request return:", error);
-
-      toast.error(error.response?.data?.message || "Failed to request return.");
-    } finally {
-      setUpdating(false);
-    }
-  };
-
-  const handleMarkAsReturned = async () => {
-    try {
-      setUpdating(true);
-
-      const response = await updateBooking(booking._id, {
-        bookingStatus: "returned",
-      });
-
-      console.log("BOOKING RETURNED:", response);
-
-      toast.success("Booking marked as returned successfully.");
-
-      if (onBookingUpdated) {
-        await onBookingUpdated();
-      }
-    } catch (error) {
-      console.error("Failed to mark booking as returned:", error);
-
-      toast.error(
-        error.response?.data?.message || "Failed to mark booking as returned.",
-      );
-    } finally {
-      setUpdating(false);
-    }
-  };
-
-  const handleCompleteBooking = async () => {
-  try {
-    setUpdating(true);
-
-    const response = await updateBooking(booking._id, {
-      bookingStatus: "completed",
+      },
     });
 
-    console.log("BOOKING COMPLETED:", response);
-
-    toast.success("Booking completed successfully.");
-
-    if (onBookingUpdated) {
-      await onBookingUpdated();
+    if (success) {
+      setShowCancelModal(false);
     }
-  } catch (error) {
-    console.error(
-      "Failed to complete booking:",
-      error
-    );
+  };
 
-    toast.error(
-      error.response?.data?.message ||
-        "Failed to complete booking."
-    );
-  } finally {
-    setUpdating(false);
-  }
-};
+  // ========================================
+  // Request Return
+  // ========================================
+
+  const handleOrderReturn = async () => {
+    await updateBookingStatus({
+      nextStatus: "return_requested",
+      successMessage: "Return request created successfully.",
+      errorMessage: "Failed to request return.",
+    });
+  };
+
+  // ========================================
+  // Mark Booking as Returned
+  // ========================================
+
+  const handleMarkAsReturned = async () => {
+    await updateBookingStatus({
+      nextStatus: "returned",
+      successMessage: "Booking marked as returned successfully.",
+      errorMessage: "Failed to mark booking as returned.",
+    });
+  };
+
+  // ========================================
+  // Complete Booking
+  // ========================================
+
+  const handleCompleteBooking = async () => {
+    await updateBookingStatus({
+      nextStatus: "completed",
+      successMessage: "Booking completed successfully.",
+      errorMessage: "Failed to complete booking.",
+    });
+  };
+
+  // ========================================
+  // Cancel Modal Booking Data
+  // ========================================
+
+  const cancellationBooking = {
+    ...booking,
+    rentDate:
+      booking.rentStartDate ||
+      booking.rental?.requestDate ||
+      "-",
+    returnDate:
+      booking.returnDate ||
+      booking.rental?.returnDate ||
+      "-",
+  };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">
-      {/* Left Button */}
+    <section
+      className="booking-details-action"
+      aria-label="Booking management actions"
+    >
+      {/* Left: Back Navigation */}
 
-      <button
-        onClick={() => navigate("/rent-bookings")}
-        className="h-11 px-5 border border-slate-200 rounded-xl bg-white hover:bg-slate-50 flex items-center gap-2 text-slate-700 font-medium transition"
-      >
-        <ArrowLeft size={18} />
-        Back to Bookings
-      </button>
+      <div className="booking-details-action__navigation">
+        <button
+          type="button"
+          onClick={() => navigate("/rent-bookings")}
+          className="booking-action-btn booking-action-btn--back"
+          aria-label="Back to bookings"
+        >
+          <ArrowLeft size={18} aria-hidden="true" />
 
-      {/* Right Buttons */}
+          <span>Back to Bookings</span>
+        </button>
+      </div>
 
-      <div className="flex flex-wrap items-center justify-end gap-3">
-        {/* Edit */}
+      {/* Right: Booking Actions */}
+
+      <div className="booking-details-action__buttons">
+        {/* Edit Booking */}
 
         <button
+          type="button"
           onClick={() =>
-            navigate(`/rent-bookings/edit/${booking._id || booking.bookingId}`)
+            navigate(`/rent-bookings/edit/${bookingId}`)
           }
-          className="h-11 px-5 border border-rose-500 text-rose-600 rounded-xl hover:bg-rose-50 flex items-center gap-2 font-medium transition"
+          disabled={updating || !bookingId}
+          className="booking-action-btn booking-action-btn--edit"
         >
-          <Pencil size={17} />
-          Edit Booking
+          <Pencil size={17} aria-hidden="true" />
+
+          <span>Edit Booking</span>
         </button>
 
-        {/* Pending */}
+        {/* Pending Booking */}
 
         {status === "pending" && (
           <>
             <button
+              type="button"
               onClick={handleConfirmBooking}
               disabled={updating}
-              className="h-11 px-5 rounded-xl bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 font-medium transition"
+              className="booking-action-btn booking-action-btn--success"
             >
-              <CheckCircle2 size={18} />
+              {updating ? (
+                <LoaderCircle
+                  size={18}
+                  className="booking-action-btn__spinner"
+                  aria-hidden="true"
+                />
+              ) : (
+                <CheckCircle2 size={18} aria-hidden="true" />
+              )}
 
-              {updating ? "Confirming..." : "Confirm Booking"}
+              <span>
+                {updating ? "Confirming..." : "Confirm Booking"}
+              </span>
             </button>
 
             <button
+              type="button"
               onClick={() => setShowCancelModal(true)}
               disabled={updating}
-              className="h-11 px-5 rounded-xl bg-red-600 hover:bg-red-700 text-white flex items-center gap-2 font-medium transition"
+              className="booking-action-btn booking-action-btn--danger"
             >
-              <XCircle size={18} />
-              Cancel Booking
+              <XCircle size={18} aria-hidden="true" />
+
+              <span>Cancel Booking</span>
             </button>
           </>
         )}
 
-        {/* Confirmed */}
+        {/* Confirmed Booking */}
 
         {status === "confirmed" && (
           <>
             <button
+              type="button"
               onClick={handleOrderReturn}
               disabled={updating}
-              className="h-11 px-5 rounded-xl bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 font-medium transition"
+              className="booking-action-btn booking-action-btn--success"
             >
-              <RotateCcw size={18} />
-              Order Return
+              {updating ? (
+                <LoaderCircle
+                  size={18}
+                  className="booking-action-btn__spinner"
+                  aria-hidden="true"
+                />
+              ) : (
+                <RotateCcw size={18} aria-hidden="true" />
+              )}
+
+              <span>
+                {updating ? "Processing..." : "Order Return"}
+              </span>
             </button>
 
             <button
+              type="button"
               onClick={() => setShowCancelModal(true)}
               disabled={updating}
-              className="h-11 px-5 rounded-xl bg-red-600 hover:bg-red-700 text-white flex items-center gap-2 font-medium transition"
+              className="booking-action-btn booking-action-btn--danger"
             >
-              <XCircle size={18} />
-              Cancel Booking
+              <XCircle size={18} aria-hidden="true" />
+
+              <span>Cancel Booking</span>
             </button>
           </>
         )}
 
+        {/* Return Requested */}
+
         {status === "return_requested" && (
           <button
+            type="button"
             onClick={handleMarkAsReturned}
             disabled={updating}
-            className="h-11 px-5 rounded-xl bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 font-medium transition"
+            className="booking-action-btn booking-action-btn--success"
           >
-            <CheckCircle2 size={18} />
+            {updating ? (
+              <LoaderCircle
+                size={18}
+                className="booking-action-btn__spinner"
+                aria-hidden="true"
+              />
+            ) : (
+              <CheckCircle2 size={18} aria-hidden="true" />
+            )}
 
-            {updating ? "Updating..." : "Mark as Returned"}
+            <span>
+              {updating ? "Updating..." : "Mark as Returned"}
+            </span>
           </button>
         )}
 
-        {status === "returned" && (
-  <button
-    onClick={handleCompleteBooking}
-    disabled={updating}
-    className="h-11 px-5 rounded-xl bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 font-medium transition"
-  >
-    <CheckCircle2 size={18} />
+        {/* Returned Booking */}
 
-    {updating
-      ? "Completing..."
-      : "Complete Booking"}
-  </button>
-)}
+        {status === "returned" && (
+          <button
+            type="button"
+            onClick={handleCompleteBooking}
+            disabled={updating}
+            className="booking-action-btn booking-action-btn--success"
+          >
+            {updating ? (
+              <LoaderCircle
+                size={18}
+                className="booking-action-btn__spinner"
+                aria-hidden="true"
+              />
+            ) : (
+              <CheckCircle2 size={18} aria-hidden="true" />
+            )}
+
+            <span>
+              {updating ? "Completing..." : "Complete Booking"}
+            </span>
+          </button>
+        )}
       </div>
+
+      {/* Cancellation Modal */}
 
       <CancelBooking
         open={showCancelModal}
-        booking={{
-          ...booking,
-          rentDate: booking.rentStartDate || booking.rental?.requestDate || "-",
-          returnDate: booking.returnDate || booking.rental?.returnDate || "-",
+        booking={cancellationBooking}
+        onClose={() => {
+          if (!updating) {
+            setShowCancelModal(false);
+          }
         }}
-        onClose={() => setShowCancelModal(false)}
         onConfirm={handleCancelBooking}
       />
-    </div>
+    </section>
   );
 };
 

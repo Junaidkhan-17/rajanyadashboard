@@ -1,0 +1,489 @@
+
+/* =========================================
+   RAJANYA ADMIN NAVBAR
+========================================= */
+
+.admin-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+
+  width: 100%;
+  min-width: 0;
+
+  border-bottom: 1px solid #e2e8f0;
+  background: rgb(255 255 255 / 96%);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.admin-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 70px;
+
+  padding: 10px 24px;
+}
+
+/* =========================================
+   LEFT SECTION
+========================================= */
+
+.admin-navbar-left {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+}
+
+/* =========================================
+   MENU BUTTON
+========================================= */
+
+.admin-navbar-menu-button {
+  display: inline-flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 10px;
+
+  color: #334155;
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.admin-navbar-menu-button:focus-visible,
+.admin-navbar-profile-button:focus-visible {
+  outline: 3px solid rgb(139 92 246 / 30%);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.admin-navbar-search {
+  position: relative;
+
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+
+  width: 100%;
+  max-width: 460px;
+  min-width: 0;
+}
+
+.admin-navbar-search-icon {
+  position: absolute;
+  left: 13px;
+
+  flex-shrink: 0;
+  color: #94a3b8;
+
+  pointer-events: none;
+}
+
+.admin-navbar-search-input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+
+  padding: 0 14px 0 40px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  outline: none;
+
+  color: #0f172a;
+  background: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.admin-navbar-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.admin-navbar-search-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgb(139 92 246 / 12%);
+}
+
+/* =========================================
+   RIGHT SECTION
+========================================= */
+
+.admin-navbar-right {
+  position: relative;
+
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.admin-navbar-notifications {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.admin-navbar-profile {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.admin-navbar-profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 44px;
+  padding: 4px 8px;
+
+  border: 0;
+  border-radius: 12px;
+
+  color: #334155;
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.admin-navbar-profile-avatar {
+  display: block;
+  flex: 0 0 40px;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid #f1f5f9;
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.admin-navbar-profile-details {
+  min-width: 0;
+  text-align: left;
+}
+
+.admin-navbar-profile-name {
+  margin: 0;
+
+  color: #1e293b;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-navbar-profile-role {
+  margin: 2px 0 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.admin-navbar-profile-chevron {
+  flex: 0 0 auto;
+  color: #64748b;
+
+  transition: transform 200ms ease;
+}
+
+.admin-navbar-profile-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   DROPDOWN BACKDROP
+========================================= */
+
+.admin-navbar-dropdown-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  background: transparent;
+}
+
+/* =========================================
+   PROFILE DROPDOWN
+========================================= */
+
+.admin-navbar-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 40;
+
+  width: min(280px, calc(100vw - 24px));
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 12%);
+
+  animation: admin-navbar-dropdown-enter 180ms ease-out;
+}
+
+.admin-navbar-dropdown-header {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.admin-navbar-dropdown-name {
+  margin: 0;
+
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-navbar-dropdown-email {
+  margin: 5px 0 0;
+
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.admin-navbar-dropdown-actions {
+  padding: 8px;
+}
+
+.admin-navbar-dropdown-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+
+  border: 0;
+  border-radius: 9px;
+
+  color: #dc2626;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: background 180ms ease;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes admin-navbar-dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   HOVER EFFECTS
+========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .admin-navbar-menu-button:hover,
+  .admin-navbar-profile-button:hover {
+    background: #f8fafc;
+  }
+
+  .admin-navbar-menu-button:hover {
+    color: #7c3aed;
+  }
+
+  .admin-navbar-dropdown-logout:hover {
+    background: #fef2f2;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 767px) {
+  .admin-navbar-inner {
+    min-height: 64px;
+    gap: 8px;
+    padding: 8px 14px;
+  }
+
+  .admin-navbar-left {
+    gap: 8px;
+  }
+
+  .admin-navbar-right {
+    gap: 8px;
+  }
+
+  .admin-navbar-profile-button {
+    gap: 7px;
+    padding: 4px;
+  }
+
+  .admin-navbar-profile-avatar {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 575px) {
+  .admin-navbar-inner {
+    min-height: 60px;
+    padding: 7px 10px;
+    gap: 6px;
+  }
+
+  .admin-navbar-left {
+    flex: 0 1 auto;
+    gap: 6px;
+  }
+
+  .admin-navbar-right {
+    flex: 0 0 auto;
+    gap: 5px;
+  }
+
+  .admin-navbar-menu-button {
+    flex-basis: 40px;
+    width: 40px;
+    height: 42px;
+  }
+
+  .admin-navbar-profile-button {
+    min-height: 44px;
+    padding: 3px;
+  }
+
+  .admin-navbar-profile-avatar {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .admin-navbar-dropdown {
+    width: min(280px, calc(100vw - 20px));
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 374px) {
+  .admin-navbar-inner {
+    padding-right: 7px;
+    padding-left: 7px;
+    gap: 4px;
+  }
+
+  .admin-navbar-right {
+    gap: 3px;
+  }
+
+  .admin-navbar-profile-avatar {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .admin-navbar-profile-button {
+    padding: 2px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-navbar-menu-button,
+  .admin-navbar-search-input,
+  .admin-navbar-profile-button,
+  .admin-navbar-profile-chevron,
+  .admin-navbar-dropdown-logout {
+    transition: none;
+  }
+
+  .admin-navbar-dropdown {
+    animation: none;
+  }
+}

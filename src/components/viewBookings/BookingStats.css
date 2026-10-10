@@ -1,0 +1,424 @@
+
+/* =========================================
+   BOOKING STATS
+   Premium Rajanya Admin Dashboard
+========================================= */
+
+.booking-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   STAT CARD
+========================================= */
+
+.booking-stats__card {
+  position: relative;
+  min-width: 0;
+  padding: 22px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.035);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.booking-stats__card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    #ede9fe,
+    #ddd6fe,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.booking-stats__card:hover {
+  transform: translateY(-3px);
+  border-color: #ddd6fe;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+}
+
+.booking-stats__card:hover::before {
+  opacity: 1;
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.booking-stats__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* =========================================
+   ICONS
+========================================= */
+
+.booking-stats__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.booking-stats__card:hover .booking-stats__icon {
+  transform: translateY(-2px);
+}
+
+.booking-stats__icon--violet {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.booking-stats__icon--blue {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.booking-stats__icon--green {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.booking-stats__icon--orange {
+  color: #f97316;
+  background: #ffedd5;
+}
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.booking-stats__details {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.booking-stats__label {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.booking-stats__value {
+  margin: 6px 0 0;
+  color: #1e293b;
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-weight: 750;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================
+   SECONDARY INFORMATION
+========================================= */
+
+.booking-stats__secondary {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  min-width: 0;
+}
+
+.booking-stats__subtitle {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.booking-stats__subvalue {
+  margin: 5px 0 0;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* =========================================
+   LARGE LAPTOPS
+========================================= */
+
+@media (max-width: 1399px) {
+  .booking-stats {
+    gap: 16px;
+  }
+
+  .booking-stats__card {
+    padding: 19px;
+  }
+
+  .booking-stats__content {
+    gap: 13px;
+  }
+
+  .booking-stats__icon {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .booking-stats__value {
+    font-size: 17px;
+  }
+}
+
+/* =========================================
+   LAPTOPS AND TABLETS
+========================================= */
+
+@media (max-width: 1199px) {
+  .booking-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .booking-stats__card {
+    padding: 22px;
+    border-radius: 17px;
+  }
+
+  .booking-stats__content {
+    gap: 16px;
+  }
+
+  .booking-stats__icon {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .booking-stats__value {
+    font-size: 18px;
+  }
+
+  .booking-stats__secondary {
+    margin-top: 18px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .booking-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .booking-stats__card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .booking-stats__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .booking-stats__icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .booking-stats__icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .booking-stats__label {
+    font-size: 11px;
+  }
+
+  .booking-stats__value {
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .booking-stats__secondary {
+    margin-top: 15px;
+    padding-top: 12px;
+  }
+
+  .booking-stats__subtitle {
+    font-size: 10px;
+  }
+
+  .booking-stats__subvalue {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .booking-stats {
+    gap: 11px;
+  }
+
+  .booking-stats__card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .booking-stats__content {
+    gap: 12px;
+  }
+
+  .booking-stats__icon {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .booking-stats__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .booking-stats__label {
+    font-size: 10px;
+  }
+
+  .booking-stats__value {
+    font-size: 14px;
+  }
+
+  .booking-stats__secondary {
+    margin-top: 13px;
+    padding-top: 11px;
+  }
+
+  .booking-stats__subtitle {
+    font-size: 10px;
+  }
+
+  .booking-stats__subvalue {
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 359px) {
+  .booking-stats {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .booking-stats__card {
+    padding: 16px;
+  }
+
+  .booking-stats__content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .booking-stats__icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .booking-stats__label {
+    font-size: 12px;
+  }
+
+  .booking-stats__value {
+    font-size: 16px;
+  }
+
+  .booking-stats__secondary {
+    margin-top: 12px;
+  }
+
+  .booking-stats__subtitle {
+    font-size: 11px;
+  }
+
+  .booking-stats__subvalue {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (hover: none) {
+  .booking-stats__card:hover {
+    transform: none;
+    border-color: #e2e8f0;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.035);
+  }
+
+  .booking-stats__card:hover::before {
+    opacity: 0;
+  }
+
+  .booking-stats__card:hover .booking-stats__icon {
+    transform: none;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-stats__card,
+  .booking-stats__card::before,
+  .booking-stats__icon {
+    transition: none;
+  }
+
+  .booking-stats__card:hover,
+  .booking-stats__card:hover .booking-stats__icon {
+    transform: none;
+  }
+}

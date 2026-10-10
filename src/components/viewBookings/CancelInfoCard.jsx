@@ -1,55 +1,82 @@
+
 import { CircleX } from "lucide-react";
+import "./CancelInfoCard.css";
 
 const CancelInfoCard = ({ booking }) => {
+  // Show this card only for cancelled bookings.
   if (booking?.bookingStatus !== "Cancelled") return null;
 
   const cancel = booking?.cancelInfo || {};
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
+    <div className="cancel-info-card">
       {/* Header */}
-      <div className="px-6 py-5 border-b border-slate-100 flex items-center gap-2">
-        <CircleX size={18} className="text-red-500" />
+      <div className="cancel-info-card__header">
+        <div className="cancel-info-card__icon">
+          <CircleX size={19} strokeWidth={2} />
+        </div>
 
-        <h2 className="text-lg font-bold text-red-500">Cancel Information</h2>
+        <h2 className="cancel-info-card__title">
+          Cancel Information
+        </h2>
+
+        <span className="cancel-info-card__badge">
+          Cancelled
+        </span>
       </div>
 
       {/* Body */}
-      <div className="p-6">
-        <div className="grid grid-cols-2 gap-x-16 gap-y-6">
+      <div className="cancel-info-card__body">
+        {/* Cancellation Summary */}
+        <div className="cancel-info-card__grid">
           {/* Cancelled By */}
-          <div>
-            <p className="text-sm text-slate-400 mb-1">Cancelled By</p>
+          <div className="cancel-info-card__field">
+            <p className="cancel-info-card__label">
+              Cancelled By
+            </p>
 
-            <p className="font-semibold text-slate-800">
+            <p className="cancel-info-card__value">
               {cancel.cancelledBy || "-"}
             </p>
           </div>
 
           {/* Cancelled On */}
-          <div>
-            <p className="text-sm text-slate-400 mb-1">Cancelled On</p>
+          <div className="cancel-info-card__field">
+            <p className="cancel-info-card__label">
+              Cancelled On
+            </p>
 
-            <p className="font-semibold text-slate-800">
+            <p className="cancel-info-card__value">
               {cancel.cancelledOn || "-"}
             </p>
           </div>
         </div>
 
-        <div className="border-t border-slate-100 my-5" />
+        {/* Section Divider */}
+        <div className="cancel-info-card__divider" />
 
-        <div className="grid grid-cols-2 gap-x-16 gap-y-6">
+        {/* Cancellation Details */}
+        <div className="cancel-info-card__grid">
           {/* Reason */}
-          <div>
-            <p className="text-sm text-slate-400 mb-1">Reason</p>
+          <div className="cancel-info-card__field">
+            <p className="cancel-info-card__label">
+              Reason
+            </p>
 
-            <p className="font-medium text-slate-700">{cancel.reason || "-"}</p>
+            <p className="cancel-info-card__value cancel-info-card__value--description">
+              {cancel.reason || "-"}
+            </p>
           </div>
 
           {/* Notes */}
-          <div>
-            <p className="text-sm text-slate-400 mb-1">Notes</p>
-            <p className="font-medium text-slate-700">{cancel.notes || "-"}</p>
+          <div className="cancel-info-card__field">
+            <p className="cancel-info-card__label">
+              Notes
+            </p>
+
+            <p className="cancel-info-card__value cancel-info-card__value--description">
+              {cancel.notes || "-"}
+            </p>
           </div>
         </div>
       </div>

@@ -1,20 +1,34 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Menu, LogOut, ChevronDown } from "lucide-react";
+import {
+  Search,
+  Menu,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
+
 import NotificationsDropdown from "./NotificationsDropdown";
 import { useAuth } from "../../context/AuthContext";
+
+import "./NavBar.css";
 
 export default function NavBar({ sidebarOpen, setSidebarOpen }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+
   const [navbarSearch, setNavbarSearch] = useState("");
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   const getSearchRoute = (query) => {
     const normalized = query.trim().toLowerCase();
+
     if (!normalized) return "/products";
 
-    if (normalized.includes("category") || normalized.includes("categories")) {
+    if (
+      normalized.includes("category") ||
+      normalized.includes("categories")
+    ) {
       return "/categories";
     }
 
@@ -34,117 +48,141 @@ export default function NavBar({ sidebarOpen, setSidebarOpen }) {
       return "/rent-bookings";
     }
 
-    if (normalized.includes("payment") || normalized.includes("payments")) {
+    if (
+      normalized.includes("payment") ||
+      normalized.includes("payments")
+    ) {
       return "/payments";
     }
 
     return "/products";
   };
 
+  const handleSearchSubmit = (event) => {
+    if (event.key === "Enter") {
+      navigate(getSearchRoute(navbarSearch));
+    }
+  };
+
   const handleLogout = () => {
     logout();
-    navigate("/login");
     setProfileDropdownOpen(false);
+    navigate("/login", { replace: true });
+  };
+
+  const toggleSidebar = () => {
+    setSidebarOpen((previous) => !previous);
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-slate-200">
-      <div className="h-17.5 px-3 sm:px-4 md:px-6 lg:px-7 flex items-center justify-between gap-3">
-        {/* Left */}
-        <div className="flex items-center gap-3 flex-1 min-w-0">
+    <header className="admin-navbar">
+      <div className="admin-navbar-inner">
+        {/* Left Section */}
+        <div className="admin-navbar-left">
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="hidden sm:flex p-2 rounded-lg hover:bg-slate-100 transition"
+            type="button"
+            onClick={toggleSidebar}
+            className="admin-navbar-menu-button"
+            aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+            aria-expanded={Boolean(sidebarOpen)}
           >
-            <Menu size={22} />
+            <Menu size={22} aria-hidden="true" />
           </button>
 
           {/* Desktop Search */}
-          <div className="hidden md:flex relative flex-1 max-w-md lg:max-w-lg">
+          <div className="admin-navbar-search">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+              className="admin-navbar-search-icon"
+              aria-hidden="true"
             />
 
             <input
-              type="text"
+              type="search"
               value={navbarSearch}
               onChange={(event) => setNavbarSearch(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  const query = event.target.value.trim();
-                  navigate(getSearchRoute(query));
-                }
-              }}
+              onKeyDown={handleSearchSubmit}
               placeholder="Search products, categories..."
-              className="
-                w-full
-                h-11
-                pl-10
-                pr-4
-                rounded-xl
-                border
-                border-slate-200
-                outline-none
-                focus:border-violet-500
-                bg-white
-              "
+              aria-label="Search dashboard"
+              className="admin-navbar-search-input"
             />
           </div>
         </div>
 
-        {/* Right */}
-        <div className="flex items-center gap-2 sm:gap-3 md:gap-5 relative">
-          <NotificationsDropdown />
+        {/* Right Section */}
+        <div className="admin-navbar-right">
+          <div className="admin-navbar-notifications">
+            <NotificationsDropdown />
+          </div>
 
-          {/* Profile with Dropdown */}
-          <div className="relative">
+          {/* Profile */}
+          <div className="admin-navbar-profile">
             <button
-              onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center gap-2 sm:gap-3 hover:bg-slate-50 px-2 py-1 rounded-lg transition"
+              type="button"
+              onClick={() =>
+                setProfileDropdownOpen((previous) => !previous)
+              }
+              className="admin-navbar-profile-button"
+              aria-expanded={profileDropdownOpen}
+              aria-haspopup="true"
+              aria-label="Open admin profile menu"
             >
               <img
                 src="https://i.pravatar.cc/150?img=12"
-                alt="Admin"
-                className="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover"
+                alt=""
+                className="admin-navbar-profile-avatar"
               />
 
-              <div className="hidden sm:block">
-                <h4 className="text-sm font-semibold text-slate-800">
+              <div className="admin-navbar-profile-details">
+                <h4 className="admin-navbar-profile-name">
                   {user?.fullName || "Admin"}
                 </h4>
 
-                <p className="text-xs text-slate-500">Admin</p>
+                <p className="admin-navbar-profile-role">Admin</p>
               </div>
 
               <ChevronDown
                 size={16}
-                className={`hidden sm:block transition-transform ${
-                  profileDropdownOpen ? "rotate-180" : ""
+                aria-hidden="true"
+                className={`admin-navbar-profile-chevron ${
+                  profileDropdownOpen ? "is-open" : ""
                 }`}
               />
             </button>
 
-            {/* Dropdown Menu */}
+            {/* Profile Dropdown */}
             {profileDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 z-40">
-                <div className="p-4 border-b border-slate-200">
-                  <p className="text-sm font-medium text-slate-900">
-                    {user?.fullName || "Admin"}
-                  </p>
-                  <p className="text-xs text-slate-500">{user?.email}</p>
-                </div>
+              <>
+                <button
+                  type="button"
+                  className="admin-navbar-dropdown-backdrop"
+                  aria-label="Close profile menu"
+                  onClick={() => setProfileDropdownOpen(false)}
+                />
 
-                <div className="p-2">
-                  <button
-                    onClick={handleLogout}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
-                  >
-                    <LogOut size={16} />
-                    Logout
-                  </button>
+                <div className="admin-navbar-dropdown">
+                  <div className="admin-navbar-dropdown-header">
+                    <p className="admin-navbar-dropdown-name">
+                      {user?.fullName || "Admin"}
+                    </p>
+
+                    <p className="admin-navbar-dropdown-email">
+                      {user?.email || "No email available"}
+                    </p>
+                  </div>
+
+                  <div className="admin-navbar-dropdown-actions">
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="admin-navbar-dropdown-logout"
+                    >
+                      <LogOut size={17} aria-hidden="true" />
+                      <span>Logout</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         </div>

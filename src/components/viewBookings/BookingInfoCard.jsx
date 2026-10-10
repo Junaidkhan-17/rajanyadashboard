@@ -1,34 +1,48 @@
-import { Bookmark, Clock, CalendarCheck } from "lucide-react";
+
+import {
+  Bookmark,
+  Clock,
+  CalendarCheck,
+  ArrowUpRight,
+} from "lucide-react";
+
+import "./BookingInfoCard.css";
 
 const BookingInfoCards = ({ booking }) => {
+  if (!booking) return null;
+
   const cards = [
     {
+      id: "booking-id",
       icon: Bookmark,
-      iconBg: "bg-purple-100 text-purple-600",
+      theme: "purple",
       label: "Booking ID",
       value: booking.bookingId,
       subLabel: "Booking Date & Time",
       subValue: booking.bookingDateTime,
     },
     {
+      id: "rental-duration",
       icon: Clock,
-      iconBg: "bg-blue-100 text-blue-600",
+      theme: "blue",
       label: "Rental Duration",
       value: booking.duration,
       subLabel: "Rent Start Date",
       subValue: booking.rentDate,
     },
     {
+      id: "return-date",
       icon: CalendarCheck,
-      iconBg: "bg-green-100 text-green-600",
+      theme: "green",
       label: "Return Date",
       value: booking.returnDate,
       subLabel: "Booking Type",
       subValue: booking.bookingType || "Free Book (Enquiry)",
     },
     {
+      id: "last-updated",
       icon: Bookmark,
-      iconBg: "bg-orange-100 text-orange-600",
+      theme: "orange",
       label: "Last Updated",
       value: booking.lastUpdated,
       subLabel: "Booked By",
@@ -37,29 +51,73 @@ const BookingInfoCards = ({ booking }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {cards.map((card, idx) => (
-        <div
-          key={idx}
-          className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <div
-              className={`w-9 h-9 rounded-lg flex items-center justify-center ${card.iconBg}`}
-            >
-              <card.icon size={18} />
-            </div>
-            <div>
-              <p className="text-xs text-slate-400">{card.label}</p>
-              <p className="font-semibold text-slate-800">{card.value || "—"}</p>
-            </div>
-          </div>
+    <section
+      className="booking-info-cards"
+      aria-label="Booking information"
+    >
+      {cards.map((card) => {
+        const Icon = card.icon;
 
-          <p className="text-xs text-slate-400">{card.subLabel}</p>
-          <p className="text-sm text-slate-600">{card.subValue || "—"}</p>
-        </div>
-      ))}
-    </div>
+        return (
+          <article
+            key={card.id}
+            className={`booking-info-card booking-info-card--${card.theme}`}
+          >
+            <div className="booking-info-card__top">
+              <div className="booking-info-card__identity">
+                <div className="booking-info-card__icon">
+                  <Icon size={19} strokeWidth={2} aria-hidden="true" />
+                </div>
+
+                <div className="booking-info-card__heading">
+                  <p className="booking-info-card__label">
+                    {card.label}
+                  </p>
+
+                  <p
+                    className="booking-info-card__value"
+                    title={
+                      card.value != null
+                        ? String(card.value)
+                        : undefined
+                    }
+                  >
+                    {card.value || "—"}
+                  </p>
+                </div>
+              </div>
+
+              <span className="booking-info-card__accent">
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
+              </span>
+            </div>
+
+            <div className="booking-info-card__divider" />
+
+            <div className="booking-info-card__footer">
+              <p className="booking-info-card__sub-label">
+                {card.subLabel}
+              </p>
+
+              <p
+                className="booking-info-card__sub-value"
+                title={
+                  card.subValue != null
+                    ? String(card.subValue)
+                    : undefined
+                }
+              >
+                {card.subValue || "—"}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </section>
   );
 };
 

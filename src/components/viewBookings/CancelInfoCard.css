@@ -1,0 +1,370 @@
+
+/* =========================================
+   CANCEL INFORMATION CARD
+   Premium Rajanya Admin Dashboard
+========================================= */
+
+.cancel-info-card {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 3px 6px rgba(127, 29, 29, 0.04),
+    0 10px 24px rgba(15, 23, 42, 0.04);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cancel-info-card:hover {
+  border-color: #fca5a5;
+  box-shadow:
+    0 5px 12px rgba(127, 29, 29, 0.06),
+    0 14px 28px rgba(15, 23, 42, 0.05);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.cancel-info-card__header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 24px;
+  background: linear-gradient(
+    135deg,
+    #fffafa 0%,
+    #fff5f5 100%
+  );
+  border-bottom: 1px solid #fee2e2;
+}
+
+.cancel-info-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  color: #dc2626;
+  background: #fee2e2;
+  border-radius: 11px;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.cancel-info-card:hover .cancel-info-card__icon {
+  color: #b91c1c;
+  background: #fecaca;
+  transform: translateY(-1px);
+}
+
+.cancel-info-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: #dc2626;
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   STATUS BADGE
+========================================= */
+
+.cancel-info-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-height: 28px;
+  padding: 5px 11px;
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================
+   BODY
+========================================= */
+
+.cancel-info-card__body {
+  width: 100%;
+  min-width: 0;
+  padding: 24px;
+}
+
+/* =========================================
+   INFORMATION GRID
+========================================= */
+
+.cancel-info-card__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 48px;
+  width: 100%;
+  min-width: 0;
+}
+
+.cancel-info-card__field {
+  min-width: 0;
+  padding: 2px 0;
+}
+
+.cancel-info-card__label {
+  margin: 0 0 7px;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+}
+
+.cancel-info-card__value {
+  margin: 0;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cancel-info-card__value--description {
+  color: #475569;
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.cancel-info-card__divider {
+  width: 100%;
+  height: 1px;
+  margin: 24px 0;
+  background: #f1f5f9;
+}
+
+/* =========================================
+   LAPTOP AND TABLET
+========================================= */
+
+@media (max-width: 1199px) {
+  .cancel-info-card {
+    border-radius: 18px;
+  }
+
+  .cancel-info-card__header {
+    padding: 18px 20px;
+  }
+
+  .cancel-info-card__body {
+    padding: 22px 20px;
+  }
+
+  .cancel-info-card__grid {
+    column-gap: 32px;
+    row-gap: 22px;
+  }
+
+  .cancel-info-card__divider {
+    margin: 22px 0;
+  }
+}
+
+/* =========================================
+   TABLET AND MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .cancel-info-card {
+    border-radius: 16px;
+  }
+
+  .cancel-info-card__header {
+    gap: 10px;
+    padding: 16px 18px;
+  }
+
+  .cancel-info-card__icon {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .cancel-info-card__title {
+    font-size: 17px;
+  }
+
+  .cancel-info-card__badge {
+    min-height: 26px;
+    padding: 4px 9px;
+    font-size: 10px;
+  }
+
+  .cancel-info-card__body {
+    padding: 20px 18px;
+  }
+
+  .cancel-info-card__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+  }
+
+  .cancel-info-card__label {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .cancel-info-card__value {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .cancel-info-card__divider {
+    margin: 20px 0;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 575px) {
+  .cancel-info-card {
+    border-radius: 14px;
+  }
+
+  .cancel-info-card__header {
+    padding: 15px 16px;
+  }
+
+  .cancel-info-card__title {
+    font-size: 16px;
+  }
+
+  .cancel-info-card__body {
+    padding: 18px 16px;
+  }
+
+  .cancel-info-card__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .cancel-info-card__field {
+    padding-bottom: 0;
+  }
+
+  .cancel-info-card__label {
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .cancel-info-card__value {
+    font-size: 13px;
+  }
+
+  .cancel-info-card__divider {
+    margin: 18px 0;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 374px) {
+  .cancel-info-card__header {
+    gap: 9px;
+    padding: 14px 12px;
+  }
+
+  .cancel-info-card__icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .cancel-info-card__title {
+    font-size: 15px;
+  }
+
+  .cancel-info-card__badge {
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+
+  .cancel-info-card__body {
+    padding: 16px 12px;
+  }
+
+  .cancel-info-card__grid {
+    gap: 16px;
+  }
+
+  .cancel-info-card__label {
+    font-size: 11px;
+  }
+
+  .cancel-info-card__value {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .cancel-info-card__divider {
+    margin: 16px 0;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (hover: none) {
+  .cancel-info-card:hover {
+    border-color: #fecaca;
+    box-shadow:
+      0 3px 6px rgba(127, 29, 29, 0.04),
+      0 10px 24px rgba(15, 23, 42, 0.04);
+  }
+
+  .cancel-info-card:hover .cancel-info-card__icon {
+    color: #dc2626;
+    background: #fee2e2;
+    transform: none;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cancel-info-card,
+  .cancel-info-card__icon {
+    transition: none;
+  }
+
+  .cancel-info-card:hover .cancel-info-card__icon {
+    transform: none;
+  }
+}
