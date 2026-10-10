@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Bell,
   CreditCard,
@@ -9,107 +10,82 @@ import {
   User,
   UserPlus,
   MessageSquare,
+  RefreshCw,
+  CalendarDays,
+  CheckCheck,
+  CircleAlert,
+  Inbox,
+  X,
 } from "lucide-react";
 
-const initialNotifications = [
-  {
-    id: 1,
-    title: "Priya Sharma placed a new rent booking",
-    description: "Booking Id: RB-001257 for 'Bridal Lehenga'",
-    timeLabel: "2 minutes ago · 11:20 AM",
-    createdAt: "2025-05-13T11:20:00.000Z",
-    icon: "User",
-    iconColor: "bg-rose-100 text-rose-600",
-    lineColor: "bg-rose-500",
-    unread: true,
-  },
-  {
-    id: 2,
-    title: "AI Try-On completed successfully",
-    description: "For Rahul Verma on 'Sherwani Premium'",
-    timeLabel: "15 minutes ago · 11:00 AM",
-    createdAt: "2025-05-13T11:00:00.000Z",
-    icon: "Monitor",
-    iconColor: "bg-violet-100 text-violet-600",
-    lineColor: "bg-violet-500",
-    unread: true,
-  },
-  {
-    id: 3,
-    title: "Payment received successfully",
-    description: "Amount ₹99 received from Ankita Singh",
-    timeLabel: "32 minutes ago · 10:50 AM",
-    createdAt: "2025-05-13T10:50:00.000Z",
-    icon: "CreditCard",
-    iconColor: "bg-cyan-100 text-cyan-600",
-    lineColor: "bg-cyan-500",
-    unread: true,
-  },
-  {
-    id: 4,
-    title: "Product stock is running low",
-    description: "'Bridal Lehenga Red' stock is below 9 pieces",
-    timeLabel: "45 minutes ago · 10:37 AM",
-    createdAt: "2025-05-13T10:37:00.000Z",
-    icon: "Package",
-    iconColor: "bg-orange-100 text-orange-600",
-    lineColor: "bg-orange-500",
-    unread: true,
-  },
-  {
-    id: 5,
-    title: "New user registered on the platform",
-    description: "Name: Karan Mehta",
-    timeLabel: "Yesterday, 08:15 PM",
-    createdAt: "2025-05-12T20:15:00.000Z",
-    icon: "UserPlus",
-    iconColor: "bg-emerald-100 text-emerald-600",
-    lineColor: "bg-emerald-500",
-    unread: false,
-  },
-  {
-    id: 6,
-    title: "New review received",
-    description: "5 star review for 'Bridal Lehenga' by Neha Patel",
-    timeLabel: "Yesterday, 10:45 PM",
-    createdAt: "2025-05-12T22:45:00.000Z",
-    icon: "Star",
-    iconColor: "bg-yellow-100 text-yellow-600",
-    lineColor: "bg-yellow-500",
-    unread: false,
-  },
-  {
-    id: 7,
-    title: "New support ticket received",
-    description: "Ticket ID: TK-1258 from Ritesh Kumar",
-    timeLabel: "12 May 2025, 05:30 PM",
-    createdAt: "2025-05-12T17:30:00.000Z",
-    icon: "MessageSquare",
-    iconColor: "bg-fuchsia-100 text-fuchsia-600",
-    lineColor: "bg-fuchsia-500",
-    unread: false,
-  },
-  {
-    id: 8,
-    title: "Monthly report is ready",
-    description: "April 2025 monthly sales report generated",
-    timeLabel: "12 May 2025, 05:15 PM",
-    createdAt: "2025-05-12T17:15:00.000Z",
-    icon: "FileText",
-    iconColor: "bg-slate-100 text-slate-600",
-    lineColor: "bg-slate-400",
-    unread: false,
-  },
-];
+import api from "../../services/api";
+import "./NotificationsDropdown.css";
+
+const iconMap = {
+  Bell,
+  User,
+  Monitor,
+  CreditCard,
+  Package,
+  UserPlus,
+  Star,
+  MessageSquare,
+  FileText,
+};
+
+const getIcon = (name) => iconMap[name] || Bell;
+
+const getNotificationStyle = (notification) => {
+  const colors = {
+    booking_created: {
+      iconColor: "#2563eb",
+      lineColor: "#dbeafe",
+      backgroundColor: "#eff6ff",
+    },
+    vto_payment_success: {
+      iconColor: "#059669",
+      lineColor: "#a7f3d0",
+      backgroundColor: "#ecfdf5",
+    },
+  };
+
+  const defaults = colors[notification.type] || {
+    iconColor: "#64748b",
+    lineColor: "#e2e8f0",
+    backgroundColor: "#f8fafc",
+  };
+
+  return {
+    ...defaults,
+    iconColor: notification.iconColor || defaults.iconColor,
+    lineColor: notification.lineColor || defaults.lineColor,
+  };
+};
+
+const normalizeNotification = (item) => ({
+  ...item,
+  id: item._id || item.id,
+  unread:
+    item.isRead !== undefined
+      ? !item.isRead
+      : Boolean(item.unread),
+  icon: getIcon(item.icon) ? item.icon : "Bell",
+});
 
 const formatDateGroup = (createdAt) => {
   const date = new Date(createdAt);
+
+  if (Number.isNaN(date.getTime())) return "Other";
+
   const today = new Date();
-  const yesterday = new Date(today);
+  const yesterday = new Date();
+
   yesterday.setDate(today.getDate() - 1);
 
   if (date.toDateString() === today.toDateString()) return "Today";
-  if (date.toDateString() === yesterday.toDateString()) return "Yesterday";
+  if (date.toDateString() === yesterday.toDateString()) {
+    return "Yesterday";
+  }
 
   return date.toLocaleDateString("en-US", {
     day: "2-digit",
@@ -120,20 +96,218 @@ const formatDateGroup = (createdAt) => {
 
 const formatDateForInput = (createdAt) => {
   const date = new Date(createdAt);
-  return `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(2, "0")}-${`${date.getDate()}`.padStart(2, "0")}`;
+
+  if (Number.isNaN(date.getTime())) return "";
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 };
+
+const formatTimeAgo = (createdAt) => {
+  const date = new Date(createdAt);
+
+  if (Number.isNaN(date.getTime())) return "Time unavailable";
+
+  const seconds = Math.max(
+    0,
+    Math.floor((Date.now() - date.getTime()) / 1000)
+  );
+
+  if (seconds < 60) return "Just now";
+
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days}d ago`;
+
+  return date.toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+};
+
+const getErrorMessage = (error) =>
+  error.response?.data?.message ||
+  error.response?.data?.error ||
+  error.message ||
+  "Unable to load notifications. Please try again.";
 
 export default function NotificationsDropdown() {
   const [showNotifications, setShowNotifications] = useState(false);
-  const [notifications, setNotifications] = useState(initialNotifications);
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [sortBy, setSortBy] = useState("newest");
   const [filterDate, setFilterDate] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState("");
+  const [updatingId, setUpdatingId] = useState(null);
+  const [markingAll, setMarkingAll] = useState(false);
 
   const notificationsRef = useRef(null);
+  const requestRef = useRef(false);
+
+  const fetchNotifications = useCallback(
+    async (manualRefresh = false) => {
+      if (requestRef.current) return;
+
+      requestRef.current = true;
+
+      if (manualRefresh) {
+        setRefreshing(true);
+      } else if (notifications.length === 0) {
+        setLoading(true);
+      }
+
+      setError("");
+
+      try {
+        const response = await api.get("/notifications", {
+          params: {
+            page: 1,
+            limit: 50,
+          },
+        });
+
+        const payload = response.data?.data ?? response.data;
+
+        const list = Array.isArray(payload?.notifications)
+          ? payload.notifications
+          : Array.isArray(payload?.data)
+            ? payload.data
+            : [];
+
+        setNotifications(list.map(normalizeNotification));
+
+        const count = Number(payload?.unreadCount);
+
+        setUnreadCount(
+          payload?.unreadCount !== undefined &&
+            payload?.unreadCount !== null &&
+            Number.isFinite(count)
+            ? count
+            : list.filter(
+                (item) => item.isRead !== true && item.unread !== false
+              ).length
+        );
+      } catch (requestError) {
+        setError(getErrorMessage(requestError));
+      } finally {
+        requestRef.current = false;
+        setLoading(false);
+        setRefreshing(false);
+      }
+    },
+    [notifications.length]
+  );
+
+  useEffect(() => {
+    if (!showNotifications) return undefined;
+
+    fetchNotifications();
+
+    const intervalId = window.setInterval(() => {
+      fetchNotifications();
+    }, 30000);
+
+    return () => window.clearInterval(intervalId);
+  }, [showNotifications, fetchNotifications]);
+
+  useEffect(() => {
+    if (!showNotifications) return undefined;
+
+    const handlePointerDown = (event) => {
+      if (
+        notificationsRef.current &&
+        !notificationsRef.current.contains(event.target)
+      ) {
+        setShowNotifications(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [showNotifications]);
+
+  const toggleNotifications = () => {
+    setShowNotifications((previous) => !previous);
+  };
+
+  const markAsRead = async (notification) => {
+    if (!notification.unread || updatingId || markingAll) return;
+
+    setUpdatingId(notification.id);
+    setError("");
+
+    try {
+      await api.patch(`/notifications/${notification.id}/read`);
+
+      setNotifications((current) =>
+        current.map((item) =>
+          item.id === notification.id
+            ? { ...item, unread: false, isRead: true }
+            : item
+        )
+      );
+
+      setUnreadCount((current) => Math.max(0, current - 1));
+    } catch (requestError) {
+      setError(getErrorMessage(requestError));
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
+  const markAllAsRead = async () => {
+    if (unreadCount === 0 || markingAll || updatingId) return;
+
+    setMarkingAll(true);
+    setError("");
+
+    try {
+      await api.patch("/notifications/read-all");
+
+      setNotifications((current) =>
+        current.map((item) => ({
+          ...item,
+          unread: false,
+          isRead: true,
+        }))
+      );
+
+      setUnreadCount(0);
+    } catch (requestError) {
+      setError(getErrorMessage(requestError));
+    } finally {
+      setMarkingAll(false);
+    }
+  };
 
   const sortedNotifications = [...notifications].sort((a, b) => {
-    const first = new Date(a.createdAt).getTime();
-    const second = new Date(b.createdAt).getTime();
+    const first = new Date(a.createdAt).getTime() || 0;
+    const second = new Date(b.createdAt).getTime() || 0;
+
     return sortBy === "oldest" ? first - second : second - first;
   });
 
@@ -143,293 +317,323 @@ export default function NotificationsDropdown() {
       )
     : sortedNotifications;
 
-  const groupedNotifications = filteredNotifications.reduce((groups, item) => {
-    const key = formatDateGroup(item.createdAt);
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(item);
-    return groups;
-  }, {});
+  const groupedNotifications = filteredNotifications.reduce(
+    (groups, item) => {
+      const group = formatDateGroup(item.createdAt);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        notificationsRef.current &&
-        !notificationsRef.current.contains(event.target)
-      ) {
-        setShowNotifications(false);
-      }
-    };
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(item);
 
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const unreadCount = notifications.filter((n) => n.unread).length;
-
-  const toggleNotifications = () => {
-    setShowNotifications((prev) => !prev);
-  };
+      return groups;
+    },
+    {}
+  );
 
   return (
-    <div className="relative" ref={notificationsRef}>
+    <div
+      className="rajanya-notification"
+      ref={notificationsRef}
+    >
       <button
+        type="button"
+        className="rajanya-notification__trigger"
         onClick={toggleNotifications}
-        className="relative p-2 rounded-lg hover:bg-slate-100 transition"
+        aria-label={`Notifications, ${unreadCount} unread`}
+        aria-expanded={showNotifications}
+        aria-haspopup="dialog"
       >
-        <Bell size={20} />
+        <Bell size={21} strokeWidth={1.8} />
 
         {unreadCount > 0 && (
-          <span className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500 ring-2 ring-white" />
+          <span className="rajanya-notification__trigger-dot" />
+        )}
+
+        {unreadCount > 0 && (
+          <span className="rajanya-notification__trigger-count">
+            {unreadCount > 99 ? "99+" : unreadCount}
+          </span>
         )}
       </button>
 
       {showNotifications && (
-      <div
-  className="
-    fixed
-    top-20
-    right-4
-    left-4
-    sm:left-auto
-    sm:w-[430px]
-    md:w-[500px]
-    max-w-[520px]
-    bg-white
-    border
-    border-slate-200
-    rounded-3xl
-    shadow-2xl
-    z-[9999]
-    overflow-hidden
-  "
->
-
-          <div className="px-4 sm:px-6 py-5 border-b bg-slate-50">
-
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-              <div>
-                <p className="text-lg font-semibold">
-                  Notification
-                </p>
-
-                <p className="text-xs text-slate-500">
-                  You have {notifications.length} recent updates
-                </p>
-
+        <section
+          className="rajanya-notification__panel"
+          role="dialog"
+          aria-label="Notifications"
+        >
+          <header className="rajanya-notification__header">
+            <div className="rajanya-notification__heading">
+              <div className="rajanya-notification__heading-icon">
+                <Bell size={19} />
+                {unreadCount > 0 && (
+                  <span className="rajanya-notification__heading-dot" />
+                )}
               </div>
 
-              <button
-                onClick={() =>
-                  setNotifications((current) =>
-                    current.map((item) => ({
-                      ...item,
-                      unread: false,
-                    }))
-                  )
-                }
-                className="
-                  w-full
-                  sm:w-auto
-                  rounded-full
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-2
-                  text-xs
-                  font-semibold
-                  hover:bg-slate-100
-                "
-              >
-                Mark All as Read
-              </button>
+              <div className="rajanya-notification__heading-content">
+                <span className="rajanya-notification__eyebrow">
+                  Rajanya Administration
+                </span>
 
+                <h2>Notifications</h2>
+
+                <p>
+                  {unreadCount} unread · {notifications.length} loaded
+                </p>
+              </div>
             </div>
 
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              className="rajanya-notification__close"
+              onClick={() => setShowNotifications(false)}
+              aria-label="Close notifications"
+            >
+              <X size={19} />
+            </button>
+          </header>
 
-              <label className="
-                flex
-                items-center
-                justify-between
-                gap-2
-                w-full
-                sm:w-auto
-                rounded-full
-                border
-                border-slate-200
-                bg-white
-                px-4
-                py-2
-                text-xs
-              ">
+          <div className="rajanya-notification__toolbar">
+            <label className="rajanya-notification__date-control">
+              <CalendarDays size={16} />
 
-                <span>Date Added</span>
+              <input
+                type="date"
+                aria-label="Filter notifications by date"
+                value={filterDate}
+                onChange={(event) => setFilterDate(event.target.value)}
+              />
+            </label>
 
-                <input
-                  type="date"
-                  value={filterDate}
-                  onChange={(e) => setFilterDate(e.target.value)}
-                  className="bg-transparent outline-none"
-                />
-
-              </label>
+            <label className="rajanya-notification__sort-control">
+              <span className="rajanya-notification__sr-only">Sort</span>
 
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="
-                  w-full
-                  sm:w-auto
-                  rounded-full
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-2
-                  text-xs
-                "
+                onChange={(event) => setSortBy(event.target.value)}
+                aria-label="Sort notifications"
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
               </select>
-
-            </div>
-
+            </label>
           </div>
 
-          <div className="max-h-[65vh] sm:max-h-[520px] overflow-y-auto bg-white">
-                        {Object.entries(groupedNotifications).map(([groupName, items]) => (
-              <div key={groupName}>
-                <div className="px-4 sm:px-5 py-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                  <div className="flex items-center gap-3">
-                    <span className="h-px flex-1 bg-slate-200" />
-                    <span>{groupName.toUpperCase()}</span>
-                    <span className="h-px flex-1 bg-slate-200" />
-                  </div>
+          <div className="rajanya-notification__actions">
+            <span className="rajanya-notification__result-count">
+              {filteredNotifications.length} notifications
+            </span>
+
+            <button
+              type="button"
+              className="rajanya-notification__action-button"
+              onClick={() => fetchNotifications(true)}
+              disabled={refreshing || loading}
+            >
+              <RefreshCw
+                size={14}
+                className={
+                  refreshing ? "rajanya-notification__spin" : ""
+                }
+              />
+              <span>{refreshing ? "Refreshing" : "Refresh"}</span>
+            </button>
+
+            <button
+              type="button"
+              className="rajanya-notification__action-button rajanya-notification__action-button--read"
+              onClick={markAllAsRead}
+              disabled={unreadCount === 0 || markingAll || updatingId !== null}
+            >
+              <CheckCheck size={14} />
+              <span>{markingAll ? "Saving..." : "Mark all read"}</span>
+            </button>
+          </div>
+
+          {error && (
+            <div className="rajanya-notification__error" role="alert">
+              <CircleAlert size={17} />
+              <p>{error}</p>
+              <button
+                type="button"
+                onClick={() => fetchNotifications(true)}
+              >
+                Retry
+              </button>
+            </div>
+          )}
+
+          <div className="rajanya-notification__feed">
+            {loading && notifications.length === 0 ? (
+              <div className="rajanya-notification__state">
+                <span className="rajanya-notification__loader" />
+                <p>Loading notifications...</p>
+              </div>
+            ) : filteredNotifications.length === 0 ? (
+              <div className="rajanya-notification__state rajanya-notification__state--empty">
+                <div className="rajanya-notification__empty-icon">
+                  <Inbox size={27} />
                 </div>
 
-                {items.map((notification) => {
-                  const Icon = {
-                    User,
-                    Monitor,
-                    CreditCard,
-                    Package,
-                    UserPlus,
-                    Star,
-                    MessageSquare,
-                    FileText,
-                  }[notification.icon];
+                <h3>
+                  {notifications.length === 0
+                    ? "You're all caught up"
+                    : "No notifications found"}
+                </h3>
 
-                  return (
-                    <div
-                      key={notification.id}
-                      className={`
-                        flex
-                        items-start
-                        gap-3
-                        sm:gap-4
-                        px-4
-                        sm:px-5
-                        py-4
-                        border-b
-                        border-slate-100
-                        transition
-                        hover:bg-slate-50
-                        ${
-                          notification.unread
-                            ? "bg-slate-50"
-                            : "bg-white"
-                        }
-                      `}
-                    >
-                      {/* Left Color Bar */}
-                      <div
-                        className={`h-12 sm:h-14 w-1.5 shrink-0 rounded-full ${notification.lineColor}`}
-                      />
+                <p>
+                  {notifications.length === 0
+                    ? "New booking and payment activity will appear here."
+                    : "Try another date or clear your filter."}
+                </p>
 
-                      {/* Icon */}
-                      <div
-                        className={`
-                          flex
-                          h-10
-                          w-10
-                          sm:h-12
-                          sm:w-12
-                          shrink-0
-                          items-center
-                          justify-center
-                          rounded-2xl
-                          sm:rounded-3xl
-                          ${notification.iconColor}
-                        `}
-                      >
-                        <Icon size={18} />
-                      </div>
-
-                      {/* Content */}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-slate-900 break-words leading-5">
-                          {notification.title}
-                        </p>
-
-                        <p className="mt-1 text-xs text-slate-500 break-words leading-5">
-                          {notification.description}
-                        </p>
-
-                        <span className="mt-1 block text-[11px] text-slate-400">
-                          {notification.timeLabel}
-                        </span>
-
-                        <span className="mt-1 block text-[11px] text-slate-400">
-                          {new Date(notification.createdAt).toLocaleString(
-                            "en-US",
-                            {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            }
-                          )}
-                        </span>
-                      </div>
-
-                      {/* Unread Dot */}
-                      <span
-                        className={`
-                          mt-2
-                          h-2.5
-                          w-2.5
-                          shrink-0
-                          rounded-full
-                          ${
-                            notification.unread
-                              ? "bg-rose-500"
-                              : "bg-slate-300"
-                          }
-                        `}
-                      />
-                    </div>
-                  );
-                })}
+                {filterDate && (
+                  <button
+                    type="button"
+                    className="rajanya-notification__clear-filter"
+                    onClick={() => setFilterDate("")}
+                  >
+                    Clear date filter
+                  </button>
+                )}
               </div>
-            ))}
+            ) : (
+              Object.entries(groupedNotifications).map(
+                ([groupName, items]) => (
+                  <section
+                    className="rajanya-notification__group"
+                    key={groupName}
+                  >
+                    <div className="rajanya-notification__group-heading">
+                      <span />
+                      <h3>{groupName}</h3>
+                      <span />
+                    </div>
+
+                    {items.map((notification) => {
+                      const Icon = getIcon(notification.icon);
+                      const style = getNotificationStyle(notification);
+
+                      return (
+                        <article
+                          className={`rajanya-notification__card ${
+                            notification.unread
+                              ? "rajanya-notification__card--unread"
+                              : ""
+                          }`}
+                          key={notification.id}
+                        >
+                          <span
+                            className="rajanya-notification__accent"
+                            style={{ backgroundColor: style.lineColor }}
+                          />
+
+                          <div
+                            className="rajanya-notification__icon"
+                            style={{
+                              backgroundColor: style.backgroundColor,
+                              color: style.iconColor,
+                            }}
+                          >
+                            <Icon size={19} strokeWidth={1.8} />
+                          </div>
+
+                          <div className="rajanya-notification__content">
+                            <div className="rajanya-notification__title-row">
+                              <h4>{notification.title}</h4>
+
+                              {notification.unread && (
+                                <span className="rajanya-notification__new">
+                                  New
+                                </span>
+                              )}
+                            </div>
+
+                            <p className="rajanya-notification__description">
+                              {notification.description}
+                            </p>
+
+                            {notification.referenceNumber && (
+                              <p className="rajanya-notification__reference">
+                                Reference: {notification.referenceNumber}
+                              </p>
+                            )}
+
+                            {notification.amount > 0 && (
+                              <p className="rajanya-notification__amount">
+                                Amount:{" "}
+                                {new Intl.NumberFormat("en-IN", {
+                                  style: "currency",
+                                  currency: "INR",
+                                  maximumFractionDigits: 2,
+                                }).format(notification.amount)}
+                              </p>
+                            )}
+
+                            <div className="rajanya-notification__metadata">
+                              <span>{formatTimeAgo(notification.createdAt)}</span>
+                              <span className="rajanya-notification__metadata-dot" />
+                              <time dateTime={notification.createdAt}>
+                                {new Date(
+                                  notification.createdAt
+                                ).toLocaleString("en-IN", {
+                                  day: "2-digit",
+                                  month: "short",
+                                  year: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </time>
+                            </div>
+
+                            {notification.unread && (
+                              <button
+                                type="button"
+                                className="rajanya-notification__mark-read"
+                                onClick={() => markAsRead(notification)}
+                                disabled={
+                                  updatingId !== null || markingAll
+                                }
+                              >
+                                <CheckCheck size={14} />
+                                {updatingId === notification.id
+                                  ? "Saving..."
+                                  : "Mark as read"}
+                              </button>
+                            )}
+                          </div>
+
+                          <span
+                            className={`rajanya-notification__status ${
+                              notification.unread
+                                ? "rajanya-notification__status--unread"
+                                : ""
+                            }`}
+                            title={notification.unread ? "Unread" : "Read"}
+                          />
+                        </article>
+                      );
+                    })}
+                  </section>
+                )
+              )
+            )}
           </div>
 
-          {/* Footer */}
-          <div className="px-4 sm:px-5 py-4 bg-slate-50 text-center">
+          <footer className="rajanya-notification__footer">
+            <span>
+              <span className="rajanya-notification__live-dot" />
+              Live notification feed
+            </span>
+
             <button
+              type="button"
               onClick={() => setShowNotifications(false)}
-              className="text-sm font-semibold text-rose-600 hover:text-rose-700 transition"
             >
               Close
             </button>
-          </div>
-        </div>
+          </footer>
+        </section>
       )}
     </div>
   );
