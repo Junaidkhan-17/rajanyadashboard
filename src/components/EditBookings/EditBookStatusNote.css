@@ -1,0 +1,214 @@
+/* =========================================
+   EDIT BOOKING STATUS & NOTES
+   Component-specific responsive styles
+   Existing Tailwind design is preserved
+========================================= */
+
+.edit-book-status-card {
+  width: 100%;
+  min-width: 0;
+  border-radius: 1rem;
+  background: #ffffff;
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.edit-book-status-header {
+  min-width: 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.edit-book-status-title {
+  min-width: 0;
+  margin: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.edit-book-status-content {
+  min-width: 0;
+}
+
+.edit-book-status-field {
+  width: 100%;
+  min-width: 0;
+}
+
+.edit-book-status-field label {
+  display: inline-block;
+  line-height: 1.5;
+}
+
+.edit-book-status-select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  cursor: pointer;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.edit-book-status-select:focus-visible {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgb(148 163 184 / 18%);
+}
+
+.edit-book-status-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.edit-book-order-summary {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+}
+
+.edit-book-order-summary-header {
+  min-width: 0;
+}
+
+.edit-book-order-summary-header h4 {
+  min-width: 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.edit-book-order-summary-content {
+  min-width: 0;
+}
+
+.edit-book-summary-row {
+  align-items: flex-start;
+  min-width: 0;
+  line-height: 1.6;
+}
+
+.edit-book-summary-row > span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.edit-book-summary-row > span:last-child {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.edit-book-total-row {
+  min-width: 0;
+}
+
+.edit-book-total-row > span:first-child {
+  line-height: 1.5;
+}
+
+.edit-book-total-amount {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Desktop and laptop */
+@media (min-width: 992px) {
+  .edit-book-status-card {
+    height: 100%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 991.98px) {
+  .edit-book-status-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .edit-book-status-content {
+    padding: 1.25rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575.98px) {
+  .edit-book-status-card {
+    border-radius: 0.875rem;
+  }
+
+  .edit-book-status-header {
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .edit-book-status-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.045em;
+  }
+
+  .edit-book-status-content {
+    padding: 1rem;
+  }
+
+  .edit-book-status-select {
+    height: 44px;
+    padding-left: 0.75rem;
+    padding-right: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .edit-book-order-summary-header {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .edit-book-order-summary-content {
+    padding: 0.875rem;
+  }
+
+  .edit-book-summary-row {
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .edit-book-total-amount {
+    font-size: clamp(1.5rem, 6vw, 1.875rem);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 374px) {
+  .edit-book-status-header {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .edit-book-status-content {
+    padding: 0.75rem;
+  }
+
+  .edit-book-order-summary-header {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .edit-book-order-summary-content {
+    padding: 0.75rem;
+  }
+
+  .edit-book-summary-row {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .edit-book-status-card,
+  .edit-book-status-select {
+    transition: none;
+  }
+}

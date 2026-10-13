@@ -2,16 +2,17 @@ import { NavLink } from "react-router-dom";
 import { CalendarDays } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-// import api from "../../utils/api";
+
 import EditCustomerInfo from "../../components/EditBookings/EditCustomerInfo";
-import EditProductInfo from "./../../components/EditBookings/EditProductInfo";
+import EditProductInfo from "../../components/EditBookings/EditProductInfo";
 import EditRentalInfo from "../../components/EditBookings/EditRentalInfo";
 import EditBookStatusNote from "../../components/EditBookings/EditBookStatusNote";
 import EditActionButtons from "../../components/EditBookings/EditActionButtons";
 import CancelBooking from "../../components/delete/CancelBooking";
 
+import "./EditBookings.css";
+
 const EditBookings = () => {
-  // Dummy Data
   const [booking, setBooking] = useState({
     bookingId: "RB-001248",
     bookingStatus: "Cancelled",
@@ -49,111 +50,137 @@ const EditBookings = () => {
       notes: "Customer informed via WhatsApp.",
     },
   });
+
   const [showCancelModal, setShowCancelModal] = useState(false);
 
   const handleSave = async () => {
-    console.log("Booking Payload =>", booking);
+    try {
+      // Demo implementation: replace this with the booking update API
+      // when connecting this page to the backend.
+      console.log("Booking Payload =>", booking);
 
-    // await api.put(`/bookings/${booking._id || booking.bookingId}`, booking);
+      toast.success("Booking Updated Successfully");
+    } catch (error) {
+      console.error("Failed to update booking:", error);
+      toast.error("Failed to update booking. Please try again.");
+    }
+  };
 
-    toast.success("Booking Updated Successfully");
+  const handleCancelConfirm = (data) => {
+    setBooking((prev) => ({
+      ...prev,
+      bookingStatus: "Cancelled",
+      cancelInfo: {
+        cancelledBy: "Admin Rajanya",
+        cancelledOn: new Date().toLocaleString(),
+        reason: data.reason,
+        notes: data.remark,
+      },
+    }));
+
+    setShowCancelModal(false);
+    toast.success("Booking cancelled successfully");
   };
 
   return (
-    <div className="space-y-3 px-3 sm:px-4 lg:px-0">
+    <div className="edit-bookings-page space-y-3 px-3 sm:px-4 lg:px-0">
       {/* Breadcrumb */}
-
-      <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-500">
-        <NavLink to="/" className="hover:text-black">
+      <div className="edit-bookings-breadcrumb text-sm text-gray-500">
+        <NavLink
+          to="/"
+          className="text-pink-500 hover:text-pink-600"
+        >
           Dashboard
         </NavLink>
 
-        <span>›</span>
+        <span className="mx-2">/</span>
 
-        <NavLink to="/rent-bookings" className="hover:text-black">
-          Rent Bookings
+        <NavLink
+          to="/bookings"
+          className="hover:text-gray-700"
+        >
+          Bookings
         </NavLink>
 
-        <span>›</span>
+        <span className="mx-2">/</span>
 
-        <span className="font-semibold text-slate-900">Edit Booking</span>
+        <span className="font-medium text-gray-800">
+          Edit Booking
+        </span>
       </div>
 
-      {/* Header */}
-
-      <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-4 sm:gap-5">
-        {/* Left */}
-
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
+      {/* Page Header */}
+      <div className="edit-bookings-header flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="edit-bookings-heading">
+          <h1 className="text-2xl font-semibold text-gray-900">
             Edit Booking
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-500 mt-1 sm:mt-2">
-            Update the booking information and save changes.
+          <p className="mt-1 text-sm text-gray-500">
+            Update booking details and manage booking status.
           </p>
         </div>
 
-        {/* Right */}
-
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm px-4 py-3 sm:px-5 sm:py-4 flex items-center gap-3 sm:gap-4 w-full lg:w-auto lg:min-w-[220px]">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-pink-100 flex items-center justify-center shrink-0">
-            <CalendarDays size={20} className="text-pink-600 sm:hidden" />
-            <CalendarDays
-              size={22}
-              className="text-pink-600 hidden sm:block"
-            />
+        {/* Booking ID */}
+        <div className="edit-booking-id-card flex items-center gap-3 rounded-xl border border-pink-100 bg-pink-50 p-4">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+            <CalendarDays size={22} />
           </div>
 
-          <div>
-            <p className="text-[10px] sm:text-[11px] uppercase tracking-wide text-slate-400 font-semibold">
+          <div className="edit-booking-id-content min-w-0">
+            <p className="text-xs font-medium uppercase tracking-wide text-gray-500">
               Booking ID
             </p>
 
-            <h3 className="text-lg sm:text-xl font-bold text-slate-800">
+            <p className="break-words text-base font-semibold text-gray-900">
               {booking.bookingId}
-            </h3>
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <EditCustomerInfo booking={booking} setBooking={setBooking} />
-        <EditProductInfo booking={booking} setBooking={setBooking} />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <EditRentalInfo booking={booking} setBooking={setBooking} />
-        <EditBookStatusNote booking={booking} setBooking={setBooking} />
+      {/* Customer and Product Information */}
+      <div className="edit-bookings-grid grid grid-cols-1 gap-4 md:grid-cols-2">
+        <EditCustomerInfo
+          booking={booking}
+          setBooking={setBooking}
+        />
+
+        <EditProductInfo
+          booking={booking}
+          setBooking={setBooking}
+        />
       </div>
 
-      <EditActionButtons
-        booking={booking}
-        setBooking={setBooking}
-        onSave={handleSave}
-        onCancelBooking={() => setShowCancelModal(true)}
-      />
+      {/* Rental and Booking Status Information */}
+      <div className="edit-bookings-grid grid grid-cols-1 gap-4 md:grid-cols-2">
+        <EditRentalInfo
+          booking={booking}
+          setBooking={setBooking}
+        />
+
+        <EditBookStatusNote
+          booking={booking}
+          setBooking={setBooking}
+        />
+      </div>
+
+      {/* Action Buttons */}
+      <div className="edit-bookings-actions">
+        <EditActionButtons
+          booking={booking}
+          setBooking={setBooking}
+          onSave={handleSave}
+          onCancelBooking={() => setShowCancelModal(true)}
+        />
+      </div>
+
+      {/* Cancellation Modal */}
       <CancelBooking
         open={showCancelModal}
         booking={booking}
         onClose={() => setShowCancelModal(false)}
-        onConfirm={(data) => {
-          console.log(data);
-
-          // Dummy Update
-          setBooking((prev) => ({
-            ...prev,
-            bookingStatus: "Cancelled",
-
-            cancelInfo: {
-              cancelledBy: "Admin Rajanya",
-              cancelledOn: new Date().toLocaleString(),
-              reason: data.reason,
-              notes: data.remark,
-            },
-          }));
-
-          setShowCancelModal(false);
-        }}
+        onConfirm={handleCancelConfirm}
       />
     </div>
   );

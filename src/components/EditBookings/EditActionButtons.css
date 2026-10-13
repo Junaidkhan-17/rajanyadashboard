@@ -1,0 +1,131 @@
+/* =========================================
+   EDIT ACTION BUTTONS
+   Component-specific responsive styling
+========================================= */
+
+.edit-action-buttons-card {
+  width: 100%;
+  min-width: 0;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Preserve the existing button design */
+.edit-action-back-button,
+.edit-action-cancel-button,
+.edit-action-save-button {
+  min-height: 44px;
+  max-width: 100%;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.edit-action-back-button {
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.edit-action-right-buttons {
+  min-width: 0;
+}
+
+.edit-action-cancel-button,
+.edit-action-save-button {
+  white-space: nowrap;
+}
+
+/* Accessible keyboard focus */
+.edit-action-back-button:focus-visible,
+.edit-action-cancel-button:focus-visible,
+.edit-action-save-button:focus-visible {
+  outline: 2px solid #64748b;
+  outline-offset: 3px;
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .edit-action-back-button:hover {
+    border-color: #cbd5e1;
+  }
+
+  .edit-action-cancel-button:hover {
+    box-shadow: 0 4px 10px rgb(220 38 38 / 12%);
+  }
+
+  .edit-action-save-button:hover {
+    box-shadow: 0 4px 10px rgb(15 23 42 / 12%);
+  }
+}
+
+/* Tablet and smaller screens */
+@media (max-width: 767.98px) {
+  .edit-action-buttons-card {
+    gap: 0.75rem;
+  }
+
+  .edit-action-back-button {
+    width: 100%;
+    white-space: normal;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .edit-action-right-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .edit-action-cancel-button,
+  .edit-action-save-button {
+    width: 100%;
+    min-height: 44px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    white-space: normal;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 374px) {
+  .edit-action-buttons-card {
+    padding: 0.75rem;
+    border-radius: 0.875rem;
+  }
+
+  .edit-action-back-button,
+  .edit-action-cancel-button,
+  .edit-action-save-button {
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Touch feedback without a persistent hover state */
+@media (hover: none) {
+  .edit-action-back-button:active,
+  .edit-action-cancel-button:active,
+  .edit-action-save-button:active {
+    transform: scale(0.99);
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .edit-action-back-button,
+  .edit-action-cancel-button,
+  .edit-action-save-button {
+    transition: none;
+  }
+}

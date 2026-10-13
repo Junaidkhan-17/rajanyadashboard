@@ -1,4 +1,3 @@
-
 import {
   ArrowLeft,
   Pencil,
@@ -38,7 +37,7 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
     errorMessage,
     payload = {},
   }) => {
-    if (!bookingId || updating) return;
+    if (!bookingId || updating) return false;
 
     setUpdating(true);
 
@@ -58,9 +57,14 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
 
       return true;
     } catch (error) {
-      console.error(`Failed to update booking to ${nextStatus}:`, error);
+      console.error(
+        `Failed to update booking to ${nextStatus}:`,
+        error
+      );
 
-      toast.error(error.response?.data?.message || errorMessage);
+      toast.error(
+        error.response?.data?.message || errorMessage
+      );
 
       return false;
     } finally {
@@ -92,7 +96,7 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
       payload: {
         cancellationReason: data?.reason || "",
         admin: {
-          ...(booking.admin || {}),
+          ...(booking.rawBooking?.admin || booking.admin || {}),
           notes: data?.remark || "",
         },
       },
@@ -120,6 +124,12 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
   // ========================================
 
   const handleMarkAsReturned = async () => {
+    const confirmed = window.confirm(
+      "Confirm that the product has been physically returned and inspected before releasing its rental dates?"
+    );
+
+    if (!confirmed) return;
+
     await updateBookingStatus({
       nextStatus: "returned",
       successMessage: "Booking marked as returned successfully.",
@@ -140,7 +150,7 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
   };
 
   // ========================================
-  // Cancel Modal Booking Data
+  // Cancellation Modal Booking Data
   // ========================================
 
   const cancellationBooking = {
@@ -159,6 +169,7 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
     <section
       className="booking-details-action"
       aria-label="Booking management actions"
+      aria-busy={updating}
     >
       {/* Left: Back Navigation */}
 
@@ -168,6 +179,7 @@ const BookingsDetailsAction = ({ booking, onBookingUpdated }) => {
           onClick={() => navigate("/rent-bookings")}
           className="booking-action-btn booking-action-btn--back"
           aria-label="Back to bookings"
+          disabled={updating}
         >
           <ArrowLeft size={18} aria-hidden="true" />
 
